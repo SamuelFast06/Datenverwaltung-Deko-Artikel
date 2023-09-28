@@ -11,6 +11,10 @@ public class Article {
     private int articleQuantity;
     private Measures articleMeasures;
 
+    public Article() {
+        super();
+    }
+
     public Article(int iarticleNo, String iarticleName, String iarticleWeight, String iarticleDescription, String iarticleColor, double iarticlePrice, int iarticleQuantity, Measures iarticleMeasures){
         articleNo = iarticleNo;
         articleName = iarticleName;

@@ -9,6 +9,10 @@ public class ContactPerson {
     private String branchtype;
     private String mobilenumber;
 
+    public ContactPerson() {
+        super();
+    }
+
     public ContactPerson(String ifirstname, String ilastname, String icompany, String iaddress, String ibranchtype, String imobilenumber){
         firstname = ifirstname;
         lastname = ilastname;

@@ -15,7 +15,7 @@ import com.fasterxml.jackson.core.*;
 
 public class UserData {
 
-    final static String filePath = "/Users/samuelfast/IdeaProjects/Datenverwaltung-Deko-Artikel/src/main/java/Files/UserData.json";
+    final static String filePath = "src/main/java/Classes/Files/UserData.json";
 
     public static void writeStringData(String data) throws IOException {
         FileWriter file = new FileWriter(new File(filePath));

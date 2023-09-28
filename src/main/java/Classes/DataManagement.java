@@ -10,6 +10,47 @@ public class DataManagement {
     ArrayList<ContactPerson> contactPeople = new ArrayList<ContactPerson>();
     ArrayList<Costumer> costumers = new ArrayList<Costumer>();
 
+    public DataManagement() {
+        super();
+    }
+
+    public void addCostumer(Costumer costumer) {
+        costumers.add(costumer);
+    }
+
+    public void removeCostumer(Costumer costumer) {
+        for(int i =0; i < costumers.size(); i++) {
+            if(costumer.equals(costumers.get(i))) {
+                costumers.remove(costumer);
+            }
+        }
+    }
+
+    public void addContactPerson(ContactPerson contactPerson) {
+        contactPeople.add(contactPerson);
+    }
+
+    public void removeContactPerson(ContactPerson contactPerson) {
+        for(int i =0; i < contactPeople.size(); i++) {
+            if(contactPerson.equals(contactPeople.get(i))) {
+                costumers.remove(contactPerson);
+            }
+        }
+    }
+
+    public void addArticle(Article article) {
+        articles.add(article);
+    }
+
+    public void removeArticle(Article article) {
+        for(int i =0; i < articles.size(); i++) {
+            if(article.equals(articles.get(i))) {
+                costumers.remove(article);
+            }
+        }
+    }
+
+    //Methods for managing the Data
     public void save() {
         try {
             UserData.writeData(this);
@@ -26,8 +67,45 @@ public class DataManagement {
             costumers = data.costumers;
         } catch (IOException e) {
             System.out.println(e.toString());
+            throw new Error();
         }
-        throw new Error();
+
+    }
+
+    public void deleteAllData() {
+        try {
+            UserData.writeStringData("");
+        } catch (IOException e) {
+            System.out.println("Failed to delete all Data");
+        }
+
+        costumers = new ArrayList<Costumer>();
+        contactPeople = new ArrayList<ContactPerson>();
+        articles = new ArrayList<Article>();
+    }
+
+    public ArrayList<Article> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(ArrayList<Article> articles) {
+        this.articles = articles;
+    }
+
+    public ArrayList<ContactPerson> getContactPeople() {
+        return contactPeople;
+    }
+
+    public void setContactPeople(ArrayList<ContactPerson> contactPeople) {
+        this.contactPeople = contactPeople;
+    }
+
+    public ArrayList<Costumer> getCostumers() {
+        return costumers;
+    }
+
+    public void setCostumers(ArrayList<Costumer> costumers) {
+        this.costumers = costumers;
     }
 
     public static void main(String[] args) {
