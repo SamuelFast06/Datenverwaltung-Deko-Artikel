@@ -7,9 +7,9 @@ class Costumer {
     Address address;
     String mobilenumber;
     String emailAddress;
-    Gender gender;
+    String gender;
 
-    public Costumer(String firstName, String lastName, Birthdate birthdate, Address address, String mobileNumber, String emailAddress, Gender gender) {
+    public Costumer(String firstName, String lastName, Birthdate birthdate, Address address, String mobileNumber, String emailAddress, String gender) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthdate = birthdate;
@@ -43,7 +43,7 @@ class Costumer {
         return emailAddress;
     }
 
-    public Gender getGender() {
+    public String getGender() {
         return gender;
     }
 
@@ -72,7 +72,7 @@ class Costumer {
         this.emailAddress = emailAddress;
     }
 
-    public void setGender(Gender gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 }

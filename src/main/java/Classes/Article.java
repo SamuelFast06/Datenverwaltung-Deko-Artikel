@@ -1,8 +1,5 @@
 package Classes;
-<<<<<<< HEAD:src/Classes/Article.java
-=======
 
->>>>>>> origin/main:src/main/java/Classes/Article.java
 public class Article {
 
     private int articleNo;

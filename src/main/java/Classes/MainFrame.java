@@ -32,7 +32,7 @@ public class MainFrame {
      new User("freddyFazbear123", "kamin187", 9),
      new User("rootbeer", "kamin187", 10)};
 
-    public static void main(String[] args){
+    /*public static void main(String[] args){
 
-    }
+    }*/
 }
