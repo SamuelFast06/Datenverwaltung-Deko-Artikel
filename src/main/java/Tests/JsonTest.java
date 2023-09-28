@@ -1,8 +1,8 @@
 package Tests;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-//import java.io.;
 import org.json.simple.JSONObject;
 
 public class JsonTest {
@@ -14,7 +14,7 @@ public class JsonTest {
 
         System.out.println(obj.toJSONString());
 
-        FileWriter file = new FileWriter("Tests/json/test.json", false);
+        FileWriter file = new FileWriter(new File("/Users/samuelfast/IdeaProjects/Datenverwaltung-Deko-Artikel/src/Files/UserData.json"));
         file.write(obj.toJSONString());
         file.close();
 
