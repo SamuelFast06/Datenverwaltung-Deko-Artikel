@@ -81,6 +81,12 @@ class Birthdate {
     int day;
     int month;
     int year;
+
+    public Birthdate(int day, int month, int year) {
+        this.day = day;
+        this.month = month;
+        this.year = year;
+    }
 }
 
 class Address {
