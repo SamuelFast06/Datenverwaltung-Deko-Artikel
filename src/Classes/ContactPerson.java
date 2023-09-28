@@ -7,13 +7,15 @@ public class ContactPerson {
     private String company;
     private String address;
     private String branchtype;
+    private String mobilenumber;
 
-    public ContactPerson(String ifirstname, String ilastname, String icompany, String iaddress, String ibranchtype){
+    public ContactPerson(String ifirstname, String ilastname, String icompany, String iaddress, String ibranchtype, String imobilenumber){
         firstname = ifirstname;
         lastname = ilastname;
         company = icompany;
         address = iaddress;
         branchtype = ibranchtype;
+        mobilenumber = imobilenumber;
     }
 
     //getter
@@ -32,6 +34,9 @@ public class ContactPerson {
     public String getBranchtype() {
         return branchtype;
     }
+    public String getMobilenumber() {
+        return mobilenumber;
+    }
 
     //setter
     public void setFirstname(String firstname) {
@@ -49,6 +54,9 @@ public class ContactPerson {
     public void setBranchtype(String branchtype) {
         this.branchtype = branchtype;
     }
+    public void setMobilenumber(String mobilenumber) {
+        this.mobilenumber = mobilenumber;
+    }
 
     //ToString
     public String toString() {
@@ -58,6 +66,7 @@ public class ContactPerson {
                 ", company='" + company + '\'' +
                 ", address='" + address + '\'' +
                 ", branchtype='" + branchtype + '\'' +
+                ", mobilenumber='" + mobilenumber + '\'' +
                 '}';
     }
 }

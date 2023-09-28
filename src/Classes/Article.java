@@ -1,3 +1,4 @@
+package Classes;
 public class Article {
 
     private int articleNo;
