@@ -9,6 +9,7 @@ public class DataManagement {
     ArrayList<Article> articles = new ArrayList<Article>();
     ArrayList<ContactPerson> contactPeople = new ArrayList<ContactPerson>();
     ArrayList<Costumer> costumers = new ArrayList<Costumer>();
+    ArrayList<User> users = new ArrayList<User>();
 
     public DataManagement() {
         super();
@@ -50,6 +51,18 @@ public class DataManagement {
         }
     }
 
+    public void addUser(User user) {
+        users.add(user);
+    }
+
+    public void removeUser(User user) {
+        for(int i =0; i < users.size(); i++) {
+            if(user.equals(users.get(i))) {
+                costumers.remove(user);
+            }
+        }
+    }
+
     //Methods for managing the Data
     public void save() {
         try {
@@ -65,6 +78,7 @@ public class DataManagement {
             articles = data.articles;
             contactPeople = data.contactPeople;
             costumers = data.costumers;
+            users = data.users;
         } catch (IOException e) {
             System.out.println(e.toString());
             throw new Error();
@@ -82,6 +96,7 @@ public class DataManagement {
         costumers = new ArrayList<Costumer>();
         contactPeople = new ArrayList<ContactPerson>();
         articles = new ArrayList<Article>();
+        users = new ArrayList<User>();
     }
 
     public ArrayList<Article> getArticles() {
@@ -108,11 +123,12 @@ public class DataManagement {
         this.costumers = costumers;
     }
 
-    public static void main(String[] args) {
-        DataManagement management = new DataManagement();
+    public ArrayList<User> getUsers() {
+        return users;
+    }
 
-        management.costumers.add(new Costumer("Max", "Rose", new Birthdate(24, 07, 2008), new Address("Germany", "Detmold", "Blombergerstraße", "32756", "69"), "05432356234", "max@someEmail.com", "man"));
-        management.save();
+    public void setUsers(ArrayList<User> users) {
+        this.users = users;
     }
 }
 
