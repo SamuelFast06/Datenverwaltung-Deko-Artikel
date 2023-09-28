@@ -1,4 +1,4 @@
-package Tests;
+/*package Tests;
 
 import java.io.DataInput;
 import java.io.File;
@@ -26,7 +26,7 @@ public class JsonTest {
         }
         FileWriter file = new FileWriter(new File(filePath));
         file.write(stringData);
-        file.close();*/
+        file.close();
 
         String data = "";
 
@@ -94,4 +94,4 @@ class TestClass2 {
     public void setNumber(int number) {
         this.number = number;
     }
-}
+}*/

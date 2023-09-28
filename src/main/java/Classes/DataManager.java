@@ -1,19 +1,17 @@
-package Classes.Files;
+package Classes;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
-import Classes.Article;
-import Classes.DataManagement;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.core.*;
 
 //import static org.junit.Assert.assertEquals;
 
 
-public class UserData {
+public class DataManager {
 
     final static String filePath = "src/main/java/Classes/Files/UserData.json";
 
@@ -46,23 +44,22 @@ public class UserData {
         String stringData = "";
         try {
             // convert user object to json string and return it
-            stringData = mapper.writeValueAsString(data);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File(filePath), data);
         } catch (JsonGenerationException | JsonMappingException e) {
             // catch various errors
             e.printStackTrace();
         }
 
-        FileWriter file = new FileWriter(new File(filePath));
+        /*FileWriter file = new FileWriter(new File(filePath));
         file.write(stringData);
-        file.close();
+        file.close();*/
     }
 
-    public static DataManagement getData() throws java.io.IOException {
+    public static Data getData() throws java.io.IOException {
         ObjectMapper mapper = new ObjectMapper();
-        JsonNode jsonNode = mapper.readTree(getStringData());
-        //JavaType type = mapper.getTypeFactory().constructType(T);
 
-        DataManagement data = mapper.convertValue(jsonNode, DataManagement.class);
+        Data data = mapper.readValue(new File(filePath), Data.class);
+
         return data;
 
     }

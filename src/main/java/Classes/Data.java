@@ -1,17 +1,15 @@
 package Classes;
 
-import Classes.Files.UserData;
-
 import java.io.IOException;
 import java.util.*;
 
-public class DataManagement {
+public class Data {
     ArrayList<Article> articles = new ArrayList<Article>();
     ArrayList<ContactPerson> contactPeople = new ArrayList<ContactPerson>();
     ArrayList<Costumer> costumers = new ArrayList<Costumer>();
     ArrayList<User> users = new ArrayList<User>();
 
-    public DataManagement() {
+    public Data() {
         super();
     }
 
@@ -66,7 +64,7 @@ public class DataManagement {
     //Methods for managing the Data
     public void save() {
         try {
-            UserData.writeData(this);
+            DataManager.writeData(this);
         } catch (IOException e) {
             System.out.println(e.toString());
         }
@@ -74,7 +72,7 @@ public class DataManagement {
 
     public void reloadData() throws Error {
         try {
-            DataManagement data = UserData.getData();
+            Data data = DataManager.getData();
             articles = data.articles;
             contactPeople = data.contactPeople;
             costumers = data.costumers;
@@ -88,7 +86,7 @@ public class DataManagement {
 
     public void deleteAllData() {
         try {
-            UserData.writeStringData("");
+            DataManager.writeStringData("");
         } catch (IOException e) {
             System.out.println("Failed to delete all Data");
         }
