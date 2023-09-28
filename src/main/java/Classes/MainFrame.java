@@ -2,7 +2,7 @@ package Classes;
 
 import javax.swing.*;
 
-public class MainFrame {
+public class MainFrame extends JFrame{
 
     private JTextField tfUsername;
     private JTextField tfPasswort;
@@ -13,10 +13,14 @@ public class MainFrame {
     private JTextField textField1;
     private JButton btnOK;
     private JButton btnCancel;
+    private JPanel mainPanel;
     private JCheckBox checkBox;
 
     public MainFrame() {
-
+       setContentPane(mainPanel);
+        setSize(1920,1080);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setVisible(true);
     }
 
     //User-data
