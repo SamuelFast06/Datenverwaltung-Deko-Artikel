@@ -6,9 +6,13 @@ public class MainFrame {
 
     private JTextField tfUsername;
     private JTextField tfPasswort;
+    private JLabel lbLogin;
+    private JLabel lbUsername;
+    private JLabel lbPasswort;
+    private JLabel lbPasswortRepat;
+    private JTextField textField1;
     private JButton btnOK;
     private JButton btnCancel;
-    private JLabel lbLogin;
     private JCheckBox checkBox;
 
     public MainFrame() {
