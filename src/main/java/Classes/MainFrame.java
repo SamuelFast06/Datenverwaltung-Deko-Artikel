@@ -26,13 +26,13 @@ public class MainFrame extends JFrame{
         btnOK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String username = tfUsername.getName();
-                String passwort = tfPasswort.getName();
-                String repeatPasswort = tfRepeatPasswort.getName();
+                String username = tfUsername.getText();
+                String passwort = tfPasswort.getText();
+                String repeatPasswort = tfRepeatPasswort.getText();
 
-                if(!isUsernameTaken(username)){
+                if(isUsernameTaken(username) == false){
                     if(repeatPasswort == passwort){
-                        
+                        userlist[userlist.length+1] = new User(username,passwort, userlist.length+1);
                     }
                 }
 
