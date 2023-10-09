@@ -1,7 +1,9 @@
 package Classes;
+import java.util.*;
 
 public class Article {
 
+    private UUID id;
     private int articleNo;
     private String articleName;
     private String articleWeight;
@@ -15,18 +17,21 @@ public class Article {
         super();
     }
 
-    public Article(int iarticleNo, String iarticleName, String iarticleWeight, String iarticleDescription, String iarticleColor, double iarticlePrice, int iarticleQuantity, Measures iarticleMeasures){
-        articleNo = iarticleNo;
-        articleName = iarticleName;
-        articleWeight = iarticleWeight;
-        articleDescription = iarticleDescription;
-        articleColor = iarticleColor;
-        articlePrice = iarticlePrice;
-        articleQuantity = iarticleQuantity;
-        articleMeasures = iarticleMeasures;
+    public Article(UUID id, int articleNo, String articleName, String articleWeight, String articleDescription, String articleColor, double articlePrice, int articleQuantity, Measures articleMeasures) {
+        this.id = id;
+        this.articleNo = articleNo;
+        this.articleName = articleName;
+        this.articleWeight = articleWeight;
+        this.articleDescription = articleDescription;
+        this.articleColor = articleColor;
+        this.articlePrice = articlePrice;
+        this.articleQuantity = articleQuantity;
+        this.articleMeasures = articleMeasures;
     }
 
     //getter
+
+    public UUID getId() { return id; }
     public int getArticleNo() {
         return articleNo;
     }
@@ -53,6 +58,8 @@ public class Article {
     }
 
     //setter
+
+    public void setId(UUID id) { this.id = id; }
     public void setArticleNo(int articleNo) {
         this.articleNo = articleNo;
     }
@@ -79,11 +86,15 @@ public class Article {
     }
 
     //toString
+
+
+    @Override
     public String toString() {
         return "Article{" +
-                "articleNo=" + articleNo +
+                "id=" + id +
+                ", articleNo=" + articleNo +
                 ", articleName='" + articleName + '\'' +
-                ", articleWeight=" + articleWeight +
+                ", articleWeight='" + articleWeight + '\'' +
                 ", articleDescription='" + articleDescription + '\'' +
                 ", articleColor='" + articleColor + '\'' +
                 ", articlePrice=" + articlePrice +
@@ -91,56 +102,57 @@ public class Article {
                 ", articleMeasures=" + articleMeasures +
                 '}';
     }
+}
+class Measures {
 
-    public class Measures {
+    private double length;
+    private double wide;
+    private double height;
 
-        private double length;
-        private double wide;
-        private double height;
+    public Measures() {
+        super();
+    }
 
-        public Measures(double ilength, double iwide, double iheight) {
-            length = ilength;
-            wide = iwide;
-            height = iheight;
+    public Measures(double ilength, double iwide, double iheight) {
+        length = ilength;
+        wide = iwide;
+        height = iheight;
 
-        }
+    }
 
-        //getter
-        public double getHeight() {
-            return height;
-        }
+    //getter
+    public double getHeight() {
+        return height;
+    }
 
-        public double getLength() {
-            return length;
-        }
+    public double getLength() {
+        return length;
+    }
 
-        public double getWide() {
-            return wide;
-        }
+    public double getWide() {
+        return wide;
+    }
 
-        //setter
-        public void setHeight(double height) {
-            this.height = height;
-        }
+    //setter
+    public void setHeight(double height) {
+        this.height = height;
+    }
 
-        public void setLength(double length) {
-            this.length = length;
-        }
+    public void setLength(double length) {
+        this.length = length;
+    }
 
-        public void setWide(double wide) {
-            this.wide = wide;
-        }
+    public void setWide(double wide) {
+        this.wide = wide;
+    }
 
-        //toString
-        public String toString() {
-            return "Measures{" +
-                    "length=" + length +
-                    ", wide=" + wide +
-                    ", height=" + height +
-                    '}';
-        }
-
-
+    //toString
+    public String toString() {
+        return "Measures{" +
+                "length=" + length +
+                ", wide=" + wide +
+                ", height=" + height +
+                '}';
     }
 
 

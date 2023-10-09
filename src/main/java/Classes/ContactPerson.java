@@ -1,7 +1,9 @@
 package Classes;
+import java.util.*;
 
 public class ContactPerson {
 
+    private UUID id;
     private String firstname;
     private String lastname;
     private String company;
@@ -13,16 +15,19 @@ public class ContactPerson {
         super();
     }
 
-    public ContactPerson(String ifirstname, String ilastname, String icompany, String iaddress, String ibranchtype, String imobilenumber){
-        firstname = ifirstname;
-        lastname = ilastname;
-        company = icompany;
-        address = iaddress;
-        branchtype = ibranchtype;
-        mobilenumber = imobilenumber;
+    public ContactPerson(UUID id, String firstname, String lastname, String company, String address, String branchtype, String mobilenumber) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.company = company;
+        this.address = address;
+        this.branchtype = branchtype;
+        this.mobilenumber = mobilenumber;
     }
 
     //getter
+
+    public UUID getId() { return id; }
     public String getFirstname() {
         return firstname;
     }
@@ -43,6 +48,8 @@ public class ContactPerson {
     }
 
     //setter
+
+    public void setId(UUID id) { this.id = id; }
     public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
@@ -63,9 +70,12 @@ public class ContactPerson {
     }
 
     //ToString
+
+    @Override
     public String toString() {
         return "ContactPerson{" +
-                "firstname='" + firstname + '\'' +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", company='" + company + '\'' +
                 ", address='" + address + '\'' +

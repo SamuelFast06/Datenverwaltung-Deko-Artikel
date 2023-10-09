@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.util.*;
 
 public class Data {
-    ArrayList<Article> articles = new ArrayList<Article>();
-    ArrayList<ContactPerson> contactPeople = new ArrayList<ContactPerson>();
-    ArrayList<Costumer> costumers = new ArrayList<Costumer>();
-    ArrayList<User> users = new ArrayList<User>();
+    private ArrayList<Article> articles = new ArrayList<Article>();
+    private ArrayList<ContactPerson> contactPeople = new ArrayList<ContactPerson>();
+    private ArrayList<Costumer> costumers = new ArrayList<Costumer>();
+    private ArrayList<User> users = new ArrayList<User>();
 
     public Data() {
         super();

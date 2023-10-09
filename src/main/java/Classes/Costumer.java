@@ -1,6 +1,8 @@
 package Classes;
+import java.util.*;
 
 class Costumer {
+    private UUID id;
     String firstName;
     String lastName;
     Birthdate birthdate;
@@ -13,16 +15,18 @@ class Costumer {
         super();
     }
 
-    public Costumer(String firstName, String lastName, Birthdate birthdate, Address address, String mobileNumber, String emailAddress, String gender) {
+    public Costumer(UUID id, String firstName, String lastName, Birthdate birthdate, Address address, String mobilenumber, String emailAddress, String gender) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthdate = birthdate;
         this.address = address;
-        this.mobilenumber = mobileNumber;
+        this.mobilenumber = mobilenumber;
         this.emailAddress = emailAddress;
         this.gender = gender;
     }
 
+    public UUID getId() { return id; }
     public String getFirstName() {
         return firstName;
     }
@@ -52,6 +56,7 @@ class Costumer {
     }
 
 
+    public void setId(UUID id) { this.id = id; }
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
