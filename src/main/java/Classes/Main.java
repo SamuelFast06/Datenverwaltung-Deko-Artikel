@@ -17,6 +17,6 @@ public class Main {
 
         management.save();
         management.reloadData();
-        System.out.println(management.getCostumers());
+        System.out.println(management.getArticles().get(0).getArticleDescription());
     }
 }

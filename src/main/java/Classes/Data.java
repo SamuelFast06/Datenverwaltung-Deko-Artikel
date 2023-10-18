@@ -13,6 +13,15 @@ public class Data {
         super();
     }
 
+    public Data(ArrayList<Article> articles, ArrayList<ContactPerson> contactPeople, ArrayList<Costumer> costumers, ArrayList<User> users) {
+        this.articles = articles;
+        this.contactPeople = contactPeople;
+        this.costumers = costumers;
+        this.users = users;
+
+        this.reloadData();
+    }
+
     public void addCostumer(Costumer costumer) {
         costumers.add(costumer);
     }

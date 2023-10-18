@@ -1,6 +1,6 @@
 {
   "articles" : [ {
-    "id" : "007e2074-0d0c-411a-a2b9-8edb9f5047a6",
+    "id" : "8a9d5ebd-9af4-4406-83b2-124de1068bd1",
     "articleNo" : 1,
     "articleName" : "Table",
     "articleWeight" : "20kg",
@@ -15,7 +15,7 @@
     }
   } ],
   "contactPeople" : [ {
-    "id" : "e209e331-6c3c-49d5-9684-84a1f5a6b234",
+    "id" : "2f9ae4eb-e7af-4646-af13-0743d848920b",
     "firstname" : "Fabian",
     "lastname" : "Müller",
     "company" : "Max Rose GmbH",
@@ -24,13 +24,13 @@
     "mobilenumber" : "0123456789"
   } ],
   "costumers" : [ {
-    "id" : "d23762ea-64bc-4752-a438-209357518156",
+    "id" : "9c934d85-a9c7-4a22-b826-1a23c370c8c1",
     "firstName" : "Paul",
     "lastName" : "Sobjak",
     "birthdate" : {
       "day" : 24,
       "month" : 7,
-      "year" : 2009
+      "year" : 2008
     },
     "address" : {
       "country" : "Germany",
@@ -46,6 +46,6 @@
   "users" : [ {
     "username" : "FabianMueller",
     "passwort" : "FaMue36",
-    "id" : "77218d20-bbe5-436b-856f-e218a4ed85ea"
+    "id" : "16f440dc-f6d1-46d7-ae74-42f328bb9ea8"
   } ]
 }
