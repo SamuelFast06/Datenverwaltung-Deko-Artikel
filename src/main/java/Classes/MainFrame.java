@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.UUID;
+import java.util.*;
 
 public class MainFrame extends JFrame{
 
@@ -19,6 +20,8 @@ public class MainFrame extends JFrame{
     private JPanel mainPanel;
     private JCheckBox checkBox;
 
+    private ArrayList<User> users = Data.
+
     public MainFrame() {
        setContentPane(mainPanel);
         setSize(1920,1080);
@@ -27,13 +30,13 @@ public class MainFrame extends JFrame{
         btnOK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String username = tfUsername.getName();
-                String passwort = tfPasswort.getName();
-                String repeatPasswort = tfRepeatPasswort.getName();
+                String username = tfUsername.getText();
+                String passwort = tfPasswort.getText();
+                String repeatPasswort = tfRepeatPasswort.getText();
 
-                if(!isUsernameTaken(username)){
+                if(isUsernameTaken(username) == false){
                     if(repeatPasswort == passwort){
-                        
+                        userlist[userlist.length+1] = new User(UUID.randomUUID(), username,passwort);
                     }
                 }
 
@@ -44,7 +47,7 @@ public class MainFrame extends JFrame{
 
     }
     private boolean isUsernameTaken (String username){
-        for(int i = 0; i < userlist.length; i++){
+        for(int i = 0; i < Data.users.length; i++){
             if(username == userlist[i].username){
                 return true;
             }
@@ -55,7 +58,7 @@ public class MainFrame extends JFrame{
 
 
     //User-data
-    User[] userlist = {
+    /*User[] userlist = {
      new User(UUID.randomUUID(), "kotbeutel4", "kamin187"),
      new User(UUID.randomUUID(), "ralf88", "kamin187"),
      new User(UUID.randomUUID(), "bob9", "kamin187"),
@@ -66,10 +69,10 @@ public class MainFrame extends JFrame{
      new User(UUID.randomUUID(), "josef888", "kamin187"),
      new User(UUID.randomUUID(), "freddyFazbear123", "kamin187"),
      new User(UUID.randomUUID(), "rootbeer", "kamin187")};
+       */
 
 
+    public static void main(String[] args){
 
-    /*public static void main(String[] args){
-
-    }*/
+    }
 }
