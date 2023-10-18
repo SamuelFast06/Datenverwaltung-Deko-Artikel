@@ -18,8 +18,28 @@ public class Data {
         this.contactPeople = contactPeople;
         this.costumers = costumers;
         this.users = users;
+    }
 
-        this.reloadData();
+    public Data(Boolean loadData) {
+        if(loadData) {
+            try {
+                Data data = DataManager.getData();
+                articles = data.articles;
+                contactPeople = data.contactPeople;
+                costumers = data.costumers;
+                users = data.users;
+            } catch (IOException e) {
+                articles = new ArrayList<Article>();
+                contactPeople = new ArrayList<ContactPerson>();
+                costumers = new ArrayList<Costumer>();
+                users = new ArrayList<User>();
+            }
+        } else {
+            articles = new ArrayList<Article>();
+            contactPeople = new ArrayList<ContactPerson>();
+            costumers = new ArrayList<Costumer>();
+            users = new ArrayList<User>();
+        }
     }
 
     public void addCostumer(Costumer costumer) {
