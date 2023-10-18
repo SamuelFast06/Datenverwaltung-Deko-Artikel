@@ -3,6 +3,7 @@ package Classes;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.UUID;
 
 public class MainFrame extends JFrame{
 
@@ -55,16 +56,16 @@ public class MainFrame extends JFrame{
 
     //User-data
     User[] userlist = {
-     new User("kotbeutel4", "kamin187", 1),
-     new User("ralf88", "kamin187", 2),
-     new User("bob9", "kamin187", 3),
-     new User("gandalf666", "kamin187", 4),
-     new User("fridolin187", "kamin187", 5),
-     new User("galoina3", "kamin187", 6),
-     new User("andrusch5", "kamin187", 7),
-     new User("josef888", "kamin187", 8),
-     new User("freddyFazbear123", "kamin187", 9),
-     new User("rootbeer", "kamin187", 10)};
+     new User(UUID.randomUUID(), "kotbeutel4", "kamin187"),
+     new User(UUID.randomUUID(), "ralf88", "kamin187"),
+     new User(UUID.randomUUID(), "bob9", "kamin187"),
+     new User(UUID.randomUUID(), "gandalf666", "kamin187"),
+     new User(UUID.randomUUID(), "fridolin187", "kamin187"),
+     new User(UUID.randomUUID(), "galoina3", "kamin187"),
+     new User(UUID.randomUUID(), "andrusch5", "kamin187"),
+     new User(UUID.randomUUID(), "josef888", "kamin187"),
+     new User(UUID.randomUUID(), "freddyFazbear123", "kamin187"),
+     new User(UUID.randomUUID(), "rootbeer", "kamin187")};
 
 
 

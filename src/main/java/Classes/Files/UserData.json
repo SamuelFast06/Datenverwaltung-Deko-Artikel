@@ -1,0 +1,51 @@
+{
+  "articles" : [ {
+    "id" : "8a9d5ebd-9af4-4406-83b2-124de1068bd1",
+    "articleNo" : 1,
+    "articleName" : "Table",
+    "articleWeight" : "20kg",
+    "articleDescription" : "This table is very cool",
+    "articleColor" : "brown",
+    "articlePrice" : 75.95,
+    "articleQuantity" : 4,
+    "articleMeasures" : {
+      "length" : 200.0,
+      "wide" : 70.0,
+      "height" : 80.0
+    }
+  } ],
+  "contactPeople" : [ {
+    "id" : "2f9ae4eb-e7af-4646-af13-0743d848920b",
+    "firstname" : "Fabian",
+    "lastname" : "Müller",
+    "company" : "Max Rose GmbH",
+    "address" : "Müllerstraße 36",
+    "branchtype" : "Maschienenbau",
+    "mobilenumber" : "0123456789"
+  } ],
+  "costumers" : [ {
+    "id" : "9c934d85-a9c7-4a22-b826-1a23c370c8c1",
+    "firstName" : "Paul",
+    "lastName" : "Sobjak",
+    "birthdate" : {
+      "day" : 24,
+      "month" : 7,
+      "year" : 2008
+    },
+    "address" : {
+      "country" : "Germany",
+      "city" : "Detmold",
+      "street" : "Blombergerstraße",
+      "zip" : "32756",
+      "houseNumber" : "69"
+    },
+    "mobilenumber" : "05432356234",
+    "emailAddress" : "max@someEmail.com",
+    "gender" : "Man"
+  } ],
+  "users" : [ {
+    "username" : "FabianMueller",
+    "passwort" : "FaMue36",
+    "id" : "16f440dc-f6d1-46d7-ae74-42f328bb9ea8"
+  } ]
+}

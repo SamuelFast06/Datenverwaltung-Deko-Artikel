@@ -1,17 +1,21 @@
 package Classes;
-
+import java.util.*;
 import java.util.ArrayList;
 
 public class User {
 
     String username;
     String passwort;
-    int id;
+    UUID id;
 
-    public User(String iusername, String ipasswort, int iid){
-        username = iusername;
-        passwort = ipasswort;
-        id = iid;
+    public User() {
+        super();
+    }
+
+    public User(UUID id, String username, String passwort) {
+        this.username = username;
+        this.passwort = passwort;
+        this.id = id;
     }
 
     //getter
@@ -21,7 +25,7 @@ public class User {
     public String getPasswort() {
         return passwort;
     }
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
@@ -33,7 +37,7 @@ public class User {
     public void setPasswort(String passwort) {
         this.passwort = passwort;
     }
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -43,15 +47,5 @@ public class User {
                 ", passwort='" + passwort + '\'' +
                 '}';
     }
-
-
-
-
-
-
-
-
-
-
 }
 
