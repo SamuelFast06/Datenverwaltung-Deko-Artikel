@@ -37,11 +37,9 @@ public class MainFrame extends JFrame{
 
                 if(isUsernameTaken(username) == false){
                     if(repeatPasswort == passwort){
-                        users.set(users.indexOf(users.get(users.size()+1)), new User(UUID.randomUUID(), username,passwort));
+                        users.add(new User(UUID.randomUUID(), username,passwort));
                     }
                 }
-
-
             }
         });
 
@@ -74,6 +72,6 @@ public class MainFrame extends JFrame{
 
 
     public static void main(String[] args){
-
+        MainFrame frame = new MainFrame();
     }
 }
