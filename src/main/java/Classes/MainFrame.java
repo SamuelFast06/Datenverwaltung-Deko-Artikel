@@ -20,7 +20,8 @@ public class MainFrame extends JFrame{
     private JPanel mainPanel;
     private JCheckBox checkBox;
 
-    private ArrayList<User> users = Data.
+    private Data data = new Data(true);
+    private ArrayList<User> users = data.getUsers();
 
     public MainFrame() {
        setContentPane(mainPanel);
@@ -36,7 +37,7 @@ public class MainFrame extends JFrame{
 
                 if(isUsernameTaken(username) == false){
                     if(repeatPasswort == passwort){
-                        userlist[userlist.length+1] = new User(UUID.randomUUID(), username,passwort);
+                        users.set(users.indexOf(users.get(users.size()+1)), new User(UUID.randomUUID(), username,passwort));
                     }
                 }
 
@@ -47,8 +48,8 @@ public class MainFrame extends JFrame{
 
     }
     private boolean isUsernameTaken (String username){
-        for(int i = 0; i < Data.users.length; i++){
-            if(username == userlist[i].username){
+        for(int i = 0; i < users.size(); i++){
+            if(username == users.get(i).username){
                 return true;
             }
         }
