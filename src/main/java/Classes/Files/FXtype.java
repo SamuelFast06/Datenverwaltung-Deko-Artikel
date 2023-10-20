@@ -1,8 +1,8 @@
 package Classes.Files;
 
-public class Type {
+public class FXtype {
     String function;
-    public Type(String ifunction){
+    public FXtype(String ifunction){
         function = ifunction;
     }
 
