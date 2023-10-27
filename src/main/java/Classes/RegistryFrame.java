@@ -7,7 +7,7 @@ import java.util.UUID;
 import java.util.*;
 
 
-public class MainFrame extends JFrame{
+public class RegistryFrame extends JFrame{
 
     private JTextField tfUsername;
     private JTextField tfPasswort;
@@ -25,7 +25,7 @@ public class MainFrame extends JFrame{
     private Data data = new Data(true);
     private ArrayList<User> users = data.getUsers();
 
-    public MainFrame() {
+    public RegistryFrame() {
        setContentPane(mainPanel);
         setSize(500,280);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -41,7 +41,8 @@ public class MainFrame extends JFrame{
                     if(repeatPasswort.equals(passwort)){
                         users.add(new User(UUID.randomUUID(), username,passwort));
                         data.save();
-                        clearTf();
+                        clearAllTf();
+                        lbMessage.setText("Registry Success");
 
                     }else{
                         System.out.println("Passwort is wronggg king gonnggggggggg");
@@ -56,6 +57,13 @@ public class MainFrame extends JFrame{
                 }
             }
         });
+
+        btnCancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //close frame
+            }
+        });
     }
 
 
@@ -67,30 +75,9 @@ public class MainFrame extends JFrame{
         }
         return false;
     }
-    private void clearTf(){
+    private void clearAllTf(){
         tfUsername.setText("");
         tfPasswort.setText("");
         tfRepeatPasswort.setText("");
-    }
-
-
-
-    //User-data
-    /*User[] userlist = {
-     new User(UUID.randomUUID(), "kotbeutel4", "kamin187"),
-     new User(UUID.randomUUID(), "ralf88", "kamin187"),
-     new User(UUID.randomUUID(), "bob9", "kamin187"),
-     new User(UUID.randomUUID(), "gandalf666", "kamin187"),
-     new User(UUID.randomUUID(), "fridolin187", "kamin187"),
-     new User(UUID.randomUUID(), "galoina3", "kamin187"),
-     new User(UUID.randomUUID(), "andrusch5", "kamin187"),
-     new User(UUID.randomUUID(), "josef888", "kamin187"),
-     new User(UUID.randomUUID(), "freddyFazbear123", "kamin187"),
-     new User(UUID.randomUUID(), "rootbeer", "kamin187")};
-       */
-
-
-    public static void main(String[] args){
-        MainFrame registry = new MainFrame();
     }
 }

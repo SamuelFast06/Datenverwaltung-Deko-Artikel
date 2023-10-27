@@ -1,5 +1,7 @@
 package Classes.Files;
 
+import java.util.UUID;
+
 public class LList implements LListInterface{
     lListElement currentObject;
     lListElement anchor;
@@ -37,6 +39,7 @@ public class LList implements LListInterface{
     @Override
     public void toLast() {
         if(isEmpty() == false){
+            toFirst();
             while(currentObject.nextElement != null){
                 currentObject = currentObject.nextElement;
             }
@@ -57,12 +60,15 @@ public class LList implements LListInterface{
     }
 
     public void append(Object pObject){
+        lListElement element = new lListElement();
         if(isEmpty() == false){
             toLast();
-            currentObject.nextElement.content = pObject;
+            currentObject.nextElement = element;
+            element.content = pObject;
         }
         if(isEmpty() == true){
-            anchor.content = pObject;
+            anchor = element;
+            element.content = pObject;
         }
     }
 
@@ -77,6 +83,8 @@ public class LList implements LListInterface{
             temp.content = pObject;
         }
         if(isEmpty() == true) {
+            lListElement element = new lListElement();
+            anchor = element;
             anchor.content = pObject;
         }
     }
@@ -88,10 +96,8 @@ public class LList implements LListInterface{
             toLast();
 
             while(temp.nextElement != null){
-                currentObject.content = temp.content;
-                currentObject = currentObject.nextElement;
-                temp = null;
                 temp = temp.nextElement;
+                currentObject.nextElement = temp;
             }
         }
     }
@@ -101,16 +107,44 @@ public class LList implements LListInterface{
             lListElement temp;
             while(currentObject.nextElement !=null){
                 temp = currentObject.nextElement;
-                currentObject = null;
                 currentObject = temp;
             }
         }
     }
 
-    public static void maain(String[] args){
+
+    public static void main(String[] args){
+
+
+        User user1 = new User(UUID.randomUUID(),"tomas", "kamin187");
+        User user2 = new User(UUID.randomUUID(),"fridolin", "kamin187");
+        User user3 = new User(UUID.randomUUID(),"randalf", "kamin187");
+        User user4 = new User(UUID.randomUUID(),"gandalf", "kamin187");
+        User user5 = new User(UUID.randomUUID(),"tisch", "kamin187");
+        User user6 = new User(UUID.randomUUID(),"urnaiumgolem", "kamin187");
+        User user7 = new User(UUID.randomUUID(),"gorlock", "kamin187");
+
         LList list = new LList();
 
-        User user1 = new User();
+        list.insert(user1);
+        list.currentObject = list.anchor;
+        list.append(user2);
+        list.append(user3);
+        list.toLast();
+        System.out.println(list.currentObject.content);
+
+
+
+        LList plist = new LList();
+        plist.insert(user4);
+        plist.currentObject = plist.anchor;
+        plist.append(user5);
+        plist.append(user6);
+
+        list.concat(plist);
+        list.toLast();
+        System.out.println(list.currentObject.content);
+
 
     }
 }
