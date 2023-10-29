@@ -13,20 +13,23 @@ public class Data {
     private ArrayList<Costumer> costumers = new ArrayList<Costumer>();
     private ArrayList<User> users = new ArrayList<User>();
 
-    private final String urlString = "https://api.jsonbin.io/v3/b/65322cf512a5d376598e226c/latest?meta=false";
+    private  String id;
+    private String name;
 
     public Data() {
         super();
     }
 
-    public Data(ArrayList<Article> articles, ArrayList<ContactPerson> contactPeople, ArrayList<Costumer> costumers, ArrayList<User> users) {
+    public Data(ArrayList<Article> articles, ArrayList<ContactPerson> contactPeople, ArrayList<Costumer> costumers, ArrayList<User> users, String id, String name) {
         this.articles = articles;
         this.contactPeople = contactPeople;
         this.costumers = costumers;
         this.users = users;
+        this.id = id;
+        this.name = name;
     }
 
-    public Data(Boolean loadData) {
+   /* public Data(Boolean loadData) {
         if(loadData) {
             try {
                 Data data = DataManager.getData();
@@ -46,7 +49,7 @@ public class Data {
             costumers = new ArrayList<Costumer>();
             users = new ArrayList<User>();
         }
-    }
+    }*/
 
     //Methods for managing the Data
     public void save() {
@@ -77,6 +80,7 @@ public class Data {
     public void deleteAllData() {
         try {
             DataManager.writeStringData("");
+
         } catch (IOException e) {
             System.out.println("Failed to delete all Data");
         }
@@ -85,12 +89,15 @@ public class Data {
         contactPeople = new ArrayList<ContactPerson>();
         articles = new ArrayList<Article>();
         users = new ArrayList<User>();
+        name = "";
+
+        uploadDataToServer();
     }
 
     // The loadDataFromServer and uploadDataToServer return true if all works fine and false if not
     public Boolean loadDataFromServer() {
         try {
-            URL url = new URL(urlString);
+            URL url = new URL("https://api.jsonbin.io/v3/b/" + id + "/latest?meta=false");
 
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
 
@@ -113,7 +120,7 @@ public class Data {
 
     public Boolean uploadDataToServer() {
         try {
-            URL url = new URL("https://api.jsonbin.io/v3/b/65322cf512a5d376598e226c");
+            URL url = new URL("https://api.jsonbin.io/v3/b/" + id);
 
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("PUT");
@@ -123,7 +130,7 @@ public class Data {
             con.setDoOutput(true);
 
             ObjectMapper mapper = new ObjectMapper();
-            String jsonString = mapper.writeValueAsString(new Data(articles, contactPeople, costumers, users));
+            String jsonString = mapper.writeValueAsString(new Data(articles, contactPeople, costumers, users, id, name));
 
             System.out.println(jsonString);
 
@@ -132,7 +139,10 @@ public class Data {
                 os.write(input, 0, input.length);
             }
 
-            System.out.println("Upload response: " + con.getResponseMessage());
+            if(con.getResponseMessage().equals("Not Found")) {
+                Exception exception = new Exception();
+                throw exception;
+            }
 
         } catch(Exception e) {
             System.out.println("Something went wrong with the upload. Please try again: " + e);
@@ -143,6 +153,8 @@ public class Data {
 
     public void addCostumer(Costumer costumer) {
         costumers.add(costumer);
+
+        uploadDataToServer();
     }
 
     public void overrideData(Data newData) {
@@ -150,6 +162,9 @@ public class Data {
         this.contactPeople = newData.contactPeople;
         this.costumers = newData.costumers;
         this.users = newData.users;
+        this.name = newData.name;
+
+        uploadDataToServer();
     }
 
     public void removeCostumer(Costumer costumer) {
@@ -158,10 +173,14 @@ public class Data {
                 costumers.remove(costumer);
             }
         }
+
+        uploadDataToServer();
     }
 
     public void addContactPerson(ContactPerson contactPerson) {
         contactPeople.add(contactPerson);
+
+        uploadDataToServer();
     }
 
     public void removeContactPerson(ContactPerson contactPerson) {
@@ -170,10 +189,14 @@ public class Data {
                 costumers.remove(contactPerson);
             }
         }
+
+        uploadDataToServer();
     }
 
     public void addArticle(Article article) {
         articles.add(article);
+
+        uploadDataToServer();
     }
 
     public void removeArticle(Article article) {
@@ -182,10 +205,14 @@ public class Data {
                 costumers.remove(article);
             }
         }
+
+        uploadDataToServer();
     }
 
     public void addUser(User user) {
         users.add(user);
+
+        uploadDataToServer();
     }
 
     public void removeUser(User user) {
@@ -194,6 +221,8 @@ public class Data {
                 costumers.remove(user);
             }
         }
+
+        uploadDataToServer();
     }
 
 
@@ -204,6 +233,8 @@ public class Data {
 
     public void setArticles(ArrayList<Article> articles) {
         this.articles = articles;
+
+        uploadDataToServer();
     }
 
     public ArrayList<ContactPerson> getContactPeople() {
@@ -212,6 +243,8 @@ public class Data {
 
     public void setContactPeople(ArrayList<ContactPerson> contactPeople) {
         this.contactPeople = contactPeople;
+
+        uploadDataToServer();
     }
 
     public ArrayList<Costumer> getCostumers() {
@@ -220,6 +253,8 @@ public class Data {
 
     public void setCostumers(ArrayList<Costumer> costumers) {
         this.costumers = costumers;
+
+        uploadDataToServer();
     }
 
     public ArrayList<User> getUsers() {
@@ -228,6 +263,28 @@ public class Data {
 
     public void setUsers(ArrayList<User> users) {
         this.users = users;
+
+        uploadDataToServer();
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+
+        uploadDataToServer();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+
+        uploadDataToServer();
     }
 }
 
