@@ -44,16 +44,28 @@
     "gender" : "Man"
   } ],
   "users" : [ {
-    "username" : "FabianMueller",
-    "passwort" : "FaMue36",
-    "id" : "16f440dc-f6d1-46d7-ae74-42f328bb9ea8"
-  }, {
     "username" : "adolfu",
     "passwort" : "kamin187",
     "id" : "de7e5da6-2679-4df6-bb11-a9b213e3532a"
   }, {
-    "username" : "niggerkiller187",
-    "passwort" : "peniskopp",
-    "id" : "f9a767d6-1b0b-4782-b7db-77c3fa45b53b"
+    "username" : "PaulSobczak",
+    "passwort" : "kamin187",
+    "id" : "0c201907-953f-4993-b1ee-6c0dddf6ed19"
+  }, {
+    "username" : "TestUser",
+    "passwort" : "kamin187",
+    "id" : "d2ce4a33-6fa3-49a7-85d7-a4570ab1d3cb"
+  }, {
+    "username" : "TestUser1",
+    "passwort" : "kamin187",
+    "id" : "2cd80bd6-c75b-4723-9b65-20b3350fbbbd"
+  }, {
+    "username" : "TestUser2",
+    "passwort" : "kamin187",
+    "id" : "c23b0db9-b5e6-421c-bc5b-5da921e7f411"
+  }, {
+    "username" : "TestUser3",
+    "passwort" : "kamin187",
+    "id" : "6e70e49b-6e11-4304-883a-fdb9f65befe7"
   } ]
 }
