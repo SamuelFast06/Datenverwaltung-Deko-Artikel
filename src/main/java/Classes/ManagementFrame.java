@@ -1,14 +1,14 @@
 package Classes;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.UUID;
-import java.util.*;
-import java.util.ArrayList;
 
 public class ManagementFrame extends JFrame{
     private JPanel managementPanel;
+    private JButton btnCustomers;
+    private JButton btnContactPersons;
+    private JButton btnManagementSettings;
+    private JLabel lbManagementName;
+    private JButton btnArticles;
     private JLabel lbCurrentUser;
 
     private Data data = new Data(true);
