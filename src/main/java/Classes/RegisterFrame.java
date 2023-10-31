@@ -7,7 +7,7 @@ import java.util.UUID;
 import java.util.*;
 
 
-public class RegistryFrame extends JFrame{
+public class RegisterFrame extends JFrame{
 
     private JTextField tfUsername;
     private JTextField tfPasswort;
@@ -18,52 +18,50 @@ public class RegistryFrame extends JFrame{
     private JTextField tfRepeatPasswort;
     private JButton btnOK;
     private JButton btnCancel;
-    private JPanel mainPanel;
+    private JPanel registerPanel;
     private JLabel lbMessage;
     private JCheckBox checkBox;
 
     private Data data = new Data(true);
     private ArrayList<User> users = data.getUsers();
 
-    public RegistryFrame() {
-       setContentPane(mainPanel);
-        setSize(500,280);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setVisible(true);
-        setResizable(false);
-        btnOK.addActionListener(new ActionListener() {
+    public RegisterFrame() {
+       setContentPane(registerPanel);
+       setLocation(800,300);
+       setSize(400,280);
+       setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+       setVisible(true);
+       setResizable(false);
+       btnOK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String username = tfUsername.getText();
                 String passwort = tfPasswort.getText();
                 String repeatPasswort = tfRepeatPasswort.getText();
-                if(isUsernameTaken(username) == false){
-                    if(repeatPasswort.equals(passwort)){
+                if(isUsernameTaken(username) == true){
+                    lbMessage.setText("Username " + "[" + username + "]" + " is already used");
+                }else{
+                    if(repeatPasswort.equals(passwort) && !passwort.equals("") || !repeatPasswort.equals("")){
                         users.add(new User(UUID.randomUUID(), username,passwort));
                         data.save();
+                        data.reloadData();
                         clearAllTf();
-                        lbMessage.setText("Registry Success");
+                        lbMessage.setText("Register Success");
+                        dispose();
 
                     }else{
-                        System.out.println("Passwort is wronggg king gonnggggggggg");
-                        System.out.println(tfPasswort.getText());
-                        System.out.println(passwort);
-                        System.out.println("repeat");
-                        System.out.println(tfRepeatPasswort.getText());
-                        System.out.println(repeatPasswort);
+                        lbMessage.setText("Passwort is wrong");
                     }
-                }else{
-                    System.out.println("Username is already used, friss mein fuuuuuusss d");
                 }
             }
-        });
+       });
 
-        btnCancel.addActionListener(new ActionListener() {
+       btnCancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //close frame
+                dispose();
             }
-        });
+       });
     }
 
 

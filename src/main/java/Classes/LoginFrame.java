@@ -3,7 +3,6 @@ package Classes;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.rmi.registry.Registry;
 import java.util.ArrayList;
 
 
@@ -15,13 +14,14 @@ public class LoginFrame extends JFrame{
     private JLabel lbUsername;
     private JLabel lbPasswort;
     private JButton btnOK;
-    private JButton btnCancel;
     private JPanel loginPanel;
     private JLabel lbMessage;
-    private JButton btnRegistry;
+    private JButton btnCancel;
+    private JLabel lbToRegistry;
+    private JButton btnRegister;
     private JCheckBox checkBox;
 
-    private int userindex;
+    private int userindex = 0;
     private int wrongPWcount = 0;
 
     private Data data = new Data(true);
@@ -29,51 +29,57 @@ public class LoginFrame extends JFrame{
 
     public LoginFrame() {
        setContentPane(loginPanel);
-        setSize(500,280);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setVisible(true);
-        setResizable(false);
-        btnOK.addActionListener(new ActionListener() {
+       setLocation(800,300);
+       setSize(400,280);
+       setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+       setVisible(true);
+       setResizable(false);
+       btnOK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                data.reloadData();
                 String username = tfUsername.getText();
                 String passwort = tfPasswort.getText();
-                if(isUsernameTaken(username)){
+                if(isUsernameAvailable(username)){
                     if(wrongPWcount < 3){
                         if(passwort.equals(users.get(userindex).passwort)) {
                             lbMessage.setText("login success");
                             clearAllTf();
-                            //MainFrame();
+                            tfPasswort.disable();
+                            tfUsername.disable();
+                            btnOK.disable();
+                            btnCancel.disable();
+                            startManagment(userindex);
+                            dispose();
                         } else{
                             tfPasswort.setText("");
                             wrongPWcount++;
-                            lbMessage.setText("Passwort is wrong!" + " Wrong Passwort-counter: " + wrongPWcount);
+                            lbMessage.setText("Passwort is wrong! " + (3 -wrongPWcount) + " Attemps left");
                         }
                     }else if(wrongPWcount == 3){
                         clearAllTf();
-                        lbMessage.setText("Wrong Passwort-counter is exceeded (" + wrongPWcount + ")");
+                        lbMessage.setText("TOO MANY ATTEMPTS! Number of Trys is exceeded");
                         tfPasswort.disable();
                         tfUsername.disable();
+                        btnOK.disable();
 
                     }
-
-
-
+                }else{
+                    lbMessage.setText("A user with the username "+"["+ username + "]" +" is not available");
                 }
 
             }
-        });
-        btnRegistry.addActionListener(new ActionListener() {
+       });
+       btnRegister.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                RegistryFrame registry = new RegistryFrame();
+                RegisterFrame registry = new RegisterFrame();
             }
-        });
-
+       });
     }
 
 
-    private boolean isUsernameTaken(String username){
+    private boolean isUsernameAvailable(String username){
         for(int i = 0; i < users.size(); i++){
             if(username.equals(users.get(i).username)){
                 userindex = i;
@@ -87,8 +93,9 @@ public class LoginFrame extends JFrame{
         tfPasswort.setText("");
     }
 
-    private void loginSuccess(){
-
+    private void startManagment(int userindex){
+        User user = users.get(userindex);
+        ManagementFrame management = new ManagementFrame(user);
     }
 
     public static void main(String[] args){
