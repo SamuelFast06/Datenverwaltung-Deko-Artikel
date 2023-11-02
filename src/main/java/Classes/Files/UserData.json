@@ -67,5 +67,9 @@
     "username" : "TestUser3",
     "passwort" : "kamin187",
     "id" : "6e70e49b-6e11-4304-883a-fdb9f65befe7"
+  }, {
+    "username" : "TestUser8",
+    "passwort" : "kamin187",
+    "id" : "232cbdca-1393-451d-8515-39d1b701dec7"
   } ]
 }
