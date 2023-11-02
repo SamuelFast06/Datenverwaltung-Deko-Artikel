@@ -33,28 +33,40 @@ public class Data {
 
 
     //Methods for managing the Data
-    public void save() {
+    public Boolean save() {
         try {
             DataManager.writeData(this);
         } catch (IOException e) {
             System.out.println(e.toString());
         }
 
-        uploadDataToServer();
+        try {
+            uploadDataToServer();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return false;
     }
 
-    public void reloadData() throws Error {
+    public Boolean reloadData() {
 
         // If the loading from the Server failes than load the local Data
+        if(!loadDataFromServer()) {
             try {
                 Data data = DataManager.getData();
                 overrideData(data);
             } catch (IOException e) {
                 System.out.println(e.toString());
+                throw new Error();
             }
+        } else {
+            return true;
+        }
+        return false;
     }
 
-    public void deleteAllData() {
+    public Boolean deleteAllData() {
         try {
             DataManager.writeStringData("");
 
@@ -68,11 +80,12 @@ public class Data {
         users = new ArrayList<User>();
         name = "";
 
-        uploadDataToServer();
+        return uploadDataToServer();
     }
 
     // The loadDataFromServer and uploadDataToServer return true if all works fine and false if not
     public Boolean loadDataFromServer() {
+
         try {
             URL url = new URL("https://api.jsonbin.io/v3/b/" + id + "/latest?meta=false");
 
@@ -86,16 +99,17 @@ public class Data {
 
             overrideData(data);
             con.disconnect();
+
+            return true;
         } catch(Exception e) {
-            System.out.println("The data could not be loaded from the server: " + e);
-            return false;
+            System.out.println(e);
         }
-        return true;
+        return false;
     }
 
 
 
-    public Boolean uploadDataToServer() {
+    public boolean uploadDataToServer() {
         try {
             URL url = new URL("https://api.jsonbin.io/v3/b/" + id);
 
@@ -111,95 +125,96 @@ public class Data {
 
             System.out.println(jsonString);
 
-            try(OutputStream os = con.getOutputStream()) {
+            try (OutputStream os = con.getOutputStream()) {
                 byte[] input = jsonString.getBytes("utf-8");
                 os.write(input, 0, input.length);
             }
-
-            if(con.getResponseMessage().equals("Not Found")) {
-                Exception exception = new Exception();
-                throw exception;
-            }
-
-        } catch(Exception e) {
-            System.out.println("Something went wrong with the upload. Please try again: " + e);
-            return false;
-        }
-        return true;
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+        }return false;
     }
 
     public void addCostumer(Costumer costumer) {
         costumers.add(costumer);
+        if(!uploadDataToServer()) {
+            costumers.remove(costumer);
+        }
 
-        uploadDataToServer();
     }
 
     public void overrideData(Data newData) {
+        Data backupData = this;
+
         this.articles = newData.articles;
         this.contactPeople = newData.contactPeople;
         this.costumers = newData.costumers;
         this.users = newData.users;
         this.name = newData.name;
 
-        uploadDataToServer();
+        if(!uploadDataToServer()) {
+            this.articles = backupData.articles;
+            this.contactPeople = backupData.contactPeople;
+            this.costumers = backupData.costumers;
+            this.users = backupData.users;
+            this.name = backupData.name;
+        }
     }
 
     public void removeCostumer(Costumer costumer) {
-        for(int i =0; i < costumers.size(); i++) {
-            if(costumer.equals(costumers.get(i))) {
-                costumers.remove(costumer);
-            }
-        }
+        costumers.remove(costumer);
 
-        uploadDataToServer();
+        if(!uploadDataToServer()) {
+            costumers.add(costumer);
+        }
     }
 
     public void addContactPerson(ContactPerson contactPerson) {
         contactPeople.add(contactPerson);
 
-        uploadDataToServer();
+        if(!uploadDataToServer()) {
+            contactPeople.remove(contactPerson);
+        }
     }
 
     public void removeContactPerson(ContactPerson contactPerson) {
-        for(int i =0; i < contactPeople.size(); i++) {
-            if(contactPerson.equals(contactPeople.get(i))) {
-                costumers.remove(contactPerson);
-            }
-        }
+        contactPeople.remove(contactPerson);
 
-        uploadDataToServer();
+        if(!uploadDataToServer()) {
+            contactPeople.add(contactPerson);
+        }
     }
 
     public void addArticle(Article article) {
         articles.add(article);
 
-        uploadDataToServer();
+        if(!uploadDataToServer()) {
+            articles.remove(article);
+        }
     }
 
     public void removeArticle(Article article) {
-        for(int i =0; i < articles.size(); i++) {
-            if(article.equals(articles.get(i))) {
-                costumers.remove(article);
-            }
-        }
+        articles.remove(article);
 
-        uploadDataToServer();
+        if(!uploadDataToServer()) {
+            articles.add(article);
+        }
     }
 
     public void addUser(User user) {
         users.add(user);
 
-        uploadDataToServer();
+        if(!uploadDataToServer()) {
+            users.remove(user);
+        }
     }
 
     public void removeUser(User user) {
-        for(int i =0; i < users.size(); i++) {
-            if(user.equals(users.get(i))) {
-                costumers.remove(user);
-            }
-        }
+        users.remove(user);
 
-        uploadDataToServer();
+        if(!uploadDataToServer()) {
+            users.add(user);
+        }
     }
 
 

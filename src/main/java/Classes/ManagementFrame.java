@@ -19,7 +19,7 @@ public class ManagementFrame extends JFrame{
     private JLabel lbCurrentUser;
     private JLabel lbMessage;
 
-    private Data data = new Data(true);
+    private Data data = new Data();
     private ArrayList<Classes.User> users = data.getUsers();
     private User user;
 
