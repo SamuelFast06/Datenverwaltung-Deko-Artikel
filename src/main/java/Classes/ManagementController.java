@@ -6,12 +6,11 @@ import org.apache.commons.io.IOUtils;
 import org.json.simple.JSONObject;
 
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -19,67 +18,57 @@ public class ManagementController {
     final static String id = "6537f19212a5d376598ff424";
     final static String XMASTERKEY = "$2a$10$WyC.qebXhP2FTTpNm.46cu2Nf6Qi0PEf/4Qq.6P8CMS.iPNgy5avG";
 
-    public static ArrayList<ControlledManagement> getControlledManagements() {
+    public static ArrayList<ControlledManagement> getControlledManagements() throws IOException {
         ArrayList<ControlledManagement> controlledManagements = new ArrayList<ControlledManagement>();
 
-        try {
-            URL url = new URL("https://api.jsonbin.io/v3/b/" + id + "/latest?meta=false");
+        URL url = new URL("https://api.jsonbin.io/v3/b/" + id + "/latest?meta=false");
 
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            con.setRequestMethod("GET");
-            con.setRequestProperty("X-Master-Key", XMASTERKEY);
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
+        con.setRequestProperty("X-Master-Key", XMASTERKEY);
 
-            ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper();
 
-            ControlledManagement[] newControlledManagementsArray = mapper.readValue(con.getInputStream(), ControlledManagement[].class);
+        ControlledManagement[] newControlledManagementsArray = mapper.readValue(con.getInputStream(), ControlledManagement[].class);
 
-            for(int i = 0; i < newControlledManagementsArray.length; i++) {
-                controlledManagements.add(newControlledManagementsArray[i]);
-            }
-
-            con.disconnect();
-
-        } catch(Exception e) {
-            System.out.println("Controlled Managements could not be loaded: " + e);
+        for(int i = 0; i < newControlledManagementsArray.length; i++) {
+            controlledManagements.add(newControlledManagementsArray[i]);
         }
+
+        con.disconnect();
 
         return controlledManagements;
     }
 
-    static void uploadControlledManagements(ArrayList<ControlledManagement> managements) {
-        try {
-            URL url = new URL("https://api.jsonbin.io/v3/b/" + id);
+    static void uploadControlledManagements(ArrayList<ControlledManagement> managements) throws IOException {
+        URL url = new URL("https://api.jsonbin.io/v3/b/" + id);
 
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            con.setRequestMethod("PUT");
-            con.setRequestProperty("X-Master-Key", XMASTERKEY);
-            con.setRequestProperty("Content-Type", "application/json");
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("PUT");
+        con.setRequestProperty("X-Master-Key", XMASTERKEY);
+        con.setRequestProperty("Content-Type", "application/json");
 
-            con.setDoOutput(true);
+        con.setDoOutput(true);
 
-            ObjectMapper mapper = new ObjectMapper();
-            String jsonString = mapper.writeValueAsString(managements);
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonString = mapper.writeValueAsString(managements);
 
-            try(OutputStream os = con.getOutputStream()) {
-                byte[] input = jsonString.getBytes("utf-8");
-                os.write(input, 0, input.length);
-            }
-
-            System.out.println("Upload response: " + con.getResponseMessage());
-
-        } catch(Exception e) {
-            System.out.println("Failed to upload Controlled Management: " + e);
+        try(OutputStream os = con.getOutputStream()) {
+            byte[] input = jsonString.getBytes("utf-8");
+            os.write(input, 0, input.length);
         }
+
+        System.out.println("Upload response: " + con.getResponseMessage());
     }
 
-    static void addControlledManagement(ControlledManagement management) {
+    static void addControlledManagement(ControlledManagement management) throws IOException {
         ArrayList<ControlledManagement> controlledManagements = getControlledManagements();
         controlledManagements.add(management);
 
         uploadControlledManagements(controlledManagements);
     }
 
-    static void deleteManagement(String binId) {
+    static void deleteManagement(String binId) throws IOException {
         ArrayList<ControlledManagement> controlledManagements = getControlledManagements();
 
         for(int i = 0; i < controlledManagements.size(); i++) {
@@ -95,27 +84,22 @@ public class ManagementController {
         uploadControlledManagements(controlledManagements);
     }
 
-    static Data getDataManagement(String id) {
-        try {
-            URL url = new URL("https://api.jsonbin.io/v3/b/" + id + "/latest?meta=false");
+    static Data getDataManagement(String id) throws IOException {
+        URL url = new URL("https://api.jsonbin.io/v3/b/" + id + "/latest?meta=false");
 
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
 
-            con.setRequestMethod("GET");
-            con.setRequestProperty("X-Master-Key", XMASTERKEY);
+        con.setRequestMethod("GET");
+        con.setRequestProperty("X-Master-Key", XMASTERKEY);
 
-            ObjectMapper mapper = new ObjectMapper();
-            Data data = mapper.readValue(con.getInputStream(), Data.class);
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.writerWithDefaultPrettyPrinter();
+        Data data = mapper.readValue(con.getInputStream(), Data.class);
 
-            return data;
-
-        } catch(Exception e) {
-            System.out.println("Something went wrong with getting the data management: " + e);
-        }
-        return null;
+        return data;
     }
 
-    static Data getDataManagement(User user) {
+    static Data getDataManagement(User user) throws IOException {
         ArrayList<ControlledManagement> controlledManagements = getControlledManagements();
         String managementId = "";
 
@@ -136,7 +120,7 @@ public class ManagementController {
         return null;
     }
 
-    static Boolean usernameUnused(String username) {
+    static Boolean usernameUnused(String username) throws IOException {
         ArrayList<ControlledManagement> controlledManagements = getControlledManagements();
 
         managementLoop: for(int m = 0; m < controlledManagements.size(); m++) {
@@ -151,49 +135,45 @@ public class ManagementController {
         return true;
     }
 
-    static void createManagement(String name, User user) {
+    static void createManagement(String name, User user) throws IOException {
         String binId = "";
 
-        try {
-            URL makeBinUrl = new URL("https://api.jsonbin.io/v3/b");
 
-            HttpURLConnection con = (HttpURLConnection) makeBinUrl.openConnection();
-            con.setRequestMethod("POST");
-            con.setRequestProperty("Content-Type", "application/json");
-            con.setRequestProperty("X-Master-Key", XMASTERKEY);
-            con.setRequestProperty("X-Bin-Name", name);
+        URL makeBinUrl = new URL("https://api.jsonbin.io/v3/b");
 
-            con.setDoOutput(true);
+        HttpURLConnection con = (HttpURLConnection) makeBinUrl.openConnection();
+        con.setRequestMethod("POST");
+        con.setRequestProperty("Content-Type", "application/json");
+        con.setRequestProperty("X-Master-Key", XMASTERKEY);
+        con.setRequestProperty("X-Bin-Name", name);
 
-            Data newManagement = new Data(new ArrayList<Article>(), new ArrayList<ContactPerson>(), new ArrayList<Costumer>(), new ArrayList<User>(), "", name);
+        con.setDoOutput(true);
 
-            ObjectMapper mapper  = new ObjectMapper();
-            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            String encoded = mapper.writeValueAsString(newManagement);
+        Data newManagement = new Data(new ArrayList<Article>(), new ArrayList<ContactPerson>(), new ArrayList<Costumer>(), new ArrayList<User>(), "", name);
 
-            try(OutputStream os = con.getOutputStream()) {
-                byte[] input = encoded.getBytes("utf-8");
-                os.write(input, 0, input.length);
-            }
+        ObjectMapper mapper  = new ObjectMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        String encoded = mapper.writeValueAsString(newManagement);
 
-            CreateBinResponse response = mapper.readValue(con.getInputStream(), CreateBinResponse.class);
-            binId = response.metadata.id;
-            newManagement.setId(binId);
-
-            ArrayList<User> users = new ArrayList<User>();
-            users.add(user);
-            ControlledManagement newControlledManagement = new ControlledManagement(users, binId);
-
-            newManagement.addUser(user);
-
-            newManagement.uploadDataToServer();
-            addControlledManagement(newControlledManagement);
-
-            System.out.println(con.getResponseMessage());
-
-        } catch(Exception e) {
-            System.out.println("Creating of Management failed: " + e);
+        try(OutputStream os = con.getOutputStream()) {
+            byte[] input = encoded.getBytes("utf-8");
+            os.write(input, 0, input.length);
         }
+
+        CreateBinResponse response = mapper.readValue(con.getInputStream(), CreateBinResponse.class);
+        binId = response.metadata.id;
+        newManagement.setId(binId);
+
+        ArrayList<User> users = new ArrayList<User>();
+        users.add(user);
+        ControlledManagement newControlledManagement = new ControlledManagement(users, binId);
+
+        newManagement.addUser(user);
+
+        newManagement.uploadDataToServer();
+        addControlledManagement(newControlledManagement);
+
+        System.out.println(con.getResponseMessage());
     }
 }
 
