@@ -27,29 +27,10 @@ public class Data {
         this.users = users;
         this.id = id;
         this.name = name;
+
+        //Sollte man das neue Management direkt zu dem Server hinzufügen (ManagementController.addManagement();) ????
     }
 
-   /* public Data(Boolean loadData) {
-        if(loadData) {
-            try {
-                Data data = DataManager.getData();
-                articles = data.articles;
-                contactPeople = data.contactPeople;
-                costumers = data.costumers;
-                users = data.users;
-            } catch (IOException e) {
-                articles = new ArrayList<Article>();
-                contactPeople = new ArrayList<ContactPerson>();
-                costumers = new ArrayList<Costumer>();
-                users = new ArrayList<User>();
-            }
-        } else {
-            articles = new ArrayList<Article>();
-            contactPeople = new ArrayList<ContactPerson>();
-            costumers = new ArrayList<Costumer>();
-            users = new ArrayList<User>();
-        }
-    }*/
 
     //Methods for managing the Data
     public void save() {
