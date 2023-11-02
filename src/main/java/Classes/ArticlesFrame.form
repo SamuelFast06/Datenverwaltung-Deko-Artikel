@@ -10,7 +10,7 @@
     <children>
       <scrollpane id="487d5" binding="scrollPane">
         <constraints>
-          <grid row="1" column="3" row-span="15" col-span="16" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="3" row-span="15" col-span="16" vsize-policy="3" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="none"/>
@@ -30,7 +30,7 @@
       </hspacer>
       <component id="73e28" class="javax.swing.JButton" binding="btnRemoveArticle">
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Remove Article"/>
@@ -38,7 +38,7 @@
       </component>
       <component id="8eb33" class="javax.swing.JButton" binding="btnAddArticle">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Add Article"/>
@@ -54,7 +54,7 @@
       </component>
       <component id="b676" class="javax.swing.JLabel" binding="lbManagementName">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="20" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="1" col-span="20" vsize-policy="0" hsize-policy="1" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="ManagementName"/>
@@ -62,7 +62,7 @@
       </component>
       <component id="c547d" class="javax.swing.JButton" binding="btnShowArticle">
         <constraints>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Show Article"/>
@@ -70,7 +70,7 @@
       </component>
       <component id="8de44" class="javax.swing.JButton" binding="btnSetQuantity">
         <constraints>
-          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Set Quantity"/>
@@ -78,7 +78,7 @@
       </component>
       <component id="ddcc5" class="javax.swing.JButton" binding="btnMinusQuantity">
         <constraints>
-          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="-"/>
@@ -86,7 +86,7 @@
       </component>
       <component id="d0d1b" class="javax.swing.JButton" binding="btnPlusQuantity">
         <constraints>
-          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="+"/>
@@ -94,7 +94,7 @@
       </component>
       <component id="dbd91" class="javax.swing.JScrollBar" binding="scrollBar">
         <constraints>
-          <grid row="1" column="19" row-span="15" col-span="1" vsize-policy="6" hsize-policy="0" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="19" row-span="15" col-span="1" vsize-policy="6" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
       </component>

@@ -3,6 +3,9 @@ package Classes;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.UUID;
+
 
 public class ManagementFrame extends JFrame{
 
@@ -17,27 +20,25 @@ public class ManagementFrame extends JFrame{
     private JLabel lbMessage;
 
     private Data data = new Data(true);
-    //private ArrayList<Classes.User> users = data.getUsers();
+    private ArrayList<Classes.User> users = data.getUsers();
     private User user;
 
     public ManagementFrame(User iuser){
+        setContentPane(managementPanel);
         user = iuser;
         lbCurrentUser.setText(user.username);
-        setContentPane(managementPanel);
-        setLocation(1920,1080);
-        setSize(1920,1080);
+        setLocation(0,0);
+        setSize(720,480);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
         setResizable(false);
-
+        btnManager();
     }
 
     public void btnManager(){
-
         btnArticles.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
                 ArticlesFrame articlesManagement = new ArticlesFrame(user);
             }
         });
@@ -62,5 +63,9 @@ public class ManagementFrame extends JFrame{
 
             }
         });
+    }
+
+    public static void main(String[] args){
+        ManagementFrame management = new ManagementFrame(new User());
     }
 }

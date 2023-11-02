@@ -32,10 +32,7 @@ import java.util.UUID;
             setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             setVisible(true);
             setResizable(false);
-            btnManager();
-        }
 
-        public void btnManager(){
             btnOK.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -45,16 +42,21 @@ import java.util.UUID;
                     if(isUsernameTaken(username) == true){
                         lbMessage.setText("Username " + "[" + username + "]" + " is already used");
                     }else{
-                        if(repeatPasswort.equals(passwort) && !passwort.equals("") || !repeatPasswort.equals("")){
-                            users.add(new User(UUID.randomUUID(), username,passwort));
-                            data.save();
-                            data.reloadData();
-                            clearAllTf();
-                            lbMessage.setText("Register Success");
-                            dispose();
+                        if(passwort.equals(repeatPasswort)) {
+                            if (!passwort.equals("") && !repeatPasswort.equals("")) {
 
-                        }else{
-                            lbMessage.setText("Passwort is wrong");
+                                users.add(new User(UUID.randomUUID(), username, passwort));
+                                data.save();
+                                clearAllTf();
+                                lbMessage.setText("Register Success");
+                                dispose();
+                                LoginFrame newlogin = new LoginFrame();
+
+                            } else {
+                                lbMessage.setText("Passwort is wrong");
+                            }
+                        } else {
+                            lbMessage.setText("[RepeatPasswort] is not the same as [Passwort]");
                         }
                     }
                 }

@@ -34,10 +34,6 @@ public class LoginFrame extends JFrame{
        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
        setVisible(true);
        setResizable(false);
-        btnManager();
-    }
-
-    public void btnManager(){
         btnOK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -48,16 +44,16 @@ public class LoginFrame extends JFrame{
                     if(wrongPWcount < 3){
                         if(passwort.equals(users.get(userindex).passwort)) {
                             lbMessage.setText("login success");
-                            clearAllTf();
                             tfPasswort.disable();
                             tfUsername.disable();
                             btnOK.disable();
                             btnCancel.disable();
+                            clearAllTf();
                             startManagment(userindex);
                         } else{
                             tfPasswort.setText("");
                             wrongPWcount++;
-                            lbMessage.setText("Passwort is wrong! " + (3 -wrongPWcount) + " Attemps left");
+                            lbMessage.setText("Passwort is wrong! " + (4 -wrongPWcount) + " Attemps left");
                         }
                     }else if(wrongPWcount == 3){
                         clearAllTf();
@@ -76,6 +72,7 @@ public class LoginFrame extends JFrame{
         btnRegister.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                dispose();
                 RegisterFrame registry = new RegisterFrame();
             }
         });
@@ -87,6 +84,7 @@ public class LoginFrame extends JFrame{
             }
         });
     }
+
 
     private boolean isUsernameAvailable(String username){
         for(int i = 0; i < users.size(); i++){

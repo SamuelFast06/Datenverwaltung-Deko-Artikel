@@ -26,8 +26,8 @@ public class ArticlesFrame extends JFrame {
     public ArticlesFrame(User iuser){
         user = iuser;
         setContentPane(managementPanel);
-        setLocation(1920,1080);
-        setSize(1920,1080);
+        setLocation(0,0);
+        setSize(1280,720);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
         setResizable(false);
