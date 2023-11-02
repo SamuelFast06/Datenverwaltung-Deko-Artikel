@@ -45,6 +45,7 @@ import java.util.UUID;
                         if(passwort.equals(repeatPasswort)) {
                             if (!passwort.equals("") && !repeatPasswort.equals("")) {
 
+                                data.reloadData();
                                 users.add(new User(UUID.randomUUID(), username, passwort));
                                 data.save();
                                 clearAllTf();

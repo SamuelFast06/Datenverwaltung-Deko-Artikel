@@ -62,16 +62,12 @@ public class Data {
     public void reloadData() throws Error {
 
         // If the loading from the Server failes than load the local Data
-        if(!loadDataFromServer()) {
             try {
                 Data data = DataManager.getData();
                 overrideData(data);
             } catch (IOException e) {
                 System.out.println(e.toString());
-                throw new Error();
             }
-        }
-
     }
 
     public void deleteAllData() {
