@@ -44,7 +44,6 @@ import java.util.UUID;
                     }else{
                         if(passwort.equals(repeatPasswort)) {
                             if (!passwort.equals("") && !repeatPasswort.equals("")) {
-
                                 data.reloadData();
                                 users.add(new User(UUID.randomUUID(), username, passwort));
                                 data.save();
@@ -73,6 +72,7 @@ import java.util.UUID;
 
         private boolean isUsernameTaken(String username){
             for(int i = 0; i < users.size(); i++){
+                data.reloadData();
                 if(username == users.get(i).username){
                     return true;
                 }

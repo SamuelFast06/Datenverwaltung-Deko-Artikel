@@ -37,7 +37,7 @@ public class LoginFrame extends JFrame{
         btnOK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //data.reloadData();
+                data.reloadData();
                 String username = tfUsername.getText();
                 String passwort = tfPasswort.getText();
                 if(isUsernameAvailable(username)){
@@ -87,7 +87,10 @@ public class LoginFrame extends JFrame{
 
 
     private boolean isUsernameAvailable(String username){
+        data.reloadData();
         for(int i = 0; i < users.size(); i++){
+            System.out.println(i + "yeey");
+            System.out.println(users);
             if(username.equals(users.get(i).username)){
                 userindex = i;
                 return true;
