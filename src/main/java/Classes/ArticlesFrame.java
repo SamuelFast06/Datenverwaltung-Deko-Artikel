@@ -31,11 +31,10 @@ public class ArticlesFrame extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
         setResizable(false);
+        btnManager();
     }
 
     public void setupArticleList(){
-
-
     }
 
 

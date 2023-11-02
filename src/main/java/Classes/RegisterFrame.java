@@ -22,7 +22,7 @@ import java.util.UUID;
         private JLabel lbRepeatPasswort;
         private JCheckBox checkBox;
 
-        private Data data = new Data(true);
+        private Data data = new Data();
         private ArrayList<User> users = data.getUsers();
 
         public RegisterFrame() {

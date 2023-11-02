@@ -24,7 +24,7 @@ public class LoginFrame extends JFrame{
     private int userindex = 0;
     private int wrongPWcount = 0;
 
-    private Data data = new Data(true);
+    private Data data = new Data();
     private ArrayList<Classes.User> users = data.getUsers();
 
     public LoginFrame() {

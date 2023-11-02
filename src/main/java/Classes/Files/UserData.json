@@ -45,6 +45,9 @@
     "emailAddress" : "max@someEmail.com",
     "gender" : "Man"
   } ],
+  "articles" : [ ],
+  "contactPeople" : [ ],
+  "costumers" : [ ],
   "users" : [ {
     "username" : "adolfu",
     "passwort" : "kamin187",
@@ -88,6 +91,9 @@
   }, {
     "username" : "TestUserRRRR",
     "passwort" : "test",
-    "id" : "bb5b5059-238e-4e40-ae0d-6e63d939e4ae"
+    "id" : "bb5b5059-238e-4e40-ae0d-6e63d939e4ae",
+    "username" : "kamel",
+    "passwort" : "kamel",
+    "id" : "2c482e9e-c4cc-4353-8cab-89d7022173c2"
   } ]
 }
