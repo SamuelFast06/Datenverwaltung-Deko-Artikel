@@ -28,7 +28,6 @@ public class ArticlesFrame extends JFrame {
         setContentPane(managementPanel);
         setLocation(0,0);
         setSize(1280,720);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
         setResizable(false);
         btnManager();
@@ -81,5 +80,12 @@ public class ArticlesFrame extends JFrame {
                 System.out.println("turbo geeeeeeeeeey minus quantity");
             }
         });
+    }
+
+    public static void main(String[] args){
+        User testuser = new User();
+        testuser.username = "testuser";
+        testuser.passwort = "test";
+        ArticlesFrame articlesManage = new ArticlesFrame(testuser);
     }
 }
