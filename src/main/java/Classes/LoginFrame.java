@@ -3,7 +3,9 @@ package Classes;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.UUID;
 
 
 public class LoginFrame extends JFrame{
@@ -37,36 +39,40 @@ public class LoginFrame extends JFrame{
         btnOK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //data.reloadData();
                 String username = tfUsername.getText();
                 String passwort = tfPasswort.getText();
-                if(isUsernameAvailable(username)){
-                    if(wrongPWcount < 3){
-                        if(passwort.equals(users.get(userindex).passwort)) {
+
+                if(wrongPWcount < 3) {
+                    try {
+                        Data management = ManagementController.getDataManagement(new User(UUID.randomUUID(), username, passwort));
+
+                        if (management != null) {
+                            data.overrideData(management);
                             lbMessage.setText("login success");
-                            tfPasswort.disable();
+
                             tfUsername.disable();
                             btnOK.disable();
                             btnCancel.disable();
                             clearAllTf();
-                            startManagment(userindex);
-                        } else{
-                            tfPasswort.setText("");
+
+                            startManagment(new User(UUID.randomUUID(), username, passwort), data);
+                            dispose();
+
+                        } else {
                             wrongPWcount++;
-                            lbMessage.setText("Passwort is wrong! " + (4 -wrongPWcount) + " Attemps left");
+                            lbMessage.setText("Passwort or username is wrong! " + (4 - wrongPWcount) + " attempts left");
                         }
-                    }else if(wrongPWcount == 3){
-                        clearAllTf();
-                        lbMessage.setText("TOO MANY ATTEMPTS! Number of Trys is exceeded");
-                        tfPasswort.disable();
-                        tfUsername.disable();
-                        btnOK.disable();
-
+                    } catch (Exception ex) {
+                        System.out.println(ex);
                     }
-                }else{
-                    lbMessage.setText("A user with the username "+"["+ username + "]" +" is not available");
-                }
+                }else if(wrongPWcount >= 3){
+                    clearAllTf();
+                    lbMessage.setText("TOO MANY ATTEMPTS! Number of Trys is exceeded");
+                    tfPasswort.disable();
+                    tfUsername.disable();
+                    btnOK.disable();
 
+                }
             }
         });
         btnRegister.addActionListener(new ActionListener() {
@@ -100,9 +106,8 @@ public class LoginFrame extends JFrame{
         tfPasswort.setText("");
     }
 
-    private void startManagment(int userindex){
-        User user = users.get(userindex);
-        ManagementFrame management = new ManagementFrame(user);
+    private void startManagment(User user, Data data){
+        ManagementFrame management = new ManagementFrame(user, data);
     }
 
     public static void main(String[] args){

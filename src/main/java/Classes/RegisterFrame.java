@@ -3,6 +3,7 @@ package Classes;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -20,6 +21,7 @@ import java.util.UUID;
         private JPanel registerPanel;
         private JLabel lbMessage;
         private JLabel lbRepeatPasswort;
+        private JTextField tfName;
         private JCheckBox checkBox;
 
         private Data data = new Data();
@@ -36,10 +38,32 @@ import java.util.UUID;
             btnOK.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    String name = tfName.getText();
                     String username = tfUsername.getText();
                     String passwort = tfPasswort.getText();
                     String repeatPasswort = tfRepeatPasswort.getText();
-                    if(isUsernameTaken(username) == true){
+
+                    try {
+                        if(ManagementController.usernameUnused(username)) {
+                            if(passwort.equals(repeatPasswort)) {
+                                User user = new User(UUID.randomUUID(), username, passwort);
+
+                                data = ManagementController.createManagement(name, user);
+
+                                lbMessage.setText("Register Success");
+                                dispose();
+                                LoginFrame newlogin = new LoginFrame();
+                            } else {
+                                lbMessage.setText("[RepeatPasswort] is not the same as [Passwort]");
+                            }
+                        } else {
+                            lbMessage.setText("Username [" + username + "] is already used");
+                        }
+                    } catch (Exception ex) {
+                        System.out.println(ex);
+                    }
+
+                    /*if(isUsernameTaken(username) == true){
                         lbMessage.setText("Username " + "[" + username + "]" + " is already used");
                     }else{
                         if(passwort.equals(repeatPasswort)) {
@@ -59,7 +83,7 @@ import java.util.UUID;
                         } else {
                             lbMessage.setText("[RepeatPasswort] is not the same as [Passwort]");
                         }
-                    }
+                    }*/
                 }
             });
 

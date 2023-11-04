@@ -8,10 +8,10 @@ import java.net.HttpURLConnection;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Data {
-    private ArrayList<Article> articles = new ArrayList<Article>();
-    private ArrayList<ContactPerson> contactPeople = new ArrayList<ContactPerson>();
-    private ArrayList<Costumer> costumers = new ArrayList<Costumer>();
-    private ArrayList<User> users = new ArrayList<User>();
+    private ArrayList<Article> articles;
+    private ArrayList<ContactPerson> contactPeople;
+    private ArrayList<Costumer> costumers;
+    private ArrayList<User> users;
 
     private  String id;
     private String name;
@@ -30,7 +30,6 @@ public class Data {
 
         //Sollte man das neue Management direkt zu dem Server hinzufügen (ManagementController.addManagement();) ????
     }
-
 
     //Methods for managing the Data
     public Boolean save() {
@@ -122,8 +121,6 @@ public class Data {
 
             ObjectMapper mapper = new ObjectMapper();
             String jsonString = mapper.writeValueAsString(new Data(articles, contactPeople, costumers, users, id, name));
-
-            System.out.println(jsonString);
 
             try (OutputStream os = con.getOutputStream()) {
                 byte[] input = jsonString.getBytes("utf-8");
@@ -226,7 +223,7 @@ public class Data {
     public void setArticles(ArrayList<Article> articles) {
         this.articles = articles;
 
-        uploadDataToServer();
+        //uploadDataToServer();
     }
 
     public ArrayList<ContactPerson> getContactPeople() {
@@ -236,7 +233,7 @@ public class Data {
     public void setContactPeople(ArrayList<ContactPerson> contactPeople) {
         this.contactPeople = contactPeople;
 
-        uploadDataToServer();
+        //uploadDataToServer();
     }
 
     public ArrayList<Costumer> getCostumers() {
@@ -246,7 +243,7 @@ public class Data {
     public void setCostumers(ArrayList<Costumer> costumers) {
         this.costumers = costumers;
 
-        uploadDataToServer();
+        //uploadDataToServer();
     }
 
     public ArrayList<User> getUsers() {
@@ -256,7 +253,7 @@ public class Data {
     public void setUsers(ArrayList<User> users) {
         this.users = users;
 
-        uploadDataToServer();
+        //uploadDataToServer();
     }
 
     public String getId() {
@@ -266,7 +263,7 @@ public class Data {
     public void setId(String id) {
         this.id = id;
 
-        uploadDataToServer();
+        //uploadDataToServer();
     }
 
     public String getName() {
@@ -276,7 +273,7 @@ public class Data {
     public void setName(String name) {
         this.name = name;
 
-        uploadDataToServer();
+        //uploadDataToServer();
     }
 }
 

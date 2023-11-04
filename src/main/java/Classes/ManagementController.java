@@ -1,16 +1,11 @@
 package Classes;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.commons.io.IOUtils;
-import org.json.simple.JSONObject;
-
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -88,13 +83,13 @@ public class ManagementController {
         URL url = new URL("https://api.jsonbin.io/v3/b/" + id + "/latest?meta=false");
 
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
-
         con.setRequestMethod("GET");
         con.setRequestProperty("X-Master-Key", XMASTERKEY);
 
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writerWithDefaultPrettyPrinter();
         Data data = mapper.readValue(con.getInputStream(), Data.class);
+
+        con.disconnect();
 
         return data;
     }
@@ -135,7 +130,7 @@ public class ManagementController {
         return true;
     }
 
-    static void createManagement(String name, User user) throws IOException {
+    static Data createManagement(String name, User user) throws IOException {
         String binId = "";
 
 
@@ -174,6 +169,8 @@ public class ManagementController {
         addControlledManagement(newControlledManagement);
 
         System.out.println(con.getResponseMessage());
+
+        return newManagement;
     }
 }
 

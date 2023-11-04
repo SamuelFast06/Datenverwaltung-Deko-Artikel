@@ -19,7 +19,7 @@ public class ArticlesFrame extends JFrame {
     private JScrollBar scrollBar;
     private JLabel lbCurrentUser;
     private JLabel lbManagementName;
-    private Data data = new Data(true);
+    private Data data = new Data();
     private ArrayList<Classes.Article> articles = data.getArticles();
     private User user;
 

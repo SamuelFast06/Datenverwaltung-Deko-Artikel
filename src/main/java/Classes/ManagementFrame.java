@@ -19,14 +19,16 @@ public class ManagementFrame extends JFrame{
     private JLabel lbCurrentUser;
     private JLabel lbMessage;
 
-    private Data data = new Data();
-    private ArrayList<Classes.User> users = data.getUsers();
+    private Data data;
+
     private User user;
 
-    public ManagementFrame(User iuser){
+    public ManagementFrame(User iuser, Data data){
         setContentPane(managementPanel);
         user = iuser;
+        this.data = data;
         lbCurrentUser.setText(user.username);
+        lbManagementName.setText(data.getName());
         setLocation(0,0);
         setSize(720,480);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -66,6 +68,6 @@ public class ManagementFrame extends JFrame{
     }
 
     public static void main(String[] args){
-        ManagementFrame management = new ManagementFrame(new User());
+        ManagementFrame management = new ManagementFrame(new User(), new Data());
     }
 }

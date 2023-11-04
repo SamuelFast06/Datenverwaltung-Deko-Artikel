@@ -1,50 +1,4 @@
-
 {
-  "id" : "65311b3e54105e766fc4503e",
-  "articles" : [ {
-    "id" : "8a9d5ebd-9af4-4406-83b2-124de1068bd1",
-    "articleNo" : 1,
-    "articleName" : "Table",
-    "articleWeight" : "20kg",
-    "articleDescription" : "This table is very cool",
-    "articleColor" : "brown",
-    "articlePrice" : 75.95,
-    "articleQuantity" : 4,
-    "articleMeasures" : {
-      "length" : 200.0,
-      "wide" : 70.0,
-      "height" : 80.0
-    }
-  } ],
-  "contactPeople" : [ {
-    "id" : "2f9ae4eb-e7af-4646-af13-0743d848920b",
-    "firstname" : "Fabian",
-    "lastname" : "Müller",
-    "company" : "Max Rose GmbH",
-    "address" : "Müllerstraße 36",
-    "branchtype" : "Maschienenbau",
-    "mobilenumber" : "0123456789"
-  } ],
-  "costumers" : [ {
-    "id" : "9c934d85-a9c7-4a22-b826-1a23c370c8c1",
-    "firstName" : "Paul",
-    "lastName" : "Sobczak",
-    "birthdate" : {
-      "day" : 7,
-      "month" : 5,
-      "year" : 2006
-    },
-    "address" : {
-      "country" : "Germany",
-      "city" : "Detmold",
-      "street" : "Blombergerstraße",
-      "zip" : "32756",
-      "houseNumber" : "69"
-    },
-    "mobilenumber" : "05432356234",
-    "emailAddress" : "max@someEmail.com",
-    "gender" : "Man"
-  } ],
   "articles" : [ ],
   "contactPeople" : [ ],
   "costumers" : [ ],
@@ -89,11 +43,10 @@
     "passwort" : "kamin187",
     "id" : "2627b0fa-4af0-4c56-ba06-996b176a3aa6"
   }, {
-    "username" : "TestUserRRRR",
-    "passwort" : "test",
-    "id" : "bb5b5059-238e-4e40-ae0d-6e63d939e4ae",
     "username" : "kamel",
     "passwort" : "kamel",
     "id" : "2c482e9e-c4cc-4353-8cab-89d7022173c2"
-  } ]
+  } ],
+  "id" : null,
+  "name" : null
 }
