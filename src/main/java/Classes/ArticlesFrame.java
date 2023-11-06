@@ -1,5 +1,7 @@
 package Classes;
 
+import Classes.Files.LListInterface;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,11 +25,13 @@ public class ArticlesFrame extends JFrame {
     private ArrayList<Classes.Article> articles = data.getArticles();
     private User user;
 
+    private Article selectedArticle;
+
     public ArticlesFrame(User iuser){
         user = iuser;
         setContentPane(managementPanel);
         setLocation(0,0);
-        setSize(1280,720);
+        setSize(1020,420);
         setVisible(true);
         setResizable(false);
         btnManager();
@@ -42,42 +46,43 @@ public class ArticlesFrame extends JFrame {
         btnAddArticle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("turbo geeeeeeeeeey add article");
+                AddArticleFrame addArticleFrame = new AddArticleFrame();
             }
         });
 
         btnRemoveArticle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("turbo geeeeeeeeeey remove article");
+                data.removeArticle(selectedArticle); //brauch ich hier noch suchen ????
+                System.out.println("'remove article'");
             }
         });
 
         btnShowArticle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("turbo geeeeeeeeeey show article");
+                ShowArticleFrame showArticleFrame = new ShowArticleFrame(selectedArticle);
             }
         });
 
         btnSetQuantity.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("turbo geeeeeeeeeey set quantity");
+                System.out.println("'set quantity'");
             }
         });
 
         btnPlusQuantity.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("turbo geeeeeeeeeey plus quantity");
+                System.out.println("'plus quantity'");
             }
         });
 
         btnMinusQuantity.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("turbo geeeeeeeeeey minus quantity");
+                System.out.println("'minus quantity'");
             }
         });
     }

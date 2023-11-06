@@ -89,8 +89,6 @@ public class LoginFrame extends JFrame{
     private boolean isUsernameAvailable(String username){
         data.reloadData();
         for(int i = 0; i < users.size(); i++){
-            System.out.println(i + "yeey");
-            System.out.println(users);
             if(username.equals(users.get(i).username)){
                 userindex = i;
                 return true;
