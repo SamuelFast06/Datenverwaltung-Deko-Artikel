@@ -13,7 +13,7 @@ public class ManagementFrame extends JFrame{
     private JButton btnCustomers;
     private JButton btnContactPersons;
     private JTextArea textArea;
-    private JLabel lbHeadline;
+    private JLabel lbManagementName;
     private JLabel lbCurrentUser;
     private JLabel lbMessage;
 
@@ -29,7 +29,7 @@ public class ManagementFrame extends JFrame{
         this.user = iuser;
         this.data = data;
         lbCurrentUser.setText(user.username);
-        lbHeadline.setText(data.getName());
+        lbManagementName.setText(data.getName());
         setLocation(0,0);
         setSize(720,480);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
