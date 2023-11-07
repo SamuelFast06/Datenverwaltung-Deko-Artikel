@@ -40,6 +40,11 @@ public class ArticlesFrame extends JFrame {
     public void setupArticleList(){
     }
 
+    public Article selectArticle(Article article){
+        // Article in ArticleList auswählen und article
+
+        return article;
+    }
 
 
     public void btnManager(){

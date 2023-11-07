@@ -36,8 +36,6 @@ public class ShowArticleFrame extends JFrame{
 
     private Article slcArticle;
 
-    private boolean isEditEnabled = false;
-
     public ShowArticleFrame(Article islcArticle){
         slcArticle = islcArticle;
         setContentPane(showArticlePane);
@@ -45,7 +43,10 @@ public class ShowArticleFrame extends JFrame{
         setSize(400,380);
         setVisible(true);
         setResizable(false);
-        setupTextfields();
+
+        if(slcArticle != null){
+            setupTextfields();
+        }
     }
 
 
@@ -61,7 +62,7 @@ public class ShowArticleFrame extends JFrame{
         tfWide.setText(Double.toString(slcArticle.getArticleMeasures().getWide()));
         tfHeight.setText(Double.toString(slcArticle.getArticleMeasures().getHeight()));
 
-        if(!isEditEnabled){
+        if(cbEdit.isSelected() == false){
             tfName.disable();
             tfPrice.disable();
             tfQuantity.disable();
@@ -72,10 +73,7 @@ public class ShowArticleFrame extends JFrame{
             tfWide.disable();
             tfHeight.disable();
         }
-        cbEdit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                isEditEnabled = true;
+        if(cbEdit.isSelected() == true){
                 tfName.enable();
                 tfPrice.enable();
                 tfQuantity.enable();
@@ -85,9 +83,7 @@ public class ShowArticleFrame extends JFrame{
                 tfLength.enable();
                 tfWide.enable();
                 tfHeight.enable();
-                isEditEnabled = false;
             }
-        });
     }
 
 }
