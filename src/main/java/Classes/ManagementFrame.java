@@ -17,7 +17,7 @@ public class ManagementFrame extends JFrame{
     private JLabel lbCurrentUser;
     private JLabel lbMessage;
 
-    Informationtype tappedType = Informationtype.noType;
+    InformationType tappedType = InformationType.noType;
 
     private Data data;
 
