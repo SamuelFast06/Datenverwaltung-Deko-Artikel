@@ -17,13 +17,16 @@ public class ManagementFrame extends JFrame{
     private JLabel lbCurrentUser;
     private JLabel lbMessage;
 
+    Informationtype tappedType = Informationtype.noType;
+
     private Data data;
 
     private User user;
 
     public ManagementFrame(User iuser, Data data){
+        this.data = data;
         setContentPane(managementPanel);
-        user = iuser;
+        this.user = iuser;
         this.data = data;
         lbCurrentUser.setText(user.username);
         lbHeadline.setText(data.getName());
@@ -68,4 +71,5 @@ public class ManagementFrame extends JFrame{
     public static void main(String[] args){
         ManagementFrame management = new ManagementFrame(new User(), new Data());
     }
+
 }
