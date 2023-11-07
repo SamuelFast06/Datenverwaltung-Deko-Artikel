@@ -45,20 +45,21 @@ public class ShowArticleFrame extends JFrame{
         setSize(400,380);
         setVisible(true);
         setResizable(false);
-        //setupTextfields();
+        setupTextfields();
     }
 
-    /*
+
     public void setupTextfields(){
+
         tfName.setText(slcArticle.getArticleName());
-        tfPrice.setText(slcArticle.getArticlePrice());
-        tfQuantity.setText(slcArticle.getArticleQuantity());
+        tfPrice.setText(Double.toString(slcArticle.getArticlePrice()));
+        tfQuantity.setText(Integer.toString(slcArticle.getArticleQuantity()));
         tfColor.setText(slcArticle.getArticleColor());
         tfWeight.setText(slcArticle.getArticleName());
         tfDescription.setText(slcArticle.getArticleDescription());
-        tfLength.setText(slcArticle.getArticleMeasures().getLength());
-        tfWide.setText(slcArticle.getArticleMeasures().getWide());
-        tfHeight.setText(slcArticle.getArticleMeasures().getHeight().toString());
+        tfLength.setText(Double.toString(slcArticle.getArticleMeasures().getLength()));
+        tfWide.setText(Double.toString(slcArticle.getArticleMeasures().getWide()));
+        tfHeight.setText(Double.toString(slcArticle.getArticleMeasures().getHeight()));
 
         if(!isEditEnabled){
             tfName.disable();
@@ -88,5 +89,5 @@ public class ShowArticleFrame extends JFrame{
             }
         });
     }
-     */
+
 }
