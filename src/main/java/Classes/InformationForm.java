@@ -1,56 +1,65 @@
 package Classes;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class InformationForm extends  JFrame {
-    private JPanel panel;
+public class InformationForm extends JPanel {
     Data data;
     InformationType type;
+    Article selectedArticle;
 
 
     public InformationForm(Data data, InformationType type) {
         this.data = data;
         this.type = type;
+        this.selectedArticle = selectedArticle;
 
-        setContentPane(panel);
-        setLocation(800,300);
-        setSize(400,280);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        setResizable(false);
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         switch (type) {
             case articles:
                 for (int i = 0; i < data.getArticles().size(); i++) {
-                    ArticleButtonForm articleButton = new ArticleButtonForm(data.getArticles().get(i));
-                    panel.add(articleButton);
+                    Article article = data.getArticles().get(i);
+                    ArticleButton articleButton = new ArticleButton(data.getArticles().get(i));
+                    JButton button = new JButton();
+                    button.add(articleButton);
+                    int finalI = i;
+                    button.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            new ShowArticleFrame(article);
+                        }
+                    });
+                    this.add(button);
                 }
                 break;
             case costumer:
                 for (int i = 0; i < data.getCostumers().size(); i++) {
                     JLabel label = new JLabel();
                     label.setText(data.getCostumers().get(i).getFirstName());
-                    panel.add(label);
+                    this.add(label);
                 }
                 break;
             case contactPeople:
                 for (int i = 0; i < data.getContactPeople().size(); i++) {
                     JLabel label = new JLabel();
                     label.setText(data.getContactPeople().get(i).getFirstname());
-                    panel.add(label);
+                    this.add(label);
                 }
                 break;
             case users:
                 for (int i = 0; i < data.getUsers().size(); i++) {
                     JLabel label = new JLabel();
                     label.setText(data.getUsers().get(i).getUsername());
-                    panel.add(label);
+                    this.add(label);
                 }
                 break;
             case noType:
                 break;
         }
+
         setVisible(true);
     }
 

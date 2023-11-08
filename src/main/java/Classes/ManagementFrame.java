@@ -3,6 +3,7 @@ package Classes;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 
 public class ManagementFrame extends JFrame{
@@ -12,10 +13,10 @@ public class ManagementFrame extends JFrame{
     private JButton btnArticles;
     private JButton btnCustomers;
     private JButton btnContactPersons;
-    private JTextArea textArea;
     private JLabel lbManagementName;
     private JLabel lbCurrentUser;
     private JLabel lbMessage;
+    private JPanel informationPanel;
 
     InformationType tappedType = InformationType.noType;
 
@@ -27,7 +28,6 @@ public class ManagementFrame extends JFrame{
         this.data = data;
         setContentPane(managementPanel);
         this.user = iuser;
-        this.data = data;
         lbCurrentUser.setText(user.username);
         lbManagementName.setText(data.getName());
         setLocation(0,0);
@@ -42,7 +42,7 @@ public class ManagementFrame extends JFrame{
         btnArticles.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ArticlesFrame articlesManagement = new ArticlesFrame(user);
+                ArticlesFrame articlesManagement = new ArticlesFrame(user, data);
             }
         });
 
@@ -69,7 +69,13 @@ public class ManagementFrame extends JFrame{
     }
 
     public static void main(String[] args){
-        ManagementFrame management = new ManagementFrame(new User(), new Data());
+        try {
+            Data data = ManagementController.getDataManagement("653932ce0574da7622bd9406");
+            ManagementFrame management = new ManagementFrame(new User(), data);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 }

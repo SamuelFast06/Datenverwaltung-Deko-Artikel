@@ -19,7 +19,14 @@
             <constraints/>
             <properties/>
             <border type="none"/>
-            <children/>
+            <children>
+              <grid id="72b18" binding="scrollPanel" layout-manager="GridBagLayout">
+                <constraints/>
+                <properties/>
+                <border type="none"/>
+                <children/>
+              </grid>
+            </children>
           </scrollpane>
         </children>
       </scrollpane>
