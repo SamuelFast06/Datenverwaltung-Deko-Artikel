@@ -1,6 +1,7 @@
 package Classes.Files;
 
 import java.util.UUID;
+import java.util.*;
 
 public class LList implements LListInterface {
     lListElement currentObject;
@@ -60,7 +61,7 @@ public class LList implements LListInterface {
     }
 
     public void append(Object pObject){
-        lListElement element = new lListElement();
+        lListElement element = new lListElement(pObject, null);
         if(isEmpty() == false){
             toLast();
             currentObject.nextElement = element;
@@ -83,21 +84,19 @@ public class LList implements LListInterface {
             temp.content = pObject;
         }
         if(isEmpty() == true) {
-            lListElement element = new lListElement();
+            lListElement element = new lListElement(pObject, null);
             anchor = element;
             anchor.content = pObject;
         }
     }
 
-    public void concat(LList plist){
+    public void concat(List plist){
+        if (!plist.isEmpty()) return;
         if(hasAccess() == true){
-            lListElement temp;
-            temp = plist.anchor;
+            lListElement startPosition = currentObject;
             toLast();
-
-            while(temp.nextElement != null){
-                temp = temp.nextElement;
-                currentObject.nextElement = temp;
+            for (int i = 0; i < plist.size(); i++) {
+                currentObject.setNextElement(new lListElement(plist.get(i), null));
             }
         }
     }
@@ -141,7 +140,7 @@ public class LList implements LListInterface {
         plist.append(user5);
         plist.append(user6);
 
-        list.concat(plist);
+
         list.toLast();
         System.out.println(list.currentObject.content);
 
@@ -151,6 +150,27 @@ public class LList implements LListInterface {
 class lListElement {
     Object content;
     lListElement nextElement;
+
+    public lListElement(Object content, lListElement nextElement) {
+        this.content = content;
+        this.nextElement = nextElement;
+    }
+
+    public Object getContent() {
+        return content;
+    }
+
+    public void setContent(Object content) {
+        this.content = content;
+    }
+
+    public lListElement getNextElement() {
+        return nextElement;
+    }
+
+    public void setNextElement(lListElement nextElement) {
+        this.nextElement = nextElement;
+    }
 }
 
 
