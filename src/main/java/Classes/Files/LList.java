@@ -2,7 +2,7 @@ package Classes.Files;
 
 import java.util.UUID;
 
-public class LList implements LListInterface{
+public class LList implements LListInterface {
     lListElement currentObject;
     lListElement anchor;
 
