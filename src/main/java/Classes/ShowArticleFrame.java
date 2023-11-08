@@ -36,13 +36,22 @@ public class ShowArticleFrame extends JFrame{
 
     private Article slcArticle;
 
-    public ShowArticleFrame(Article islcArticle){
-        slcArticle = islcArticle;
+    public ShowArticleFrame(Article article){
+        slcArticle = article;
         setContentPane(showArticlePane);
         setLocation(800,300);
         setSize(400,380);
         setVisible(true);
         setResizable(false);
+
+        lbName.setText(article.getArticleName());
+        lbPrice.setText(""+article.getArticlePrice()+"");
+        lbQuantity.setText(""+article.getArticleQuantity()+"");
+        lbColor.setText(article.getArticleColor());
+        lbWeight.setText(article.getArticleWeight());
+        lbLength.setText(""+article.getArticleMeasures().getLength()+"");
+        lbWide.setText(""+article.getArticleMeasures().getWide()+"");
+        lbHeight.setText(""+article.getArticleMeasures().getHeight()+"");
 
         if(slcArticle != null){
             setupTextfields();

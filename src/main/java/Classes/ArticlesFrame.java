@@ -5,6 +5,7 @@ import Classes.Files.LListInterface;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -21,20 +22,25 @@ public class ArticlesFrame extends JFrame {
     private JScrollBar scrollBar;
     private JLabel lbCurrentUser;
     private JLabel lbManagementName;
+    private JPanel scrollPanel;
     private Data data = new Data();
     private ArrayList<Classes.Article> articles = data.getArticles();
     private User user;
 
     private Article selectedArticle;
 
-    public ArticlesFrame(User iuser){
+    public ArticlesFrame(User iuser, Data data){
         user = iuser;
+        this.scrollPanel.add(new InformationForm(data, InformationType.articles));
+        this.lbManagementName.setText(data.getName());
+        this.lbCurrentUser.setText(iuser.username);
         setContentPane(managementPanel);
         setLocation(0,0);
         setSize(1020,420);
-        setVisible(true);
         setResizable(false);
         btnManager();
+
+        setVisible(true);
     }
 
     public void setupArticleList(){
@@ -96,6 +102,10 @@ public class ArticlesFrame extends JFrame {
         User testuser = new User();
         testuser.username = "testuser";
         testuser.passwort = "test";
-        ArticlesFrame articlesManage = new ArticlesFrame(testuser);
+        try {
+            ArticlesFrame articlesManage = new ArticlesFrame(testuser, ManagementController.getDataManagement("653932ce0574da7622bd9406"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
