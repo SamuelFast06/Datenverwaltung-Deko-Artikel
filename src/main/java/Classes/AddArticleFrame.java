@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class AddArticleFrame extends JFrame{
     private JLabel lbHeadline;
@@ -29,6 +30,8 @@ public class AddArticleFrame extends JFrame{
     private JLabel lbWeight;
     private JLabel lbDescription;
     private JPanel addArticlePane;
+    private JLabel lbArticleNo;
+    private JTextField tfArticleNo;
 
     private Data data = new Data();
     private ArrayList<Classes.Article> articles = data.getArticles();
@@ -47,6 +50,7 @@ public class AddArticleFrame extends JFrame{
         btnAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String atNo = tfArticleNo.getText();
                 String atName = tfName.getText();
                 String atPrice = tfPrice.getText();
                 String atQuantity = tfQuantity.getText();
@@ -57,6 +61,8 @@ public class AddArticleFrame extends JFrame{
                 String atHeight = tfHeight.getText();
                 String atDescription = tfDescription.getText();
 
+                Article newArticle = new Article(UUID.randomUUID(),Integer.valueOf(atNo),atName,atWeight,atDescription,atColor,Double.valueOf(atPrice),Integer.valueOf(atQuantity), new Measures(Double.valueOf(atLength),Double.valueOf(atWide),Double.valueOf(atHeight)));
+                data.addArticle(newArticle);
             }
         });
     }
