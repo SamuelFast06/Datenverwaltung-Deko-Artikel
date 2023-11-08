@@ -1,4 +1,6 @@
 package Classes.Files;
+import java.util.*;
+import InterfacesAndLinkedLists.TwoTimesLinkedList;
 
 public interface LListInterface {
 
@@ -12,7 +14,7 @@ public interface LListInterface {
     // if isEmpty() == false && hasAccess == true && currentObject.nextElement != null, dann currentObject hasAccess == true
 
     void toFirst();
-    // if isEmpty() == false, dann erstes Object == currentObject
+    // if isEmpty() != false, dann erstes Object == currentObject
 
     void toLast();
     // if isEmpty() == false, dann letztes Object == currentObject
@@ -34,7 +36,7 @@ public interface LListInterface {
     // if isEmpty() == true, wird pObject in List eingefügt
     // if hasAcces() == false && if isEmpty() == false oder pObject == null, dann Liste bleibt unverändert
 
-    void concat(LList pList);
+    void concat(List pList);
     // plist wird an list angehängt && plist wird leer
     // if plist == null oder leer dann bleibt unverändert
 
