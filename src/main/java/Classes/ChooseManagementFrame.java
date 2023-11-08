@@ -40,6 +40,8 @@ public class ChooseManagementFrame extends JFrame{
                 try {
                     ManagementController.createManagement(newManagementName, user);
                     lbMessageJoin.setText("Created " + newManagementName);
+
+                    LoginFrame loginFrame = new LoginFrame();
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -54,6 +56,9 @@ public class ChooseManagementFrame extends JFrame{
                     Data data = ManagementController.getDataManagement(joinID);
                     data.addUser(user);
                     lbMessageJoin.setText("Joined " + data.getName());
+
+                    dispose();
+                    LoginFrame loginFrame = new LoginFrame();
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
