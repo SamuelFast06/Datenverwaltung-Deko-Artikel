@@ -1,6 +1,8 @@
 package Classes;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class AddArticleFrame extends JFrame{
@@ -37,6 +39,26 @@ public class AddArticleFrame extends JFrame{
         setSize(400,380);
         setVisible(true);
         setResizable(false);
+
+        btnManager();
+    }
+
+    public void btnManager(){
+        btnAdd.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String atName = tfName.getText();
+                String atPrice = tfPrice.getText();
+                String atQuantity = tfQuantity.getText();
+                String atColor = tfColor.getText();
+                String atWeight = tfWeight.getText();
+                String atLength = tfLength.getText();
+                String atWide = tfWide.getText();
+                String atHeight = tfHeight.getText();
+                String atDescription = tfDescription.getText();
+
+            }
+        });
     }
 
 }

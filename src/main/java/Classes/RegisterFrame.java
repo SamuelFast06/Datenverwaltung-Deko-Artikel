@@ -16,14 +16,13 @@ import java.util.*;
         private JLabel lbRegister;
         private JLabel lbUsername;
         private JLabel lbPasswort;
-        private JLabel lbPasswortRepat;
+        private JLabel lbRepeatPasswort;
         private JTextField tfRepeatPasswort;
         private JButton btnOK;
         private JButton btnCancel;
         private JPanel registerPanel;
         private JLabel lbMessage;
-        private JLabel lbRepeatPasswort;
-        private JTextField tfName;
+
         private JCheckBox checkBox;
 
         private Data data = new Data();
@@ -40,7 +39,6 @@ import java.util.*;
             btnOK.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    String name = tfName.getText();
                     String username = tfUsername.getText();
                     String passwort = tfPasswort.getText();
                     String repeatPasswort = tfRepeatPasswort.getText();
@@ -50,11 +48,9 @@ import java.util.*;
                             if(passwort.equals(repeatPasswort)) {
                                 User user = new User(UUID.randomUUID(), username, passwort);
 
-                                data = ManagementController.createManagement(name, user);
-
                                 lbMessage.setText("Register Success");
                                 dispose();
-                                LoginFrame newlogin = new LoginFrame();
+                                ChooseManagementFrame chooseManagement = new ChooseManagementFrame(user);
                             } else {
                                 lbMessage.setText("[RepeatPasswort] is not the same as [Passwort]");
                             }
