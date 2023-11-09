@@ -32,11 +32,11 @@ public class AddArticleFrame extends JFrame{
     private JPanel addArticlePane;
     private JLabel lbArticleNo;
     private JTextField tfArticleNo;
+    private Data data;
 
-    private Data data = new Data();
-    private ArrayList<Classes.Article> articles = data.getArticles();
 
-    public AddArticleFrame(){
+    public AddArticleFrame(Data data){
+        this.data = data;
         setContentPane(addArticlePane);
         setLocation(800,300);
         setSize(400,380);
@@ -50,6 +50,7 @@ public class AddArticleFrame extends JFrame{
         btnAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 String atNo = tfArticleNo.getText();
                 String atName = tfName.getText();
                 String atPrice = tfPrice.getText();
