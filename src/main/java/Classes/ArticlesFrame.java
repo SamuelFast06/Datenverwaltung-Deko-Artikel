@@ -16,7 +16,6 @@ public class ArticlesFrame extends JFrame {
     private JButton btnMinusQuantity;
     private JButton btnPlusQuantity;
     private JScrollPane scrollPane;
-    private JScrollBar scrollBar;
     private JLabel lbCurrentUser;
     private JLabel lbManagementName;
     private JPanel scrollPanel;

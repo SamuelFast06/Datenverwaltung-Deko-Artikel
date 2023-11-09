@@ -41,7 +41,7 @@ public class AddArticleFrame extends JFrame{
         setLocation(800,300);
         setSize(400,380);
         setVisible(true);
-        setResizable(false);
+        setResizable(true);
 
         btnManager();
     }
@@ -50,7 +50,6 @@ public class AddArticleFrame extends JFrame{
         btnAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 String atNo = tfArticleNo.getText();
                 String atName = tfName.getText();
                 String atPrice = tfPrice.getText();
