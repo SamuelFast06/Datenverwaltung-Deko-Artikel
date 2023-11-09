@@ -38,10 +38,16 @@ public class ChooseManagementFrame extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String newManagementName = tfCreateName.getText();
                 try {
-                    ManagementController.createManagement(newManagementName, user);
-                    lbMessageJoin.setText("Created " + newManagementName);
+                    String t = tfCreateName.getText().replaceAll("[\n \t]","");
+                    if(t.toCharArray().length > 0){
+                        ManagementController.createManagement(newManagementName, user);
+                        lbMessageJoin.setText("Created " + newManagementName);
 
-                    LoginFrame loginFrame = new LoginFrame();
+                        LoginFrame loginFrame = new LoginFrame();
+                    }else{
+                        lbMessageCreate.setText("Invalid ManagementName");
+                    }
+
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -53,12 +59,17 @@ public class ChooseManagementFrame extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String joinID = tfJoinID.getText();
                 try {
-                    Data data = ManagementController.getDataManagement(joinID);
-                    data.addUser(user);
-                    lbMessageJoin.setText("Joined " + data.getName());
+                    String t = tfCreateName.getText().replaceAll("[\n \t]","");
+                    if(t.toCharArray().length > 0) {
+                        Data data = ManagementController.getDataManagement(joinID);
+                        data.addUser(user);
+                        lbMessageJoin.setText("Joined " + data.getName());
 
-                    dispose();
-                    LoginFrame loginFrame = new LoginFrame();
+                        dispose();
+                        LoginFrame loginFrame = new LoginFrame();
+                    }else{
+                        lbMessageJoin.setText("Join-ID does not exist");
+                    }
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }

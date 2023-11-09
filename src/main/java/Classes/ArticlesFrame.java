@@ -20,13 +20,13 @@ public class ArticlesFrame extends JFrame {
     private JLabel lbCurrentUser;
     private JLabel lbManagementName;
     private JPanel scrollPanel;
-    private Data data = new Data();
-    private ArrayList<Classes.Article> articles = data.getArticles();
     private User user;
 
+    private Data data;
     private Article selectedArticle;
 
     public ArticlesFrame(User iuser, Data data){
+        this.data = data;
         user = iuser;
         this.scrollPanel.add(new InformationForm(data, InformationType.articles));
         this.lbManagementName.setText(data.getName());
@@ -54,14 +54,14 @@ public class ArticlesFrame extends JFrame {
         btnAddArticle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AddArticleFrame addArticleFrame = new AddArticleFrame();
+                AddArticleFrame addArticleFrame = new AddArticleFrame(data);
             }
         });
 
         btnRemoveArticle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                data.removeArticle(selectedArticle); //brauch ich hier noch suchen ????
+                data.removeArticle(selectedArticle);
                 System.out.println("'remove article'");
             }
         });
