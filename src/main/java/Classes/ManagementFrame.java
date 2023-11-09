@@ -16,7 +16,7 @@ public class ManagementFrame extends JFrame{
     private JLabel lbManagementName;
     private JLabel lbCurrentUser;
     private JLabel lbMessage;
-    private JPanel informationPanel;
+    private JTextArea textArea1;
 
     InformationType tappedType = InformationType.noType;
 
@@ -71,11 +71,10 @@ public class ManagementFrame extends JFrame{
     public static void main(String[] args){
         try {
             Data data = ManagementController.getDataManagement("653932ce0574da7622bd9406");
-            ManagementFrame management = new ManagementFrame(new User(), new Data());
+            ManagementFrame management = new ManagementFrame(new User(), data);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
 }

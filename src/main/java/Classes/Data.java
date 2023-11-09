@@ -114,22 +114,27 @@ public class Data {
 
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("PUT");
-            con.setRequestProperty("X-Master-Key", "$2a$10$WyC.qebXhP2FTTpNm.46cu2Nf6Qi0PEf/4Qq.6P8CMS.iPNgy5avG");
+            con.setRequestProperty("X-Master-Key", ManagementController.XMASTERKEY);
             con.setRequestProperty("Content-Type", "application/json");
 
             con.setDoOutput(true);
 
             ObjectMapper mapper = new ObjectMapper();
-            String jsonString = mapper.writeValueAsString(new Data(articles, contactPeople, costumers, users, id, name));
+            String jsonString = mapper.writeValueAsString(this);
 
-            try (OutputStream os = con.getOutputStream()) {
+            try(OutputStream os = con.getOutputStream()) {
                 byte[] input = jsonString.getBytes("utf-8");
                 os.write(input, 0, input.length);
             }
+
+            System.out.println("Upload response: " + con.getResponseMessage());
+
+            con.disconnect();
             return true;
         } catch (Exception e) {
             System.out.println(e);
-        }return false;
+        }
+        return false;
     }
 
     public void addCostumer(Costumer costumer) {

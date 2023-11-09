@@ -77,10 +77,7 @@ public class TwoTimesLinkedList implements LListInterface {
             return;
         }
         // must have access
-        TwoTimesListElement previous = anchor;
-        while (previous.getNext() != current) {
-            previous = previous.getNext();
-        }
+        TwoTimesListElement previous = current.getPrevious();
         TwoTimesListElement newElement = new TwoTimesListElement(pObject, current, previous);
         previous.setNext(newElement);
         current.setPrevious(newElement);
@@ -100,10 +97,7 @@ public class TwoTimesLinkedList implements LListInterface {
     @Override
     public void remove() {
         if (isEmpty() || !hasAccess()) return;
-        TwoTimesListElement previous = anchor;
-        while (previous.getNext() != current) {
-            previous = previous.getNext();
-        }
+        TwoTimesListElement previous = current.getPrevious();
         previous.setNext(current.getNext());
         current.getNext().setPrevious(previous);
         current = current.getNext();
