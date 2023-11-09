@@ -3,7 +3,6 @@ package Classes;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.UUID;
 
 public class AddArticleFrame extends JFrame{
@@ -33,10 +32,11 @@ public class AddArticleFrame extends JFrame{
     private JLabel lbArticleNo;
     private JTextField tfArticleNo;
     private Data data;
+    private ArticlesFrame parent;
 
-
-    public AddArticleFrame(Data data){
+    public AddArticleFrame(Data data, ArticlesFrame parent){
         this.data = data;
+        this.parent = parent;
         setContentPane(addArticlePane);
         setLocation(800,300);
         setSize(400,380);
@@ -63,6 +63,7 @@ public class AddArticleFrame extends JFrame{
 
                 Article newArticle = new Article(UUID.randomUUID(),Integer.valueOf(atNo),atName,atWeight,atDescription,atColor,Double.valueOf(atPrice),Integer.valueOf(atQuantity), new Measures(Double.valueOf(atLength),Double.valueOf(atWide),Double.valueOf(atHeight)));
                 data.addArticle(newArticle);
+                parent.refreshInformationPanel();
             }
         });
     }

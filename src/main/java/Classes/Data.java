@@ -127,7 +127,11 @@ public class Data {
                 os.write(input, 0, input.length);
             }
 
-            System.out.println("Upload response: " + con.getResponseMessage());
+            String response = con.getResponseMessage();
+
+            if (response.equals("Bad Request")) { return false; }
+
+            System.out.println("Upload response: " + response);
 
             con.disconnect();
             return true;

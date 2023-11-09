@@ -8,13 +8,13 @@ import java.io.IOException;
 public class InformationForm extends JPanel {
     Data data;
     InformationType type;
-    Article selectedArticle;
+    ArticlesFrame parent;
 
 
-    public InformationForm(Data data, InformationType type) {
+    public InformationForm(Data data, InformationType type, ArticlesFrame parent) {
         this.data = data;
         this.type = type;
-        this.selectedArticle = selectedArticle;
+        this.parent = parent;
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -25,11 +25,10 @@ public class InformationForm extends JPanel {
                     ArticleButton articleButton = new ArticleButton(data.getArticles().get(i));
                     JButton button = new JButton();
                     button.add(articleButton);
-                    int finalI = i;
                     button.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            new ShowArticleFrame(article);
+                            parent.selectArticle(article);
                         }
                     });
                     this.add(button);
@@ -63,14 +62,53 @@ public class InformationForm extends JPanel {
         setVisible(true);
     }
 
-    public static void main(String[] args) {
-        try {
-            Data data = ManagementController.getDataManagement("653932ce0574da7622bd9406");
-            new InformationForm(data, InformationType.articles);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    public void refresh() {
+        this.removeAll();
+
+        switch (type) {
+            case articles:
+                for (int i = 0; i < data.getArticles().size(); i++) {
+                    Article article = data.getArticles().get(i);
+                    ArticleButton articleButton = new ArticleButton(article);
+                    JButton button = new JButton();
+                    button.add(articleButton);
+                    button.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            parent.selectArticle(article);
+                        }
+                    });
+                    this.add(button);
+                }
+                break;
+            case costumer:
+                for (int i = 0; i < data.getCostumers().size(); i++) {
+                    JLabel label = new JLabel();
+                    label.setText(data.getCostumers().get(i).getFirstName());
+                    this.add(label);
+                }
+                break;
+            case contactPeople:
+                for (int i = 0; i < data.getContactPeople().size(); i++) {
+                    JLabel label = new JLabel();
+                    label.setText(data.getContactPeople().get(i).getFirstname());
+                    this.add(label);
+                }
+                break;
+            case users:
+                for (int i = 0; i < data.getUsers().size(); i++) {
+                    JLabel label = new JLabel();
+                    label.setText(data.getUsers().get(i).getUsername());
+                    this.add(label);
+                }
+                break;
+            case noType:
+                break;
         }
+        this.updateUI();
     }
+
+
 }
 
 enum InformationType {
