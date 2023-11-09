@@ -32,6 +32,7 @@ public class AddArticleFrame extends JFrame{
     private JPanel addArticlePane;
     private JLabel lbArticleNo;
     private JTextField tfArticleNo;
+    private JLabel lbMessage;
     private Data data;
 
 
@@ -61,10 +62,36 @@ public class AddArticleFrame extends JFrame{
                 String atHeight = tfHeight.getText();
                 String atDescription = tfDescription.getText();
 
-                Article newArticle = new Article(UUID.randomUUID(),Integer.valueOf(atNo),atName,atWeight,atDescription,atColor,Double.valueOf(atPrice),Integer.valueOf(atQuantity), new Measures(Double.valueOf(atLength),Double.valueOf(atWide),Double.valueOf(atHeight)));
-                data.addArticle(newArticle);
+                removeNonNumeric(atNo);
+                removeNonNumeric(atPrice);
+                removeNonNumeric(atQuantity);
+                removeNonNumeric(atLength);
+                removeNonNumeric(atWide);
+                removeNonNumeric(atHeight);
+
+
+                try{
+                    Article newArticle = new Article(UUID.randomUUID(),Integer.valueOf(atNo),atName,atWeight,atDescription,atColor,Double.valueOf(atPrice),Integer.valueOf(atQuantity), new Measures(Double.valueOf(atLength),Double.valueOf(atWide),Double.valueOf(atHeight)));
+                    data.addArticle(newArticle);
+                    dispose();
+                }catch (NumberFormatException ex){
+                    lbMessage.setText("Invalid format");
+                    throw new RuntimeException(ex);
+                }
+
             }
         });
+
+        btnCancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+    }
+
+    public static String removeNonNumeric(String str){
+        return str.replaceAll("[^\\d.]","");
     }
 
 }
