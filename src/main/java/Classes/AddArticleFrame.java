@@ -73,6 +73,7 @@ public class AddArticleFrame extends JFrame{
                 try{
                     Article newArticle = new Article(UUID.randomUUID(),Integer.valueOf(atNo),atName,atWeight,atDescription,atColor,Double.valueOf(atPrice),Integer.valueOf(atQuantity), new Measures(Double.valueOf(atLength),Double.valueOf(atWide),Double.valueOf(atHeight)));
                     data.addArticle(newArticle);
+                    lbMessage.setText("Articled added to Management");
                     dispose();
                 }catch (NumberFormatException ex){
                     lbMessage.setText("Invalid format");

@@ -25,6 +25,8 @@ public class InformationForm extends JPanel {
                     ArticleButton articleButton = new ArticleButton(data.getArticles().get(i));
                     JButton button = new JButton();
                     button.add(articleButton);
+                    float btnMaxWith = button.getMaximumSize().width;
+                    button.setAlignmentX(btnMaxWith);
                     int finalI = i;
                     button.addActionListener(new ActionListener() {
                         @Override
