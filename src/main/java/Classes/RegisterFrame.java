@@ -25,8 +25,8 @@ import java.util.*;
 
         private JCheckBox checkBox;
 
-        private Data data = new Data();
-        private ArrayList<User> users = data.getUsers();
+        private Data data;
+        // private ArrayList<User> users = data.getUsers();
 
         public RegisterFrame() {
             setContentPane(registerPanel);
@@ -92,6 +92,7 @@ import java.util.*;
             });
         }
 
+        /*
         private boolean isUsernameTaken(String username){
             for(int i = 0; i < users.size(); i++){
                 data.reloadData();
@@ -101,6 +102,7 @@ import java.util.*;
             }
             return false;
         }
+        */
         private void clearAllTf(){
             tfUsername.setText("");
             tfPasswort.setText("");

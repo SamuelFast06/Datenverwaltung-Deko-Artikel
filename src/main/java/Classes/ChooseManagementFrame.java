@@ -1,11 +1,9 @@
 package Classes;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class ChooseManagementFrame extends JFrame{
     private JPanel chooseManagementPanel;
@@ -16,7 +14,7 @@ public class ChooseManagementFrame extends JFrame{
     private JLabel lbCreateName;
     private JLabel lbJoinID;
     private JLabel lbMessageCreate;
-    private JLabel lbMessageJoin;
+    private JLabel lbMessage;
     private JLabel lbHeadline;
 
     private User user;
@@ -25,10 +23,11 @@ public class ChooseManagementFrame extends JFrame{
     public ChooseManagementFrame(User iuser){
         user = iuser;
         setContentPane(chooseManagementPanel);
-        setLocation(0,0);
-        setSize(400,280);
+        setLocation(800,300);
+        setSize(400,180);
         setVisible(true);
         setResizable(false);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         btnManager();
     }
 
@@ -41,7 +40,7 @@ public class ChooseManagementFrame extends JFrame{
                     String t = tfCreateName.getText().replaceAll("[\n \t]","");
                     if(t.toCharArray().length > 0){
                         ManagementController.createManagement(newManagementName, user);
-                        lbMessageJoin.setText("Created " + newManagementName);
+                        lbMessage.setText("Created " + newManagementName);
 
                         LoginFrame loginFrame = new LoginFrame();
                     }else{
@@ -63,12 +62,12 @@ public class ChooseManagementFrame extends JFrame{
                     if(t.toCharArray().length > 0) {
                         Data data = ManagementController.getDataManagement(joinID);
                         data.addUser(user);
-                        lbMessageJoin.setText("Joined " + data.getName());
+                        lbMessage.setText("Joined " + data.getName());
 
                         dispose();
                         LoginFrame loginFrame = new LoginFrame();
                     }else{
-                        lbMessageJoin.setText("Join-ID does not exist");
+                        lbMessage.setText("Join-ID does not exist");
                     }
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);

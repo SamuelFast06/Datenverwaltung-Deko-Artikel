@@ -31,8 +31,7 @@ public class ShowArticleFrame extends JFrame{
     private JPanel showArticlePane;
     private JCheckBox cbEdit;
 
-    private Data data = new Data();
-    private ArrayList<Article> articles = data.getArticles();
+    private Data data;
 
     private Article slcArticle;
 

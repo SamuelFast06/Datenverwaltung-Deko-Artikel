@@ -36,7 +36,7 @@ public class ArticlesFrame extends JFrame {
         this.lbCurrentUser.setText(iuser.username);
         setContentPane(managementPanel);
         setLocation(0,0);
-        setSize(1020,420);
+        setSize(720,420);
         setResizable(false);
         btnManager();
 
