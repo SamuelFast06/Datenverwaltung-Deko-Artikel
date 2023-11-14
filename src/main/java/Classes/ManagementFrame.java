@@ -70,7 +70,7 @@ public class ManagementFrame extends JFrame{
 
     public static void main(String[] args){
         try {
-            Data data = ManagementController.getDataManagement("653932ce0574da7622bd9406");
+            Data data = ManagementController.getDataManagement("654c908654105e766fcd758e");
             ManagementFrame management = new ManagementFrame(new User(), data);
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -31,6 +31,7 @@ public class AddArticleFrame extends JFrame{
     private JPanel addArticlePane;
     private JLabel lbArticleNo;
     private JTextField tfArticleNo;
+    private JLabel lbMessage;
     private Data data;
     private ArticlesFrame parent;
 

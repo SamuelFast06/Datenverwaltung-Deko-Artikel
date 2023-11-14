@@ -10,6 +10,8 @@ public class InformationForm extends JPanel {
     InformationType type;
     ArticlesFrame parent;
 
+    int highlited = 0;
+
 
     public InformationForm(Data data, InformationType type, ArticlesFrame parent) {
         this.data = data;
@@ -22,13 +24,16 @@ public class InformationForm extends JPanel {
             case articles:
                 for (int i = 0; i < data.getArticles().size(); i++) {
                     Article article = data.getArticles().get(i);
-                    ArticleButton articleButton = new ArticleButton(data.getArticles().get(i));
+                    int currentValue = i + 1;
+                    ArticleButton articleButton = new ArticleButton(data.getArticles().get(i), (currentValue == highlited));
                     JButton button = new JButton();
                     button.add(articleButton);
                     button.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
+                            highlited = currentValue;
                             parent.selectArticle(article);
+                            refresh();
                         }
                     });
                     this.add(button);
@@ -69,13 +74,16 @@ public class InformationForm extends JPanel {
             case articles:
                 for (int i = 0; i < data.getArticles().size(); i++) {
                     Article article = data.getArticles().get(i);
-                    ArticleButton articleButton = new ArticleButton(article);
+                    int currentValue = i + 1;
+                    ArticleButton articleButton = new ArticleButton(article, (currentValue == highlited));
                     JButton button = new JButton();
                     button.add(articleButton);
                     button.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
+                            highlited = currentValue;
                             parent.selectArticle(article);
+                            refresh();
                         }
                     });
                     this.add(button);

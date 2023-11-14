@@ -34,6 +34,7 @@ public class ArticlesFrame extends JFrame {
         this.scrollPanel.add(this.informationForm);
         this.lbManagementName.setText(data.getName());
         this.lbCurrentUser.setText(iuser.username);
+        this.btnShowArticle.disable();
         setContentPane(managementPanel);
         setLocation(0,0);
         setSize(720,420);
@@ -49,6 +50,9 @@ public class ArticlesFrame extends JFrame {
     public void selectArticle(Article article){
         // Article in ArticleList auswählen und article
         this.selectedArticle = article;
+        if (selectedArticle != null) {
+            btnShowArticle.enable();
+        }
     }
 
 
@@ -72,7 +76,9 @@ public class ArticlesFrame extends JFrame {
         btnShowArticle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ShowArticleFrame showArticleFrame = new ShowArticleFrame(selectedArticle);
+                if (selectedArticle != null) {
+                    ShowArticleFrame showArticleFrame = new ShowArticleFrame(selectedArticle);
+                }
             }
         });
 
