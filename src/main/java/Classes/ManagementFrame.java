@@ -32,12 +32,12 @@ public class ManagementFrame extends JFrame{
         lbCurrentUser.setText(user.username);
         lbManagementName.setText(data.getName());
         setLocation(0,0);
-        setSize(720,480);
+        setSize(620,340);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
         setResizable(false);
         btnManager();
-        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("le monkeSMOLL.png"));
+        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("monkey.gif"));
         imgLabel.setIcon(icon);
     }
 
