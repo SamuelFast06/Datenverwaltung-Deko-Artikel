@@ -42,6 +42,7 @@ public class ChooseManagementFrame extends JFrame{
                         ManagementController.createManagement(newManagementName, user);
                         lbMessage.setText("Created " + newManagementName);
 
+                        dispose();
                         LoginFrame loginFrame = new LoginFrame();
                     }else{
                         lbMessageCreate.setText("Invalid ManagementName");

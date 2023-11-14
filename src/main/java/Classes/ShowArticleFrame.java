@@ -3,7 +3,8 @@ package Classes;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 public class ShowArticleFrame extends JFrame{
     private JLabel lbHeadline;
@@ -22,7 +23,7 @@ public class ShowArticleFrame extends JFrame{
     private JTextField tfWide;
     private JTextField tfHeight;
     private JTextPane tfDescription;
-    private JButton btnAdd;
+    private JButton btnSave;
     private JButton btnCancel;
     private JLabel lbQuantity;
     private JLabel lbColor;
@@ -30,6 +31,8 @@ public class ShowArticleFrame extends JFrame{
     private JLabel lbDescription;
     private JPanel showArticlePane;
     private JCheckBox cbEdit;
+    private JScrollBar scrollBar1;
+    private JLabel lbImage;
 
     private Data data;
 
@@ -43,6 +46,16 @@ public class ShowArticleFrame extends JFrame{
         setVisible(true);
         setResizable(false);
 
+        tfName.disable();
+        tfPrice.disable();
+        tfQuantity.disable();
+        tfColor.disable();
+        tfWeight.disable();
+        tfDescription.disable();
+        tfLength.disable();
+        tfWide.disable();
+        tfHeight.disable();
+
         lbName.setText(article.getArticleName());
         lbPrice.setText(""+article.getArticlePrice()+"");
         lbQuantity.setText(""+article.getArticleQuantity()+"");
@@ -52,13 +65,16 @@ public class ShowArticleFrame extends JFrame{
         lbWide.setText(""+article.getArticleMeasures().getWide()+"");
         lbHeight.setText(""+article.getArticleMeasures().getHeight()+"");
 
+        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("monkey.gif"));
+        lbImage.setIcon(icon);
+
         if(slcArticle != null){
-            setupTextfields();
+            setup();
         }
     }
 
 
-    public void setupTextfields(){
+    public void setup(){
 
         tfName.setText(slcArticle.getArticleName());
         tfPrice.setText(Double.toString(slcArticle.getArticlePrice()));
@@ -70,28 +86,59 @@ public class ShowArticleFrame extends JFrame{
         tfWide.setText(Double.toString(slcArticle.getArticleMeasures().getWide()));
         tfHeight.setText(Double.toString(slcArticle.getArticleMeasures().getHeight()));
 
-        if(cbEdit.isSelected() == false){
-            tfName.disable();
-            tfPrice.disable();
-            tfQuantity.disable();
-            tfColor.disable();
-            tfWeight.disable();
-            tfDescription.disable();
-            tfLength.disable();
-            tfWide.disable();
-            tfHeight.disable();
-        }
-        if(cbEdit.isSelected() == true){
-                tfName.enable();
-                tfPrice.enable();
-                tfQuantity.enable();
-                tfColor.enable();
-                tfWeight.enable();
-                tfDescription.enable();
-                tfLength.enable();
-                tfWide.enable();
-                tfHeight.enable();
+        cbEdit.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if(e.getStateChange() == ItemEvent.SELECTED){
+                    tfName.enable();
+                    tfPrice.enable();
+                    tfQuantity.enable();
+                    tfColor.enable();
+                    tfWeight.enable();
+                    tfDescription.enable();
+                    tfLength.enable();
+                    tfWide.enable();
+                    tfHeight.enable();
+                }
+
+                if(e.getStateChange() == ItemEvent.DESELECTED){
+                    tfName.disable();
+                    tfPrice.disable();
+                    tfQuantity.disable();
+                    tfColor.disable();
+                    tfWeight.disable();
+                    tfDescription.disable();
+                    tfLength.disable();
+                    tfWide.disable();
+                    tfHeight.disable();
+                }
             }
+        });
+
+        btnSave.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+
+
+                slcArticle.setArticleName(tfName.getText());
+                slcArticle.setArticlePrice(Double.valueOf(tfPrice.getText()));
+                slcArticle.setArticleQuantity(Integer.valueOf(tfQuantity.getText()));
+                slcArticle.setArticleColor(tfColor.getText());
+                slcArticle.setArticleWeight(tfWeight.getText());
+                slcArticle.setArticleDescription(tfDescription.getText());
+                slcArticle.setArticleMeasures(new Measures(Double.valueOf(tfLength.getText()),Double.valueOf(tfWide.getText()),Double.valueOf(tfHeight.getText())));
+
+                dispose();
+            }
+        });
+
+        btnCancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
     }
 
 }

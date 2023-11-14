@@ -3,8 +3,6 @@ package Classes;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.Objects;
 
 
 public class ManagementFrame extends JFrame{
@@ -17,7 +15,7 @@ public class ManagementFrame extends JFrame{
     private JLabel lbManagementName;
     private JLabel lbCurrentUser;
     private JLabel lbMessage;
-    private JLabel imgLabel;
+    private JLabel lbImage;
 
     InformationType tappedType = InformationType.noType;
 
@@ -38,7 +36,7 @@ public class ManagementFrame extends JFrame{
         setResizable(false);
         btnManager();
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("monkey.gif"));
-        imgLabel.setIcon(icon);
+        lbImage.setIcon(icon);
     }
 
     public void btnManager(){

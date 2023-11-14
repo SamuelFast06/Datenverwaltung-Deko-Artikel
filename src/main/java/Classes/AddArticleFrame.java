@@ -33,6 +33,8 @@ public class AddArticleFrame extends JFrame{
     private JLabel lbArticleNo;
     private JTextField tfArticleNo;
     private JLabel lbMessage;
+    private JLabel lbImage;
+    private JScrollBar scrollBar1;
     private Data data;
 
 
