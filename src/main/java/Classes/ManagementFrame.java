@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Objects;
 
 
 public class ManagementFrame extends JFrame{
@@ -16,7 +17,7 @@ public class ManagementFrame extends JFrame{
     private JLabel lbManagementName;
     private JLabel lbCurrentUser;
     private JLabel lbMessage;
-    private JTextArea textArea1;
+    private JLabel imgLabel;
 
     InformationType tappedType = InformationType.noType;
 
@@ -31,11 +32,13 @@ public class ManagementFrame extends JFrame{
         lbCurrentUser.setText(user.username);
         lbManagementName.setText(data.getName());
         setLocation(0,0);
-        setSize(720,480);
+        setSize(620,340);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
         setResizable(false);
         btnManager();
+        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("monkey.gif"));
+        imgLabel.setIcon(icon);
     }
 
     public void btnManager(){
@@ -69,12 +72,16 @@ public class ManagementFrame extends JFrame{
     }
 
     public static void main(String[] args){
-        try {
-            Data data = ManagementController.getDataManagement("654c908654105e766fcd758e");
+
+        ManagementFrame test = new ManagementFrame(new User(), new Data());
+
+        /*try {
+            Data data = ManagementController.getDataManagement("653932ce0574da7622bd9406");
             ManagementFrame management = new ManagementFrame(new User(), data);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+         */
     }
 
 }
