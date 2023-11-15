@@ -23,13 +23,18 @@ public class ArticlesFrame extends JFrame {
 
     private Data data;
     private Article selectedArticle;
+    private InformationForm informationForm;
+    private ArticlesFrame self;
 
     public ArticlesFrame(User iuser, Data data){
         this.data = data;
         user = iuser;
-        this.scrollPanel.add(new InformationForm(data, InformationType.articles));
+        self = this;
+        this.informationForm = new InformationForm(data, InformationType.articles, this);
+        this.scrollPanel.add(this.informationForm);
         this.lbManagementName.setText(data.getName());
         this.lbCurrentUser.setText(iuser.username);
+        this.btnShowArticle.disable();
         setContentPane(managementPanel);
         setLocation(0,0);
         setSize(720,420);
@@ -42,10 +47,12 @@ public class ArticlesFrame extends JFrame {
     public void setupArticleList(){
     }
 
-    public Article selectArticle(Article article){
+    public void selectArticle(Article article){
         // Article in ArticleList auswählen und article
-
-        return article;
+        this.selectedArticle = article;
+        if (selectedArticle != null) {
+            btnShowArticle.enable();
+        }
     }
 
 
@@ -53,7 +60,7 @@ public class ArticlesFrame extends JFrame {
         btnAddArticle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AddArticleFrame addArticleFrame = new AddArticleFrame(data);
+                AddArticleFrame addArticleFrame = new AddArticleFrame(data, self);
             }
         });
 
@@ -61,6 +68,7 @@ public class ArticlesFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 data.removeArticle(selectedArticle);
+                informationForm.refresh();
                 System.out.println("'remove article'");
             }
         });
@@ -68,14 +76,16 @@ public class ArticlesFrame extends JFrame {
         btnShowArticle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ShowArticleFrame showArticleFrame = new ShowArticleFrame(selectedArticle);
+                if (selectedArticle != null) {
+                    ShowArticleFrame showArticleFrame = new ShowArticleFrame(selectedArticle);
+                }
             }
         });
 
         btnSetQuantity.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("'set quantity'");
+                informationForm.refresh();
             }
         });
 
@@ -94,12 +104,14 @@ public class ArticlesFrame extends JFrame {
         });
     }
 
+    public void refreshInformationPanel() { informationForm.refresh(); }
+
     public static void main(String[] args){
         User testuser = new User();
         testuser.username = "testuser";
         testuser.passwort = "test";
         try {
-            ArticlesFrame articlesManage = new ArticlesFrame(testuser, ManagementController.getDataManagement("653932ce0574da7622bd9406"));
+            ArticlesFrame articlesManage = new ArticlesFrame(testuser, ManagementController.getDataManagement("654c908654105e766fcd758e"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

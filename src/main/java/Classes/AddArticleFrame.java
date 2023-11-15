@@ -3,7 +3,6 @@ package Classes;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.UUID;
 
 public class AddArticleFrame extends JFrame{
@@ -36,10 +35,11 @@ public class AddArticleFrame extends JFrame{
     private JLabel lbImage;
     private JScrollBar scrollBar1;
     private Data data;
+    private ArticlesFrame parent;
 
-
-    public AddArticleFrame(Data data){
+    public AddArticleFrame(Data data, ArticlesFrame parent){
         this.data = data;
+        this.parent = parent;
         setContentPane(addArticlePane);
         setLocation(800,300);
         setSize(400,380);
@@ -64,37 +64,11 @@ public class AddArticleFrame extends JFrame{
                 String atHeight = tfHeight.getText();
                 String atDescription = tfDescription.getText();
 
-                removeNonNumeric(atNo);
-                removeNonNumeric(atPrice);
-                removeNonNumeric(atQuantity);
-                removeNonNumeric(atLength);
-                removeNonNumeric(atWide);
-                removeNonNumeric(atHeight);
-
-
-                try{
-                    Article newArticle = new Article(UUID.randomUUID(),Integer.valueOf(atNo),atName,atWeight,atDescription,atColor,Double.valueOf(atPrice),Integer.valueOf(atQuantity), new Measures(Double.valueOf(atLength),Double.valueOf(atWide),Double.valueOf(atHeight)));
-                    data.addArticle(newArticle);
-                    lbMessage.setText("Articled added to Management");
-                    dispose();
-                }catch (NumberFormatException ex){
-                    lbMessage.setText("Invalid format");
-                    throw new RuntimeException(ex);
-                }
-
+                Article newArticle = new Article(UUID.randomUUID(),Integer.valueOf(atNo),atName,atWeight,atDescription,atColor,Double.valueOf(atPrice),Integer.valueOf(atQuantity), new Measures(Double.valueOf(atLength),Double.valueOf(atWide),Double.valueOf(atHeight)));
+                data.addArticle(newArticle);
+                parent.refreshInformationPanel();
             }
         });
-
-        btnCancel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
-    }
-
-    public static String removeNonNumeric(String str){
-        return str.replaceAll("[^\\d.]","");
     }
 
 }

@@ -26,9 +26,6 @@ public class LoginFrame extends JFrame{
     private int userindex = 0;
     private int wrongPWcount = 0;
 
-
-    //private ArrayList<Classes.User> users = data.getUsers();
-
     public LoginFrame() {
        setContentPane(loginPanel);
        setLocation(800,300);
@@ -90,17 +87,6 @@ public class LoginFrame extends JFrame{
         });
     }
 
-
-    /*private boolean isUsernameAvailable(String username){
-        for(int i = 0; i < users.size(); i++){
-            if(username.equals(users.get(i).username)){
-                userindex = i;
-                return true;
-            }
-        }
-        return false;
-    }
-    */
     private void clearAllTf(){
         tfUsername.setText("");
         tfPasswort.setText("");
