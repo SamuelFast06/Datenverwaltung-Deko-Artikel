@@ -18,7 +18,7 @@ public class RequestFrame extends JFrame {
     private static boolean requestNo;
 
 
-    public RequestFrame(String request){
+    public RequestFrame(RequestType request){
         setContentPane(requestPanel);
         setLocation(800,300);
         setSize(300,380);
@@ -31,7 +31,7 @@ public class RequestFrame extends JFrame {
 
             switch(request){
 
-                case "Edit":
+                case edit:
                     lbQuestion.setText("Save this element?");
                     lbMessage.setText("The previous element will be replaced!!");
 
@@ -39,6 +39,7 @@ public class RequestFrame extends JFrame {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             requestYes = true;
+                            requestNo = false;
                             dispose();
                         }
                     });
@@ -47,11 +48,12 @@ public class RequestFrame extends JFrame {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             requestNo = true;
+                            requestYes = false;
                             dispose();
                         }
                     });
                     break;
-                case "Remove":
+                case remove:
                     lbQuestion.setText("Remove this element?");
                     lbMessage.setText("Tthe element will be permanently deleted!!");
 
@@ -98,4 +100,10 @@ public class RequestFrame extends JFrame {
     public static void setRequestNo(boolean requestNo) {
         RequestFrame.requestNo = requestNo;
     }
+
+    enum RequestType{
+        edit,
+        remove,
+    }
 }
+
