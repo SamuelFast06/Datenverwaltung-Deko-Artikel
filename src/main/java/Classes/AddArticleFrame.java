@@ -28,7 +28,7 @@ public class AddArticleFrame extends JFrame{
     private JLabel lbColor;
     private JLabel lbWeight;
     private JLabel lbDescription;
-    private JPanel addArticlePane;
+    private JPanel addCustomerPane;
     private JLabel lbArticleNo;
     private JTextField tfArticleNo;
     private JLabel lbMessage;
@@ -40,7 +40,7 @@ public class AddArticleFrame extends JFrame{
     public AddArticleFrame(Data data, ArticlesFrame parent){
         this.data = data;
         this.parent = parent;
-        setContentPane(addArticlePane);
+        setContentPane(addCustomerPane);
         setLocation(800,300);
         setSize(400,380);
         setVisible(true);
