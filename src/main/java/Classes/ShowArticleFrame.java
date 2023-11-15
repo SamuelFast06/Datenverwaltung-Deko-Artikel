@@ -46,6 +46,8 @@ public class ShowArticleFrame extends JFrame{
         setVisible(true);
         setResizable(false);
 
+        setup();
+
         tfName.disable();
         tfPrice.disable();
         tfQuantity.disable();
@@ -68,9 +70,10 @@ public class ShowArticleFrame extends JFrame{
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("monkey.gif"));
         lbImage.setIcon(icon);
 
-        if(slcArticle != null){
+        /*if(slcArticle != null){
             setup();
         }
+        */
     }
 
 
@@ -86,10 +89,15 @@ public class ShowArticleFrame extends JFrame{
         tfWide.setText(Double.toString(slcArticle.getArticleMeasures().getWide()));
         tfHeight.setText(Double.toString(slcArticle.getArticleMeasures().getHeight()));
 
+        btnSave.disable();
+
         cbEdit.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if(e.getStateChange() == ItemEvent.SELECTED){
+
+                    btnSave.enable();
+
                     tfName.enable();
                     tfPrice.enable();
                     tfQuantity.enable();
@@ -102,6 +110,9 @@ public class ShowArticleFrame extends JFrame{
                 }
 
                 if(e.getStateChange() == ItemEvent.DESELECTED){
+
+                    btnSave.disable();
+
                     tfName.disable();
                     tfPrice.disable();
                     tfQuantity.disable();
@@ -119,17 +130,23 @@ public class ShowArticleFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                RequestFrame request = new RequestFrame("Edit");
 
+                if(request.getRequestYes() == true){
+                    slcArticle.setArticleName(tfName.getText());
+                    slcArticle.setArticlePrice(Double.valueOf(tfPrice.getText()));
+                    slcArticle.setArticleQuantity(Integer.valueOf(tfQuantity.getText()));
+                    slcArticle.setArticleColor(tfColor.getText());
+                    slcArticle.setArticleWeight(tfWeight.getText());
+                    slcArticle.setArticleDescription(tfDescription.getText());
+                    slcArticle.setArticleMeasures(new Measures(Double.valueOf(tfLength.getText()),Double.valueOf(tfWide.getText()),Double.valueOf(tfHeight.getText())));
 
-                slcArticle.setArticleName(tfName.getText());
-                slcArticle.setArticlePrice(Double.valueOf(tfPrice.getText()));
-                slcArticle.setArticleQuantity(Integer.valueOf(tfQuantity.getText()));
-                slcArticle.setArticleColor(tfColor.getText());
-                slcArticle.setArticleWeight(tfWeight.getText());
-                slcArticle.setArticleDescription(tfDescription.getText());
-                slcArticle.setArticleMeasures(new Measures(Double.valueOf(tfLength.getText()),Double.valueOf(tfWide.getText()),Double.valueOf(tfHeight.getText())));
-
-                dispose();
+                    System.out.println("article changed");
+                    dispose();
+                }else if(request.getRequestNo() == true){
+                    System.out.println("article NOT changed");
+                    dispose();
+                }
             }
         });
 
