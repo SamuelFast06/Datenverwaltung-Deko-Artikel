@@ -24,7 +24,7 @@ public class ArticlesFrame extends JFrame {
     private Data data;
     private Article selectedArticle;
     private InformationForm informationForm;
-    private ArticlesFrame self;
+    private ArticlesFrame self = this;
 
     public ArticlesFrame(User iuser, Data data){
         this.data = data;
@@ -77,7 +77,7 @@ public class ArticlesFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (selectedArticle != null) {
-                    ShowArticleFrame showArticleFrame = new ShowArticleFrame(selectedArticle);
+                    ShowArticleFrame showArticleFrame = new ShowArticleFrame(data, selectedArticle, self);
                 }
             }
         });

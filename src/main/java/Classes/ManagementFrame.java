@@ -3,6 +3,7 @@ package Classes;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 
 public class ManagementFrame extends JFrame{
@@ -71,15 +72,13 @@ public class ManagementFrame extends JFrame{
 
     public static void main(String[] args){
 
-        ManagementFrame test = new ManagementFrame(new User(), new Data());
-
-        /*try {
+        try {
             Data data = ManagementController.getDataManagement("653932ce0574da7622bd9406");
             ManagementFrame management = new ManagementFrame(new User(), data);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-         */
+
     }
 
 }

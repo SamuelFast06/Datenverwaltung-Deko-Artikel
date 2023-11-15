@@ -1,6 +1,8 @@
 package Classes;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -11,6 +13,7 @@ public class InformationForm extends JPanel {
     ArticlesFrame parent;
 
     int highlited = 0;
+    private EmptyBorder paddingBorder = new EmptyBorder(2,0,2,0);
 
 
     public InformationForm(Data data, InformationType type, ArticlesFrame parent) {
@@ -25,9 +28,13 @@ public class InformationForm extends JPanel {
                 for (int i = 0; i < data.getArticles().size(); i++) {
                     Article article = data.getArticles().get(i);
                     int currentValue = i + 1;
-                    ArticleButton articleButton = new ArticleButton(data.getArticles().get(i), (currentValue == highlited));
+                    ArticleButton articleButton = new ArticleButton(data.getArticles().get(i));
                     JButton button = new JButton();
+                    button.setBorder(BorderFactory.createLineBorder(currentValue == highlited ? new Color(35, 198, 211) : new Color(24, 129, 165), 5, true));
+                    JPanel buttonPanel = new JPanel();
                     button.add(articleButton);
+                    buttonPanel.add(button);
+                    buttonPanel.setBorder(paddingBorder);
                     button.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -36,7 +43,8 @@ public class InformationForm extends JPanel {
                             refresh();
                         }
                     });
-                    this.add(button);
+                    this.add(buttonPanel);
+
                 }
                 break;
             case costumer:
@@ -75,9 +83,14 @@ public class InformationForm extends JPanel {
                 for (int i = 0; i < data.getArticles().size(); i++) {
                     Article article = data.getArticles().get(i);
                     int currentValue = i + 1;
-                    ArticleButton articleButton = new ArticleButton(article, (currentValue == highlited));
+                    ArticleButton articleButton = new ArticleButton(article);
                     JButton button = new JButton();
+                    button.setBorder(BorderFactory.createLineBorder(currentValue == highlited ? new Color(35, 198, 211) : new Color(24, 129, 165), 5, true));
+
+                    JPanel buttonPanel = new JPanel();
                     button.add(articleButton);
+                    buttonPanel.add(button);
+                    buttonPanel.setBorder(paddingBorder);
                     button.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -86,7 +99,7 @@ public class InformationForm extends JPanel {
                             refresh();
                         }
                     });
-                    this.add(button);
+                    this.add(buttonPanel);
                 }
                 break;
             case costumer:

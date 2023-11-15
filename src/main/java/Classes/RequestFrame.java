@@ -16,9 +16,11 @@ public class RequestFrame extends JFrame {
 
     private static boolean requestYes;
     private static boolean requestNo;
+    private ShowArticleFrame parent;
 
 
-    public RequestFrame(RequestType request){
+    public RequestFrame(String request, ShowArticleFrame parent){
+        this.parent = parent;
         setContentPane(requestPanel);
         setLocation(800,300);
         setSize(300,380);
@@ -31,15 +33,15 @@ public class RequestFrame extends JFrame {
 
             switch(request){
 
-                case edit:
+                case "Edit":
                     lbQuestion.setText("Save this element?");
                     lbMessage.setText("The previous element will be replaced!!");
 
                     btnYes.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            requestYes = true;
-                            requestNo = false;
+                            parent.editArticle(true);
+                            parent.getArticlesFrame().refreshInformationPanel();
                             dispose();
                         }
                     });
@@ -47,13 +49,12 @@ public class RequestFrame extends JFrame {
                     btnNo.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            requestNo = true;
-                            requestYes = false;
+                            parent.editArticle(false);
                             dispose();
                         }
                     });
                     break;
-                case remove:
+                case "Remove":
                     lbQuestion.setText("Remove this element?");
                     lbMessage.setText("Tthe element will be permanently deleted!!");
 
@@ -100,10 +101,4 @@ public class RequestFrame extends JFrame {
     public static void setRequestNo(boolean requestNo) {
         RequestFrame.requestNo = requestNo;
     }
-
-    enum RequestType{
-        edit,
-        remove,
-    }
 }
-

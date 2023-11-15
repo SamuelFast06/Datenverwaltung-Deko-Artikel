@@ -35,16 +35,21 @@ public class ShowArticleFrame extends JFrame{
     private JLabel lbImage;
 
     private Data data;
+    private ArticlesFrame articlesFrame;
+    private ShowArticleFrame self = this;
 
     private Article slcArticle;
 
-    public ShowArticleFrame(Article article){
+
+    public ShowArticleFrame(Data data, Article article, ArticlesFrame articlesFrame){
+        this.data = data;
+        this.articlesFrame = articlesFrame;
         slcArticle = article;
         setContentPane(showArticlePane);
         setLocation(800,300);
         setSize(400,380);
         setVisible(true);
-        setResizable(false);
+        setResizable(true);
 
         setup();
 
@@ -89,14 +94,14 @@ public class ShowArticleFrame extends JFrame{
         tfWide.setText(Double.toString(slcArticle.getArticleMeasures().getWide()));
         tfHeight.setText(Double.toString(slcArticle.getArticleMeasures().getHeight()));
 
-        btnSave.disable();
+        btnSave.setEnabled(false);
 
         cbEdit.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if(e.getStateChange() == ItemEvent.SELECTED){
 
-                    btnSave.enable();
+                    btnSave.setEnabled(true);
 
                     tfName.enable();
                     tfPrice.enable();
@@ -107,11 +112,12 @@ public class ShowArticleFrame extends JFrame{
                     tfLength.enable();
                     tfWide.enable();
                     tfHeight.enable();
+
                 }
 
                 if(e.getStateChange() == ItemEvent.DESELECTED){
 
-                    btnSave.disable();
+                    btnSave.setEnabled(false);
 
                     tfName.disable();
                     tfPrice.disable();
@@ -130,23 +136,7 @@ public class ShowArticleFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                RequestFrame request = new RequestFrame("Edit");
-
-                if(request.getRequestYes() == true){
-                    slcArticle.setArticleName(tfName.getText());
-                    slcArticle.setArticlePrice(Double.valueOf(tfPrice.getText()));
-                    slcArticle.setArticleQuantity(Integer.valueOf(tfQuantity.getText()));
-                    slcArticle.setArticleColor(tfColor.getText());
-                    slcArticle.setArticleWeight(tfWeight.getText());
-                    slcArticle.setArticleDescription(tfDescription.getText());
-                    slcArticle.setArticleMeasures(new Measures(Double.valueOf(tfLength.getText()),Double.valueOf(tfWide.getText()),Double.valueOf(tfHeight.getText())));
-
-                    System.out.println("article changed");
-                    dispose();
-                }else if(request.getRequestNo() == true){
-                    System.out.println("article NOT changed");
-                    dispose();
-                }
+                RequestFrame request = new RequestFrame("Edit", self);
             }
         });
 
@@ -158,4 +148,31 @@ public class ShowArticleFrame extends JFrame{
         });
     }
 
+    void editArticle(Boolean requestAnswer) {
+        if(requestAnswer){
+            slcArticle.setArticleName(tfName.getText());
+            slcArticle.setArticlePrice(Double.valueOf(tfPrice.getText()));
+            slcArticle.setArticleQuantity(Integer.valueOf(tfQuantity.getText()));
+            slcArticle.setArticleColor(tfColor.getText());
+            slcArticle.setArticleWeight(tfWeight.getText());
+            slcArticle.setArticleDescription(tfDescription.getText());
+            slcArticle.setArticleMeasures(new Measures(Double.valueOf(tfLength.getText()),Double.valueOf(tfWide.getText()),Double.valueOf(tfHeight.getText())));
+
+            data.uploadDataToServer();
+
+            System.out.println("article changed");
+            dispose();
+        } else {
+            System.out.println("article NOT changed");
+            dispose();
+        }
+    }
+
+    public ArticlesFrame getArticlesFrame() {
+        return articlesFrame;
+    }
+
+    public void setArticlesFrame(ArticlesFrame articlesFrame) {
+        this.articlesFrame = articlesFrame;
+    }
 }
