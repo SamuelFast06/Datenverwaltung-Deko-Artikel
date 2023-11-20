@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-public class ShowArticleFrame extends JFrame{
+public class ShowArticleFrame extends JFrame implements Function {
     private JLabel lbHeadline;
     private JLabel lbName;
     private JLabel lbPrice;
@@ -36,9 +36,9 @@ public class ShowArticleFrame extends JFrame{
 
     private Data data;
     private ArticlesFrame articlesFrame;
-    private ShowArticleFrame self = this;
 
     private Article slcArticle;
+    private ShowArticleFrame self = this;
 
 
     public ShowArticleFrame(Data data, Article article, ArticlesFrame articlesFrame){
@@ -81,6 +81,13 @@ public class ShowArticleFrame extends JFrame{
         */
     }
 
+    public void apply(Boolean success) {
+        if (success) {
+            editArticle();
+        } else {
+            System.out.println("Article NOT saved!");
+        }
+    }
 
     public void setup(){
 
@@ -103,15 +110,15 @@ public class ShowArticleFrame extends JFrame{
 
                     btnSave.setEnabled(true);
 
-                    tfName.enable();
-                    tfPrice.enable();
-                    tfQuantity.enable();
-                    tfColor.enable();
-                    tfWeight.enable();
-                    tfDescription.enable();
-                    tfLength.enable();
-                    tfWide.enable();
-                    tfHeight.enable();
+                    tfName.setEnabled(true);
+                    tfPrice.setEnabled(true);
+                    tfQuantity.setEnabled(true);
+                    tfColor.setEnabled(true);
+                    tfWeight.setEnabled(true);
+                    tfDescription.setEnabled(true);
+                    tfLength.setEnabled(true);
+                    tfWide.setEnabled(true);
+                    tfHeight.setEnabled(true);
 
                 }
 
@@ -119,15 +126,15 @@ public class ShowArticleFrame extends JFrame{
 
                     btnSave.setEnabled(false);
 
-                    tfName.disable();
-                    tfPrice.disable();
-                    tfQuantity.disable();
-                    tfColor.disable();
-                    tfWeight.disable();
-                    tfDescription.disable();
-                    tfLength.disable();
-                    tfWide.disable();
-                    tfHeight.disable();
+                    tfName.setEnabled(false);
+                    tfPrice.setEnabled(false);
+                    tfQuantity.setEnabled(false);
+                    tfColor.setEnabled(false);
+                    tfWeight.setEnabled(false);
+                    tfDescription.setEnabled(false);
+                    tfLength.setEnabled(false);
+                    tfWide.setEnabled(false);
+                    tfHeight.setEnabled(false);
                 }
             }
         });
@@ -135,8 +142,7 @@ public class ShowArticleFrame extends JFrame{
         btnSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                RequestFrame request = new RequestFrame("Edit", self);
+                RequestFrame request = new RequestFrame(RequestType.edit, self, self.articlesFrame);
             }
         });
 
@@ -148,24 +154,19 @@ public class ShowArticleFrame extends JFrame{
         });
     }
 
-    void editArticle(Boolean requestAnswer) {
-        if(requestAnswer){
-            slcArticle.setArticleName(tfName.getText());
-            slcArticle.setArticlePrice(Double.valueOf(tfPrice.getText()));
-            slcArticle.setArticleQuantity(Integer.valueOf(tfQuantity.getText()));
-            slcArticle.setArticleColor(tfColor.getText());
-            slcArticle.setArticleWeight(tfWeight.getText());
-            slcArticle.setArticleDescription(tfDescription.getText());
-            slcArticle.setArticleMeasures(new Measures(Double.valueOf(tfLength.getText()),Double.valueOf(tfWide.getText()),Double.valueOf(tfHeight.getText())));
+    void editArticle() {
+        slcArticle.setArticleName(tfName.getText());
+        slcArticle.setArticlePrice(Double.valueOf(tfPrice.getText()));
+        slcArticle.setArticleQuantity(Integer.valueOf(tfQuantity.getText()));
+        slcArticle.setArticleColor(tfColor.getText());
+        slcArticle.setArticleWeight(tfWeight.getText());
+        slcArticle.setArticleDescription(tfDescription.getText());
+        slcArticle.setArticleMeasures(new Measures(Double.valueOf(tfLength.getText()),Double.valueOf(tfWide.getText()),Double.valueOf(tfHeight.getText())));
 
-            data.uploadDataToServer();
+        data.uploadDataToServer();
 
-            System.out.println("article changed");
-            dispose();
-        } else {
-            System.out.println("article NOT changed");
-            dispose();
-        }
+        System.out.println("article changed");
+        dispose();
     }
 
     public ArticlesFrame getArticlesFrame() {

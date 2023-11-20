@@ -129,7 +129,13 @@ public class InformationForm extends JPanel {
         this.updateUI();
     }
 
+    public int getHighlited() {
+        return highlited;
+    }
 
+    public void setHighlited(int highlited) {
+        this.highlited = highlited;
+    }
 }
 
 enum InformationType {

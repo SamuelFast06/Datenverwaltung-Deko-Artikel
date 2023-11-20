@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.net.Authenticator;
 
 public class RequestFrame extends JFrame {
     private JLabel lbQuestion;
@@ -16,11 +17,9 @@ public class RequestFrame extends JFrame {
 
     private static boolean requestYes;
     private static boolean requestNo;
-    private ShowArticleFrame parent;
 
 
-    public RequestFrame(String request, ShowArticleFrame parent){
-        this.parent = parent;
+    public RequestFrame(RequestType type, Function function, Refreshable refreshForm){
         setContentPane(requestPanel);
         setLocation(800,300);
         setSize(300,380);
@@ -31,17 +30,17 @@ public class RequestFrame extends JFrame {
 
         try{
 
-            switch(request){
+            switch(type){
 
-                case "Edit":
+                case edit:
                     lbQuestion.setText("Save this element?");
                     lbMessage.setText("The previous element will be replaced!!");
 
                     btnYes.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            parent.editArticle(true);
-                            parent.getArticlesFrame().refreshInformationPanel();
+                            function.apply(true);
+                            refreshForm.refreshInformationPanel();
                             dispose();
                         }
                     });
@@ -49,19 +48,20 @@ public class RequestFrame extends JFrame {
                     btnNo.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            parent.editArticle(false);
+                            function.apply(false);
                             dispose();
                         }
                     });
                     break;
-                case "Remove":
+                case remove:
                     lbQuestion.setText("Remove this element?");
                     lbMessage.setText("Tthe element will be permanently deleted!!");
 
                     btnYes.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            requestYes = true;
+                            function.apply(true);
+                            refreshForm.refreshInformationPanel();
                             dispose();
                         }
                     });
@@ -69,7 +69,7 @@ public class RequestFrame extends JFrame {
                     btnNo.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            requestNo = true;
+                            function.apply(false);
                             dispose();
                         }
                     });
@@ -101,4 +101,8 @@ public class RequestFrame extends JFrame {
     public static void setRequestNo(boolean requestNo) {
         RequestFrame.requestNo = requestNo;
     }
+}
+
+enum RequestType {
+    edit, remove
 }

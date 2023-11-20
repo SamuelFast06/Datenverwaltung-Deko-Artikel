@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class ArticlesFrame extends JFrame {
+public class ArticlesFrame extends JFrame implements Refreshable, Function{
 
     private JPanel managementPanel;
     private JButton btnRemoveArticle;
@@ -67,9 +67,7 @@ public class ArticlesFrame extends JFrame {
         btnRemoveArticle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                data.removeArticle(selectedArticle);
-                informationForm.refresh();
-                System.out.println("'remove article'");
+                RequestFrame requestFrame = new RequestFrame(RequestType.remove, self, self);
             }
         });
 
@@ -85,6 +83,7 @@ public class ArticlesFrame extends JFrame {
         btnSetQuantity.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                SetQuantityFrame setQuantityFrame = new SetQuantityFrame(selectedArticle, data, self);
                 informationForm.refresh();
             }
         });
@@ -92,16 +91,45 @@ public class ArticlesFrame extends JFrame {
         btnPlusQuantity.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("'plus quantity'");
+                if (selectedArticle != null) {
+                    selectedArticle.setArticleQuantity(selectedArticle.getArticleQuantity() + 1);
+                    data.uploadDataToServer();
+                    informationForm.refresh();
+                    System.out.println("Plus quantity");
+                } else {
+                    System.out.println("No article selected");
+                }
             }
         });
 
         btnMinusQuantity.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("'minus quantity'");
+                if (selectedArticle != null) {
+                    if (selectedArticle.getArticleQuantity() > 0) {
+                        selectedArticle.setArticleQuantity(selectedArticle.getArticleQuantity() - 1);
+                        data.uploadDataToServer();
+                        informationForm.refresh();
+                        System.out.println("Minus quantity");
+                    } else {
+                        System.out.println("The quantity cannot be negative");
+                    }
+                } else {
+                    System.out.println("No article selected");
+                }
             }
         });
+    }
+
+    public void apply(Boolean success) {
+        if (success) {
+            data.removeArticle(selectedArticle);
+            informationForm.refresh();
+            System.out.println("'remove article'");
+            informationForm.setHighlited(0);
+        } else {
+            System.out.println("Article NOT saved.");
+        }
     }
 
     public void refreshInformationPanel() { informationForm.refresh(); }
@@ -117,3 +145,4 @@ public class ArticlesFrame extends JFrame {
         }
     }
 }
+

@@ -67,6 +67,8 @@ public class AddArticleFrame extends JFrame{
                 Article newArticle = new Article(UUID.randomUUID(),Integer.valueOf(atNo),atName,atWeight,atDescription,atColor,Double.valueOf(atPrice),Integer.valueOf(atQuantity), new Measures(Double.valueOf(atLength),Double.valueOf(atWide),Double.valueOf(atHeight)));
                 data.addArticle(newArticle);
                 parent.refreshInformationPanel();
+
+                dispose();
             }
         });
     }
