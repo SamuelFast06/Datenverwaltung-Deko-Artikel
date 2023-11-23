@@ -1,7 +1,7 @@
 package Classes;
 import java.util.*;
 
-class Costumer {
+class Costumer implements HasName{
     private UUID id;
     String firstName;
     String lastName;
@@ -54,6 +54,7 @@ class Costumer {
     public String getGender() {
         return gender;
     }
+    public String getName() { return "" + firstName + " " + lastName + "";}
 
 
     public void setId(UUID id) { this.id = id; }

@@ -1,7 +1,7 @@
 package Classes;
 import java.util.*;
 
-public class Article {
+public class Article implements HasName{
 
     private UUID id;
     private int articleNo;
@@ -55,6 +55,9 @@ public class Article {
     }
     public Measures getArticleMeasures() {
         return articleMeasures;
+    }
+    public String getName() {
+        return articleName;
     }
 
     //setter
