@@ -36,6 +36,12 @@ import java.util.*;
             setVisible(true);
             setResizable(false);
 
+            btnManager();
+
+        }
+
+        private void btnManager(){
+
             btnOK.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -60,27 +66,6 @@ import java.util.*;
                     } catch (Exception ex) {
                         System.out.println(ex);
                     }
-
-                    /*if(isUsernameTaken(username) == true){
-                        lbMessage.setText("Username " + "[" + username + "]" + " is already used");
-                    }else{
-                        if(passwort.equals(repeatPasswort)) {
-                            if (!passwort.equals("") && !repeatPasswort.equals("")) {
-                                data.reloadData();
-                                users.add(new User(UUID.randomUUID(), username, passwort));
-                                data.save();
-                                clearAllTf();
-                                lbMessage.setText("Register Success");
-                                dispose();
-                                LoginFrame newlogin = new LoginFrame();
-
-                            } else {
-                                lbMessage.setText("Passwort is wrong");
-                            }
-                        } else {
-                            lbMessage.setText("[RepeatPasswort] is not the same as [Passwort]");
-                        }
-                    }*/
                 }
             });
 
@@ -92,20 +77,4 @@ import java.util.*;
             });
         }
 
-        /*
-        private boolean isUsernameTaken(String username){
-            for(int i = 0; i < users.size(); i++){
-                data.reloadData();
-                if(username == users.get(i).username){
-                    return true;
-                }
-            }
-            return false;
-        }
-        */
-        private void clearAllTf(){
-            tfUsername.setText("");
-            tfPasswort.setText("");
-            tfRepeatPasswort.setText("");
-        }
     }

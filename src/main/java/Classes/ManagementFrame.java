@@ -1,6 +1,8 @@
 package Classes;
 
 import Classes.Articles.ArticlesFrame;
+import Classes.ContactPersons.ContactPersonsFrame;
+import Classes.Costumers.CostumersFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -11,25 +13,31 @@ import java.io.IOException;
 public class ManagementFrame extends JFrame{
 
     private JPanel managementPanel;
-    private JButton btnSettings;
-    private JButton btnArticles;
-    private JButton btnCustomers;
-    private JButton btnContactPersons;
+
+    //Labels
     private JLabel lbManagementName;
     private JLabel lbCurrentUser;
     private JLabel lbMessage;
     private JLabel lbImage;
 
+    //Buttons
+    private JButton btnSettings;
+    private JButton btnArticles;
+    private JButton btnCustomers;
+    private JButton btnContactPersons;
+
+    //Other
+
     InformationType tappedType = InformationType.noType;
-
     private Data data;
-
     private User user;
 
+    //Constructor
     public ManagementFrame(User iuser, Data data){
         this.data = data;
-        setContentPane(managementPanel);
         this.user = iuser;
+
+        setContentPane(managementPanel);
         lbCurrentUser.setText(user.username);
         lbManagementName.setText(data.getName());
         setLocation(0,0);
@@ -43,6 +51,8 @@ public class ManagementFrame extends JFrame{
     }
 
     public void btnManager(){
+
+        //Articles Frame Button
         btnArticles.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -50,20 +60,23 @@ public class ManagementFrame extends JFrame{
             }
         });
 
+        //Customers Frame Button
         btnCustomers.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                CostumersFrame costumersManagement = new CostumersFrame(user, data);
             }
         });
 
+        //ContactPersons Frame Button
         btnContactPersons.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                ContactPersonsFrame contactPersonsManagement = new ContactPersonsFrame(user, data);
             }
         });
 
+        //Settings Frame Button
         btnSettings.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -72,6 +85,8 @@ public class ManagementFrame extends JFrame{
         });
     }
 
+
+    //TEST
     public static void main(String[] args){
 
         try {

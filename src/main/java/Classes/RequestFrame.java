@@ -8,12 +8,19 @@ import java.awt.event.ItemListener;
 import java.net.Authenticator;
 
 public class RequestFrame extends JFrame {
+
+    private JPanel requestPanel;
+
+    //Labels
     private JLabel lbQuestion;
+    private JLabel lbImage;
+    private JLabel lbMessage;
+
+    //Buttons
     private JButton btnNo;
     private JButton btnYes;
-    private JLabel lbImage;
-    private JPanel requestPanel;
-    private JLabel lbMessage;
+
+    //Other
 
     private static boolean requestYes;
     private static boolean requestNo;

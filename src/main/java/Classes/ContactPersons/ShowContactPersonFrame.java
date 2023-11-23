@@ -71,13 +71,6 @@ public class ShowContactPersonFrame extends JFrame implements Function {
         tfMobilenumber.disable();
         tfCompany.disable();
 
-        lbAddress.setText(contactPerson.getAddress());
-        lbBranchtype.setText(""+contactPerson.getBranchtype()+"");
-        lbCompany.setText(""+contactPerson.getCompany()+"");
-        lbFirstName.setText(contactPerson.getFirstname());
-        lbLastName.setText(contactPerson.getLastname());
-        lbMobilenumber.setText(""+contactPerson.getMobilenumber());
-
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("monkey.gif"));
         lbImage.setIcon(icon);
 

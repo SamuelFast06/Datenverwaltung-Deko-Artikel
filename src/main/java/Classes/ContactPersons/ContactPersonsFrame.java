@@ -93,7 +93,7 @@ public class ContactPersonsFrame extends JFrame implements Refreshable, Function
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (selectedContactPerson != null) {
-                    //ShowContactPersonFrame showContactPersonFrame = new ShowContactPersonFrame(data, selectedContactPerson, self);
+                    ShowContactPersonFrame showContactPersonFrame = new ShowContactPersonFrame(data, selectedContactPerson, self);
                 }
             }
         });

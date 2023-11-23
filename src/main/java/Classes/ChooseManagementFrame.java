@@ -6,17 +6,25 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class ChooseManagementFrame extends JFrame{
+
     private JPanel chooseManagementPanel;
-    private JButton btnCreateManagement;
-    private JButton btnJoinManagement;
-    private JTextField tfCreateName;
-    private JTextField tfJoinID;
+
+    //Labels
     private JLabel lbCreateName;
     private JLabel lbJoinID;
     private JLabel lbMessageCreate;
     private JLabel lbMessage;
     private JLabel lbHeadline;
 
+    //Textfields
+    private JTextField tfCreateName;
+    private JTextField tfJoinID;
+
+    //Buttons
+    private JButton btnCreateManagement;
+    private JButton btnJoinManagement;
+
+    //Other
     private User user;
 
 
@@ -28,7 +36,9 @@ public class ChooseManagementFrame extends JFrame{
         setVisible(true);
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+
         btnManager();
+
     }
 
     public void btnManager(){

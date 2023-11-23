@@ -10,22 +10,31 @@ import java.util.UUID;
 
 public class LoginFrame extends JFrame{
 
-    private JTextField tfUsername;
-    private JTextField tfPasswort;
+    private JPanel loginPanel;
+
+    //Labels
     private JLabel lbLogin;
     private JLabel lbUsername;
     private JLabel lbPasswort;
-    private JButton btnOK;
-    private JPanel loginPanel;
     private JLabel lbMessage;
-    private JButton btnCancel;
     private JLabel lbToRegistry;
+
+    //Textfields
+    private JTextField tfUsername;
+    private JTextField tfPasswort;
+
+    //Buttons
+    private JButton btnOK;
+    private JButton btnCancel;
     private JButton btnRegister;
+
+    //Other
     private JCheckBox checkBox;
 
     private int userindex = 0;
     private int wrongPWcount = 0;
 
+    //Constructor
     public LoginFrame() {
        setContentPane(loginPanel);
        setLocation(800,300);
@@ -33,6 +42,10 @@ public class LoginFrame extends JFrame{
        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
        setVisible(true);
        setResizable(false);
+        btnManager();
+    }
+
+    private void btnManager(){
         btnOK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -49,7 +62,8 @@ public class LoginFrame extends JFrame{
                             tfUsername.disable();
                             btnOK.disable();
                             btnCancel.disable();
-                            clearAllTf();
+                            tfUsername.setText(null);
+                            tfPasswort.setText(null);
 
                             startManagment(new User(UUID.randomUUID(), username, passwort), management);
                             dispose();
@@ -62,7 +76,8 @@ public class LoginFrame extends JFrame{
                         System.out.println(ex);
                     }
                 }else if(wrongPWcount >= 3){
-                    clearAllTf();
+                    tfUsername.setText(null);
+                    tfPasswort.setText(null);
                     lbMessage.setText("TOO MANY ATTEMPTS! Number of Trys is exceeded");
                     tfPasswort.disable();
                     tfUsername.disable();
@@ -85,11 +100,6 @@ public class LoginFrame extends JFrame{
                 dispose();
             }
         });
-    }
-
-    private void clearAllTf(){
-        tfUsername.setText("");
-        tfPasswort.setText("");
     }
 
     private void startManagment(User user, Data data){

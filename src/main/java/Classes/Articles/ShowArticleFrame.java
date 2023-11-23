@@ -78,15 +78,6 @@ public class ShowArticleFrame extends JFrame implements Function {
         tfWide.disable();
         tfHeight.disable();
 
-        lbName.setText(article.getArticleName());
-        lbPrice.setText(""+article.getArticlePrice()+"");
-        lbQuantity.setText(""+article.getArticleQuantity()+"");
-        lbColor.setText(article.getArticleColor());
-        lbWeight.setText(article.getArticleWeight());
-        lbLength.setText(""+article.getArticleMeasures().getLength()+"");
-        lbWide.setText(""+article.getArticleMeasures().getWide()+"");
-        lbHeight.setText(""+article.getArticleMeasures().getHeight()+"");
-
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("monkey.gif"));
         lbImage.setIcon(icon);
 
