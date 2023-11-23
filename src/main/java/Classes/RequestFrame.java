@@ -103,6 +103,3 @@ public class RequestFrame extends JFrame {
     }
 }
 
-enum RequestType {
-    edit, remove
-}
