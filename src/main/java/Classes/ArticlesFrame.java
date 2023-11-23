@@ -18,7 +18,6 @@ public class ArticlesFrame extends JFrame implements Refreshable, Function{
     private JLabel lbCurrentUser;
     private JLabel lbManagementName;
     private JPanel scrollPanel;
-    private User user;
 
     private Data data;
     private Article selectedArticle;
@@ -27,7 +26,6 @@ public class ArticlesFrame extends JFrame implements Refreshable, Function{
 
     public ArticlesFrame(User iuser, Data data){
         this.data = data;
-        user = iuser;
         self = this;
         this.informationForm = new InformationForm(data, InformationType.articles, this);
         this.scrollPanel.add(this.informationForm);
