@@ -102,6 +102,3 @@ public class InformationForm<T> extends JPanel {
     }
 }
 
-public enum InformationType {
-    articles, costumer, contactPeople, users, noType
-}

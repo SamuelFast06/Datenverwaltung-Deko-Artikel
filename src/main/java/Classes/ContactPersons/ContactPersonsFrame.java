@@ -35,7 +35,7 @@ public class ContactPersonsFrame extends JFrame implements Refreshable, Function
         this.informationForm = new InformationForm(data, InformationType.contactPeople, this);
         this.scrollPanel.add(this.informationForm);
         this.lbManagementName.setText(data.getName());
-        this.lbCurrentUser.setText(iuser.username);
+        this.lbCurrentUser.setText(iuser.getUsername());
         this.btnShowContactPerson.disable();
         setContentPane(contactPersonPanel);
         setLocation(0,0);
@@ -115,8 +115,8 @@ public class ContactPersonsFrame extends JFrame implements Refreshable, Function
 
     public static void main(String[] args){
         User testuser = new User();
-        testuser.username = "testuser";
-        testuser.passwort = "test";
+        testuser.setUsername("testuser");
+        testuser.setPasswort("test");
         try {
             ContactPersonsFrame contactPersonManage = new ContactPersonsFrame(testuser, ManagementController.getDataManagement("654c908654105e766fcd758e"));
         } catch (IOException e) {

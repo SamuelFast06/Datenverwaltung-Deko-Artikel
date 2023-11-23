@@ -3,7 +3,7 @@ import Classes.HasName;
 
 import java.util.*;
 
-class Costumer implements HasName {
+public class Costumer implements HasName {
     private UUID id;
     String firstName;
     String lastName;

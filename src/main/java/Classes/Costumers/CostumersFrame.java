@@ -27,7 +27,7 @@ public class CostumersFrame extends JFrame{
         setResizable(false);
         this.scrollPanel.add(new InformationForm(data, InformationType.costumer, self));
         lbManagementName.setText(data.getName());
-        changeLbUser(user.username);
+        changeLbUser(user.getUsername());
 
         disableButtons();
 
