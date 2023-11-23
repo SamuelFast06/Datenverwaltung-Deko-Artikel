@@ -4,11 +4,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class ArticlesFrame extends JFrame implements Refreshable, Function{
 
-    private JPanel managementPanel;
+    private JPanel articlesPanel;
     private JButton btnRemoveArticle;
     private JButton btnAddArticle;
     private JButton btnShowArticle;
@@ -35,7 +34,7 @@ public class ArticlesFrame extends JFrame implements Refreshable, Function{
         this.lbManagementName.setText(data.getName());
         this.lbCurrentUser.setText(iuser.username);
         this.btnShowArticle.disable();
-        setContentPane(managementPanel);
+        setContentPane(articlesPanel);
         setLocation(0,0);
         setSize(720,420);
         setResizable(false);
