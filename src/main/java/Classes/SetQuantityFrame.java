@@ -9,12 +9,14 @@ public class SetQuantityFrame extends JFrame {
     Article selectedArticle;
     JPanel quantityPanel;
     JButton btnSave;
+    private JLabel lbMessage;
     Data data;
 
     public SetQuantityFrame(Article selectedArticle, Data data, Refreshable refreshForm) {
+        this.selectedArticle = selectedArticle;
         setContentPane(quantityPanel);
         setLocation(800,300);
-        setSize(300,380);
+        setSize(300,200);
         setVisible(true);
         setResizable(false);
 
@@ -23,11 +25,25 @@ public class SetQuantityFrame extends JFrame {
         btnSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                selectedArticle.setArticleQuantity(Integer.parseInt(tfQuantity.getText()));
-                data.uploadDataToServer();
-                refreshForm.refreshInformationPanel();
+                int newValue = Integer.parseInt(tfQuantity.getText());
+                if (checkChanges(newValue)) {
+                    selectedArticle.setArticleQuantity(newValue);
+                    data.uploadDataToServer();
+                    refreshForm.refreshInformationPanel();
+                    lbMessage.setText("Quantity updates.");
+                }
             }
         });
+    }
+
+    private boolean checkChanges(int value) {
+        if (value < 0) {
+            lbMessage.setText("Do not use negative numbers.");
+            return false;
+        }
+        if (selectedArticle.getArticleQuantity() != value) return true;
+        lbMessage.setText("Please use another value.");
+        return false;
     }
 
 

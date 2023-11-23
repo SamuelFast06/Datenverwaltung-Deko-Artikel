@@ -40,6 +40,7 @@ public class ArticlesFrame extends JFrame implements Refreshable, Function{
         setSize(720,420);
         setResizable(false);
         btnManager();
+        disableButtons();
 
         setVisible(true);
     }
@@ -47,12 +48,34 @@ public class ArticlesFrame extends JFrame implements Refreshable, Function{
     public void setupArticleList(){
     }
 
-    public void selectArticle(Article article){
+    public void setSelectArticle(Article article){
         // Article in ArticleList auswählen und article
         this.selectedArticle = article;
         if (selectedArticle != null) {
-            btnShowArticle.enable();
+            enableButtons();
+        } else {
+            disableButtons();
         }
+    }
+
+    private void enableButtons() {
+        btnShowArticle.setEnabled(true);
+        btnMinusQuantity.setEnabled(true);
+        btnPlusQuantity.setEnabled(true);
+        btnRemoveArticle.setEnabled(true);
+        btnSetQuantity.setEnabled(true);
+
+        refreshInformationPanel();
+    }
+
+    private void disableButtons() {
+        btnShowArticle.setEnabled(false);
+        btnMinusQuantity.setEnabled(false);
+        btnPlusQuantity.setEnabled(false);
+        btnRemoveArticle.setEnabled(false);
+        btnSetQuantity.setEnabled(false);
+
+        refreshInformationPanel();
     }
 
 
@@ -128,7 +151,7 @@ public class ArticlesFrame extends JFrame implements Refreshable, Function{
             System.out.println("'remove article'");
             informationForm.setHighlited(0);
         } else {
-            System.out.println("Article NOT saved.");
+            System.out.println("Article NOT removed.");
         }
     }
 
