@@ -5,6 +5,10 @@ import java.util.*;
 import java.net.URL;
 import java.io.IOException;
 import java.net.HttpURLConnection;
+
+import Classes.Articles.Article;
+import Classes.ContactPersons.ContactPerson;
+import Classes.Costumers.Costumer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Data {

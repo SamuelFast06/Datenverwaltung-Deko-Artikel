@@ -1,7 +1,9 @@
 package Classes;
 
+import Classes.Articles.Article;
+import Classes.ContactPersons.ContactPerson;
+import Classes.Costumers.Costumer;
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.*;
@@ -79,7 +81,7 @@ public class ManagementController {
         uploadControlledManagements(controlledManagements);
     }
 
-    static Data getDataManagement(String id) throws IOException {
+    public static Data getDataManagement(String id) throws IOException {
         URL url = new URL("https://api.jsonbin.io/v3/b/" + id + "/latest?meta=false");
 
         HttpURLConnection con = (HttpURLConnection) url.openConnection();

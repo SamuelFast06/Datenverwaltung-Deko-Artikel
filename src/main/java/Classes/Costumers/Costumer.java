@@ -1,7 +1,9 @@
-package Classes;
+package Classes.Costumers;
+import Classes.HasName;
+
 import java.util.*;
 
-class Costumer implements HasName{
+class Costumer implements HasName {
     private UUID id;
     String firstName;
     String lastName;

@@ -1,7 +1,9 @@
-package Classes;
+package Classes.Articles;
+import Classes.HasName;
+
 import java.util.*;
 
-public class Article implements HasName{
+public class Article implements HasName {
 
     private UUID id;
     private int articleNo;

@@ -1,7 +1,9 @@
-package Classes;
+package Classes.ContactPersons;
+import Classes.HasName;
+
 import java.util.*;
 
-public class ContactPerson implements  HasName{
+public class ContactPerson implements HasName {
 
     private UUID id;
     private String firstname;

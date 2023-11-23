@@ -1,22 +1,28 @@
-package Classes;
+package Classes.ContactPersons;
+
+import Classes.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class ContactPersonsFrame extends JFrame implements Refreshable, Function{
+public class ContactPersonsFrame extends JFrame implements Refreshable, Function {
 
     private JPanel contactPersonPanel;
+
+    //Labels
+    private JLabel lbCurrentUser;
+    private JLabel lbManagementName;
+
+    //Other
     private JButton btnRemoveContactPerson;
     private JButton btnAddContactPerson;
     private JButton btnShowContactPerson;
     private JScrollPane scrollPane;
-    private JLabel lbCurrentUser;
-    private JLabel lbManagementName;
     private JPanel scrollPanel;
-    private User user;
 
+    private User user;
     private Data data;
     private ContactPerson selectedContactPerson;
     private InformationForm informationForm;
@@ -72,7 +78,7 @@ public class ContactPersonsFrame extends JFrame implements Refreshable, Function
         btnAddContactPerson.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //AddContactPersonFrame addContactPersonFrame = new AddContactPersonFrame(data, self);
+                AddContactPersonFrame addContactPersonFrame = new AddContactPersonFrame(data, self);
             }
         });
 

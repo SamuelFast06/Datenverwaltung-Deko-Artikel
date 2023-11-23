@@ -1,4 +1,9 @@
-package Classes;
+package Classes.Costumers;
+
+import Classes.Data;
+import Classes.InformationForm;
+import Classes.InformationType;
+import Classes.User;
 
 import javax.swing.*;
 

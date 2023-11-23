@@ -1,4 +1,6 @@
-package Classes;
+package Classes.Articles;
+
+import Classes.Data;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -6,6 +8,10 @@ import java.awt.event.ActionListener;
 import java.util.UUID;
 
 public class AddArticleFrame extends JFrame{
+
+    private JPanel addCustomerPane;
+
+    //Labels
     private JLabel lbHeadline;
     private JLabel lbName;
     private JLabel lbPrice;
@@ -13,6 +19,16 @@ public class AddArticleFrame extends JFrame{
     private JLabel lbLength;
     private JLabel lbWide;
     private JLabel lbHeight;
+    private JLabel lbQuantity;
+    private JLabel lbColor;
+    private JLabel lbWeight;
+    private JLabel lbDescription;
+    private JLabel lbMessage;
+    private JLabel lbImage;
+    private JLabel lbArticleNo;
+
+    //TextFields
+    private JTextField tfArticleNo;
     private JTextField tfName;
     private JTextField tfPrice;
     private JTextField tfQuantity;
@@ -21,19 +37,16 @@ public class AddArticleFrame extends JFrame{
     private JTextField tfLength;
     private JTextField tfWide;
     private JTextField tfHeight;
-    private JTextPane tfDescription;
+
+
+    //Buttons
     private JButton btnAdd;
     private JButton btnCancel;
-    private JLabel lbQuantity;
-    private JLabel lbColor;
-    private JLabel lbWeight;
-    private JLabel lbDescription;
-    private JPanel addCustomerPane;
-    private JLabel lbArticleNo;
-    private JTextField tfArticleNo;
-    private JLabel lbMessage;
-    private JLabel lbImage;
+
+    //Other
+    private JTextPane tfDescription;
     private JScrollBar scrollBar1;
+
     private Data data;
     private ArticlesFrame parent;
 

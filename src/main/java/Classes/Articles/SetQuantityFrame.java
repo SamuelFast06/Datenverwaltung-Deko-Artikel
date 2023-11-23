@@ -1,16 +1,30 @@
-package Classes;
+package Classes.Articles;
+
+import Classes.Articles.Article;
+import Classes.Data;
+import Classes.Refreshable;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SetQuantityFrame extends JFrame {
-    JTextField tfQuantity;
-    Article selectedArticle;
-    JPanel quantityPanel;
-    JButton btnSave;
+
+    private JPanel quantityPanel;
+
+    //Labels
     private JLabel lbMessage;
-    Data data;
+
+    //Textfields
+    private JTextField tfQuantity;
+
+    //Buttons
+    private JButton btnSave;
+
+    //Other
+
+    private Article selectedArticle;
+    private Data data;
 
     public SetQuantityFrame(Article selectedArticle, Data data, Refreshable refreshForm) {
         this.selectedArticle = selectedArticle;

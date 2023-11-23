@@ -1,11 +1,16 @@
 package Classes;
 
+import Classes.Articles.Article;
+import Classes.Articles.ArticleButton;
+import Classes.Articles.ArticlesFrame;
+import Classes.Costumers.Costumer;
+import Classes.Costumers.CostumersFrame;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 public class InformationForm<T> extends JPanel {
     Data data;
@@ -97,6 +102,6 @@ public class InformationForm<T> extends JPanel {
     }
 }
 
-enum InformationType {
+public enum InformationType {
     articles, costumer, contactPeople, users, noType
 }

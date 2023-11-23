@@ -1,4 +1,9 @@
-package Classes;
+package Classes.Articles;
+
+import Classes.Data;
+import Classes.Function;
+import Classes.RequestFrame;
+import Classes.RequestType;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -7,6 +12,10 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 public class ShowArticleFrame extends JFrame implements Function {
+
+    private JPanel showArticlePane;
+
+    //Labels
     private JLabel lbHeadline;
     private JLabel lbName;
     private JLabel lbPrice;
@@ -14,6 +23,13 @@ public class ShowArticleFrame extends JFrame implements Function {
     private JLabel lbLength;
     private JLabel lbWide;
     private JLabel lbHeight;
+    private JLabel lbQuantity;
+    private JLabel lbColor;
+    private JLabel lbWeight;
+    private JLabel lbDescription;
+    private JLabel lbImage;
+
+    //TextFields
     private JTextField tfName;
     private JTextField tfPrice;
     private JTextField tfQuantity;
@@ -22,17 +38,16 @@ public class ShowArticleFrame extends JFrame implements Function {
     private JTextField tfLength;
     private JTextField tfWide;
     private JTextField tfHeight;
-    private JTextPane tfDescription;
+
+    //Buttons
     private JButton btnSave;
     private JButton btnCancel;
-    private JLabel lbQuantity;
-    private JLabel lbColor;
-    private JLabel lbWeight;
-    private JLabel lbDescription;
-    private JPanel showArticlePane;
+
+    //Other
     private JCheckBox cbEdit;
     private JScrollBar scrollBar1;
-    private JLabel lbImage;
+    private JTextPane tfDescription;
+
 
     private Data data;
     private ArticlesFrame articlesFrame;
@@ -75,10 +90,6 @@ public class ShowArticleFrame extends JFrame implements Function {
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("monkey.gif"));
         lbImage.setIcon(icon);
 
-        /*if(slcArticle != null){
-            setup();
-        }
-        */
     }
 
     public void apply(Boolean success) {

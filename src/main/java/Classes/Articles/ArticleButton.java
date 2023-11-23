@@ -1,14 +1,16 @@
-package Classes;
+package Classes.Articles;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 
 public class ArticleButton extends JPanel {
 
+    private JPanel panel;
+
+    //Labels
     private JLabel nameLabel;
     private JLabel quantityLabel;
-    private JPanel panel;
+
 
     public ArticleButton(Article article) {
         JLabel nameLabel = new JLabel(article.getArticleName());

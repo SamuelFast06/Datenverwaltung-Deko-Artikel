@@ -1,22 +1,30 @@
-package Classes;
+package Classes.Articles;
+
+import Classes.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class ArticlesFrame extends JFrame implements Refreshable, Function{
+public class ArticlesFrame extends JFrame implements Refreshable, Function {
 
     private JPanel articlesPanel;
+
+    //Labels
+    private JLabel lbCurrentUser;
+    private JLabel lbManagementName;
+
+    //Buttons
     private JButton btnRemoveArticle;
     private JButton btnAddArticle;
     private JButton btnShowArticle;
     private JButton btnSetQuantity;
     private JButton btnMinusQuantity;
     private JButton btnPlusQuantity;
+
+    //Other
     private JScrollPane scrollPane;
-    private JLabel lbCurrentUser;
-    private JLabel lbManagementName;
     private JPanel scrollPanel;
 
     private Data data;
@@ -30,7 +38,7 @@ public class ArticlesFrame extends JFrame implements Refreshable, Function{
         this.informationForm = new InformationForm(data, InformationType.articles, this);
         this.scrollPanel.add(this.informationForm);
         this.lbManagementName.setText(data.getName());
-        this.lbCurrentUser.setText(iuser.username);
+        this.lbCurrentUser.setText(iuser.getUsername());
         this.btnShowArticle.disable();
         setContentPane(articlesPanel);
         setLocation(0,0);
@@ -156,8 +164,8 @@ public class ArticlesFrame extends JFrame implements Refreshable, Function{
 
     public static void main(String[] args){
         User testuser = new User();
-        testuser.username = "testuser";
-        testuser.passwort = "test";
+        testuser.setUsername("testuser");
+        testuser.setPasswort("test");
         try {
             ArticlesFrame articlesManage = new ArticlesFrame(testuser, ManagementController.getDataManagement("654c908654105e766fcd758e"));
         } catch (IOException e) {
