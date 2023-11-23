@@ -7,16 +7,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class InformationForm extends JPanel {
+public class InformationForm<T> extends JPanel {
     Data data;
     InformationType type;
-    ArticlesFrame parent;
+    T parent;
 
     int highlited = 0;
     private EmptyBorder paddingBorder = new EmptyBorder(2,0,2,0);
 
 
-    public InformationForm(Data data, InformationType type, ArticlesFrame parent) {
+    public InformationForm(Data data, InformationType type, T parent) {
         this.data = data;
         this.type = type;
         this.parent = parent;
@@ -33,6 +33,7 @@ public class InformationForm extends JPanel {
 
         switch (type) {
             case articles:
+                ArticlesFrame articlesFrame = (ArticlesFrame) parent;
                 for (int i = 0; i < data.getArticles().size(); i++) {
                     Article article = data.getArticles().get(i);
                     int currentValue = i + 1;
@@ -49,11 +50,11 @@ public class InformationForm extends JPanel {
                         public void actionPerformed(ActionEvent e) {
                             if (highlited != currentValue) {
                                 highlited = currentValue;
-                                parent.setSelectArticle(article);
+                                articlesFrame.setSelectArticle(article);
                                 refresh();
                             } else {
                                 highlited = 0;
-                                parent.setSelectArticle(null);
+                                articlesFrame.setSelectArticle(null);
                                 refresh();
                             }
                         }
@@ -62,10 +63,9 @@ public class InformationForm extends JPanel {
                 }
                 break;
             case costumer:
+                CostumersFrame costumersFrame = (CostumersFrame) parent;
                 for (int i = 0; i < data.getCostumers().size(); i++) {
-                    JLabel label = new JLabel();
-                    label.setText(data.getCostumers().get(i).getFirstName());
-                    this.add(label);
+                    Costumer costumer = data.getCostumers().get(i);
                 }
                 break;
             case contactPeople:
