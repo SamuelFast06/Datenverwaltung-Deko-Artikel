@@ -1,7 +1,7 @@
 package Classes;
 import java.util.*;
 
-public class ContactPerson {
+public class ContactPerson implements  HasName{
 
     private UUID id;
     private String firstname;
@@ -46,6 +46,8 @@ public class ContactPerson {
     public String getMobilenumber() {
         return mobilenumber;
     }
+
+    public String getName() { return "" + firstname + " " +  lastname + "";}
 
     //setter
 
