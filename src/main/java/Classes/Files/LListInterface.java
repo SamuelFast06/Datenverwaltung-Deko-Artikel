@@ -34,7 +34,7 @@ public interface LListInterface {
     void insert(Object pObject);
     // if hasAccess() == true, wird neuesObject vor aktuellesObject in List eingefügt
     // if isEmpty() == true, wird pObject in List eingefügt
-    // if hasAcces() == false && if isEmpty() == false oder pObject == null, dann Liste bleibt unverändert
+    // if hasAccess() == false && if isEmpty() == false oder pObject == null, dann Liste bleibt unverändert
 
     void concat(List pList);
     // plist wird an list angehängt && plist wird leer
