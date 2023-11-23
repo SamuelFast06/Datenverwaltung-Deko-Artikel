@@ -23,54 +23,7 @@ public class InformationForm extends JPanel {
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        switch (type) {
-            case articles:
-                for (int i = 0; i < data.getArticles().size(); i++) {
-                    Article article = data.getArticles().get(i);
-                    int currentValue = i + 1;
-                    ArticleButton articleButton = new ArticleButton(data.getArticles().get(i));
-                    JButton button = new JButton();
-                    button.setBorder(BorderFactory.createLineBorder(currentValue == highlited ? new Color(35, 198, 211) : new Color(24, 129, 165), 5, true));
-                    JPanel buttonPanel = new JPanel();
-                    button.add(articleButton);
-                    buttonPanel.add(button);
-                    buttonPanel.setBorder(paddingBorder);
-                    button.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            highlited = currentValue;
-                            parent.selectArticle(article);
-                            refresh();
-                        }
-                    });
-                    this.add(buttonPanel);
-
-                }
-                break;
-            case costumer:
-                for (int i = 0; i < data.getCostumers().size(); i++) {
-                    JLabel label = new JLabel();
-                    label.setText(data.getCostumers().get(i).getFirstName());
-                    this.add(label);
-                }
-                break;
-            case contactPeople:
-                for (int i = 0; i < data.getContactPeople().size(); i++) {
-                    JLabel label = new JLabel();
-                    label.setText(data.getContactPeople().get(i).getFirstname());
-                    this.add(label);
-                }
-                break;
-            case users:
-                for (int i = 0; i < data.getUsers().size(); i++) {
-                    JLabel label = new JLabel();
-                    label.setText(data.getUsers().get(i).getUsername());
-                    this.add(label);
-                }
-                break;
-            case noType:
-                break;
-        }
+        refresh();
 
         setVisible(true);
     }
@@ -94,9 +47,15 @@ public class InformationForm extends JPanel {
                     button.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            highlited = currentValue;
-                            parent.selectArticle(article);
-                            refresh();
+                            if (highlited != currentValue) {
+                                highlited = currentValue;
+                                parent.setSelectArticle(article);
+                                refresh();
+                            } else {
+                                highlited = 0;
+                                parent.setSelectArticle(null);
+                                refresh();
+                            }
                         }
                     });
                     this.add(buttonPanel);
