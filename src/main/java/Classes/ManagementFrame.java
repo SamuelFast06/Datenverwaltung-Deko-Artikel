@@ -40,8 +40,8 @@ public class ManagementFrame extends JFrame{
         setContentPane(managementPanel);
         lbCurrentUser.setText(user.username);
         lbManagementName.setText(data.getName());
-        setLocation(0,0);
-        setSize(620,340);
+        setLocation(800,300);
+        setSize(1080,720);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
         setResizable(false);
@@ -80,7 +80,7 @@ public class ManagementFrame extends JFrame{
         btnSettings.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                SettingsFrame settingsFrame = new SettingsFrame(user, data);
             }
         });
     }
