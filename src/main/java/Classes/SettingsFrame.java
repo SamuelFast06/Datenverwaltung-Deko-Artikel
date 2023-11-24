@@ -10,8 +10,8 @@ public class SettingsFrame extends JFrame{
     private JLabel lbCurrentUser;
 
     //Client-Settings
-    private JPanel clientSettingsPane;
-    private JTabbedPane tpClientSettings;
+    private JPanel userSettingsPane;
+    private JTabbedPane tpUserSettings;
         //Graphics
         private JPanel graphicsPanel;
         //Audio
@@ -38,6 +38,7 @@ public class SettingsFrame extends JFrame{
         private JLabel lbArticlesImage;
         //Costumers
         private JLabel lbCostumerImage;
+    private JPanel accountPanel;
 
 
     InformationType tappedType = InformationType.noType;
