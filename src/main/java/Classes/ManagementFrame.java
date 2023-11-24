@@ -5,6 +5,7 @@ import Classes.ContactPersons.ContactPersonsFrame;
 import Classes.Costumers.CostumersFrame;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -13,6 +14,11 @@ import java.io.IOException;
 public class ManagementFrame extends JFrame{
 
     private JPanel managementPanel;
+
+    //Panels
+    private JPanel lbManagementColorPanel;
+    private JPanel lbCurrentUserColorPanel;
+    private JPanel btnColorPanel;
 
     //Labels
     private JLabel lbManagementName;
@@ -26,6 +32,7 @@ public class ManagementFrame extends JFrame{
     private JButton btnCustomers;
     private JButton btnContactPersons;
 
+
     //Other
 
     InformationType tappedType = InformationType.noType;
@@ -37,8 +44,11 @@ public class ManagementFrame extends JFrame{
         this.data = data;
         this.user = iuser;
 
+        uiDesignSetup();
+
+
         setContentPane(managementPanel);
-        lbCurrentUser.setText(user.username);
+        lbCurrentUser.setText("Current User: "+user.username);
         lbManagementName.setText(data.getName());
         setLocation(800,300);
         setSize(1080,720);
@@ -83,6 +93,71 @@ public class ManagementFrame extends JFrame{
                 SettingsFrame settingsFrame = new SettingsFrame(user, data);
             }
         });
+
+    }
+
+    public void uiDesignSetup(){
+
+        Color colorFgr = Color.WHITE;
+        Color colorBgr = Color.GRAY;
+        Color colorBorder = Color.DARK_GRAY;
+        int thickness = 2;
+
+
+    //PANELS
+
+        //managementPanel.setForeground(new Color());
+        //setForeground(Color.DARK_GRAY);
+
+
+    //BUTTONS
+
+        System.out.println(btnArticles.toString());
+
+
+
+        btnColorPanel.setBackground(Color.DARK_GRAY);
+
+        //Background-Color
+        btnArticles.setBackground(colorBgr);
+        btnSettings.setBackground(colorBgr);
+        btnCustomers.setBackground(colorBgr);
+        btnContactPersons.setBackground(colorBgr);
+
+        //Text-Color
+        btnArticles.setForeground(colorFgr);
+        btnSettings.setForeground(colorFgr);
+        btnCustomers.setForeground(colorFgr);
+        btnContactPersons.setForeground(colorFgr);
+
+        //Border
+        btnArticles.setBorder(BorderFactory.createLineBorder(colorBorder,thickness,true));
+        btnSettings.setBorder(BorderFactory.createLineBorder(colorBorder,thickness,true));
+        btnCustomers.setBorder(BorderFactory.createLineBorder(colorBorder,thickness,true));
+        btnContactPersons.setBorder(BorderFactory.createLineBorder(colorBorder,thickness,true));
+
+    //LABELS
+
+        //Backgorund-Color
+        lbManagementColorPanel.setBackground(colorBgr);
+        lbCurrentUserColorPanel.setBackground(colorBgr);
+
+        //Text-Color
+        lbManagementName.setForeground(colorFgr);
+        lbCurrentUser.setForeground(colorFgr);
+        lbMessage.setForeground(colorFgr);
+
+        //Border
+        lbManagementColorPanel.setBorder(BorderFactory.createLineBorder(colorBorder,thickness,true));
+        lbCurrentUserColorPanel.setBorder(BorderFactory.createLineBorder(colorBorder,thickness,true));
+
+
+
+
+
+
+
+
     }
 
 
@@ -90,8 +165,9 @@ public class ManagementFrame extends JFrame{
     public static void main(String[] args){
 
         try {
-            Data data = ManagementController.getDataManagement("654c908654105e766fcd758e");
-            ManagementFrame management = new ManagementFrame(new User(), data);
+            User testuser = new User();
+            Data data = ManagementController.createManagement("test",testuser);
+            ManagementFrame management = new ManagementFrame(testuser, data);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
