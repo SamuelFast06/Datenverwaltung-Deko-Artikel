@@ -1,6 +1,7 @@
 package Classes;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -23,6 +24,8 @@ public class ChooseManagementFrame extends JFrame{
     //Buttons
     private JButton btnCreateManagement;
     private JButton btnJoinManagement;
+    private JPanel lbHeadlinePanel;
+    private JPanel btnColorPanel;
 
     //Other
     private User user;
@@ -39,6 +42,7 @@ public class ChooseManagementFrame extends JFrame{
 
         btnManager();
 
+        uiDesignSetup();
     }
 
     public void btnManager(){
@@ -85,6 +89,53 @@ public class ChooseManagementFrame extends JFrame{
                 }
             }
         });
+    }
+
+    public void uiDesignSetup(){
+
+        Color colorFgr = Color.WHITE;
+        Color colorBgr = Color.GRAY;
+        Color colorBorder = Color.DARK_GRAY;
+        int thickness = 2;
+
+        //PANELS
+
+        chooseManagementPanel.setBackground(new Color(50,54,58));
+        lbHeadlinePanel.setBackground(colorBgr);
+
+        //BUTTONS
+        btnColorPanel.setBackground(Color.DARK_GRAY);
+
+        //Background-Color
+        btnJoinManagement.setBackground(colorBgr);
+        btnCreateManagement.setBackground(colorBgr);
+
+        //Text-Color
+        btnJoinManagement.setForeground(colorFgr);
+        btnCreateManagement.setForeground(colorFgr);
+
+        //LABELS
+
+        //Text-Color
+        lbHeadline.setForeground(colorFgr);
+        lbCreateName.setForeground(colorFgr);
+        lbMessage.setForeground(colorFgr);
+        lbJoinID.setForeground(colorFgr);
+
+        //TEXTFIELDS
+
+        //Background-Color
+        tfCreateName.setBackground(colorBgr);
+        tfJoinID.setBackground(colorBgr);
+
+        //Text-Color
+        tfCreateName.setForeground(colorFgr);
+        tfJoinID.setForeground(colorFgr);
+
+        //Borders
+        tfCreateName.setBorder(BorderFactory.createLineBorder(colorBgr,thickness,true));
+        tfJoinID.setBorder(BorderFactory.createLineBorder(colorBgr,thickness,true));
+
     }
 
     public static void main(String[] pablo){

@@ -39,6 +39,23 @@ public class SettingsFrame extends JFrame{
         //Costumers
         private JLabel lbCostumerImage;
     private JPanel accountPanel;
+    private JLabel lbUserName;
+    private JTextField tfUserName;
+    private JLabel lbUserPasswort;
+    private JTextField tfUserPasswort;
+    private JLabel lbUserInfo;
+    private JLabel lbUserID;
+    private JTextField tfUserID;
+    private JLabel lbPersonalInfo;
+    private JLabel lbPersonFirstName;
+    private JTextField tfUserFirstName;
+    private JTextField tfUserLastname;
+    private JLabel lbUserLastName;
+    private JLabel lbUserBirthdate;
+    private JTextField tfUserDay;
+    private JTextField tfUserYear;
+    private JTextField tfUserMonth;
+    private JLabel lbManagementInfo;
 
 
     InformationType tappedType = InformationType.noType;
@@ -53,7 +70,6 @@ public class SettingsFrame extends JFrame{
             lbCurrentUser.setText(user.username);
             setLocation(800,300);
             setSize(1080,720);
-            setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             setVisible(true);
             setResizable(false);
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("monkey.gif"));
@@ -61,4 +77,7 @@ public class SettingsFrame extends JFrame{
             lbCostumerImage.setIcon(icon);
             lbContactPersonImage.setIcon(icon);
         }
+
+
+
 }

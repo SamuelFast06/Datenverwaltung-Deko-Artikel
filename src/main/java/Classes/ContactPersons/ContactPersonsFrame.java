@@ -38,7 +38,7 @@ public class ContactPersonsFrame extends JFrame implements Refreshable, Function
         this.lbCurrentUser.setText(iuser.getUsername());
         this.btnShowContactPerson.disable();
         setContentPane(contactPersonPanel);
-        setLocation(0,0);
+        setLocation(800,300);
         setSize(720,420);
         setResizable(false);
         btnManager();

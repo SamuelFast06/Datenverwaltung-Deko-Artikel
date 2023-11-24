@@ -62,7 +62,7 @@ public class ShowArticleFrame extends JFrame implements Function {
         slcArticle = article;
         setContentPane(showArticlePane);
         setLocation(800,300);
-        setSize(400,380);
+        setSize(400,400);
         setVisible(true);
         setResizable(true);
 

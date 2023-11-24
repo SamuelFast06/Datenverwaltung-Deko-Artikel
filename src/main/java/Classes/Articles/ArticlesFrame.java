@@ -41,7 +41,7 @@ public class ArticlesFrame extends JFrame implements Refreshable, Function {
         this.lbCurrentUser.setText(iuser.getUsername());
         this.btnShowArticle.disable();
         setContentPane(articlesPanel);
-        setLocation(0,0);
+        setLocation(800,300);
         setSize(720,420);
         setResizable(false);
         btnManager();

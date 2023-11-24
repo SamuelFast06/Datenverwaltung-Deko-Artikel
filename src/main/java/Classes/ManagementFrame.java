@@ -25,12 +25,14 @@ public class ManagementFrame extends JFrame{
     private JLabel lbCurrentUser;
     private JLabel lbMessage;
     private JLabel lbImage;
+    private JLabel lbStammdaten;
 
     //Buttons
     private JButton btnSettings;
     private JButton btnArticles;
     private JButton btnCustomers;
     private JButton btnContactPersons;
+
 
 
     //Other
@@ -106,16 +108,9 @@ public class ManagementFrame extends JFrame{
 
     //PANELS
 
-        //managementPanel.setForeground(new Color());
-        //setForeground(Color.DARK_GRAY);
-
+        managementPanel.setBackground(new Color(50,54,58));
 
     //BUTTONS
-
-        System.out.println(btnArticles.toString());
-
-
-
         btnColorPanel.setBackground(Color.DARK_GRAY);
 
         //Background-Color
@@ -146,6 +141,7 @@ public class ManagementFrame extends JFrame{
         lbManagementName.setForeground(colorFgr);
         lbCurrentUser.setForeground(colorFgr);
         lbMessage.setForeground(colorFgr);
+        lbStammdaten.setForeground(colorFgr);
 
         //Border
         lbManagementColorPanel.setBorder(BorderFactory.createLineBorder(colorBorder,thickness,true));

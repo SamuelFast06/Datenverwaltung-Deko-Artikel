@@ -1,80 +1,139 @@
 package Classes;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.UUID;
-import java.util.*;
 
 
-    public class RegisterFrame extends JFrame {
+public class RegisterFrame extends JFrame {
 
-        private JTextField tfUsername;
-        private JTextField tfPasswort;
-        private JLabel lbRegister;
-        private JLabel lbUsername;
-        private JLabel lbPasswort;
-        private JLabel lbRepeatPasswort;
-        private JTextField tfRepeatPasswort;
-        private JButton btnOK;
-        private JButton btnCancel;
-        private JPanel registerPanel;
-        private JLabel lbMessage;
+    private JPanel registerPanel;
 
-        private JCheckBox checkBox;
+    //Labels
+    private JLabel lbMessage;
+    private JLabel lbRegister;
+    private JLabel lbUsername;
+    private JLabel lbPasswort;
+    private JLabel lbRepeatPasswort;
 
-        private Data data;
-        // private ArrayList<User> users = data.getUsers();
+    //Textfields
+    private JTextField tfUsername;
+    private JPasswordField tfPasswort;
+    private JPasswordField tfRepeatPasswort;
 
-        public RegisterFrame() {
-            setContentPane(registerPanel);
-            setLocation(800,300);
-            setSize(400,280);
-            setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-            setVisible(true);
-            setResizable(false);
+    //Buttons
+    private JButton btnOK;
+    private JButton btnCancel;
 
-            btnManager();
+    //Other
+    private JPanel btnColorPanel;
+    private JPanel lbRegisterPanel;
+    private JCheckBox cbPasswort;
 
-        }
+    private Data data;
+    // private ArrayList<User> users = data.getUsers();
 
-        private void btnManager(){
+    public RegisterFrame() {
+        setContentPane(registerPanel);
+        setLocation(800,300);
+        setSize(400,280);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setVisible(true);
+        setResizable(false);
+        btnManager();
+        uiDesignSetup();
+    }
 
-            btnOK.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    String username = tfUsername.getText();
-                    String passwort = tfPasswort.getText();
-                    String repeatPasswort = tfRepeatPasswort.getText();
+    private void btnManager(){
 
-                    try {
-                        if(ManagementController.usernameUnused(username)) {
-                            if(passwort.equals(repeatPasswort)) {
-                                User user = new User(UUID.randomUUID(), username, passwort);
+        btnOK.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String username = tfUsername.getText();
+                String passwort = tfPasswort.getText();
+                String repeatPasswort = tfRepeatPasswort.getText();
 
-                                lbMessage.setText("Register Success");
-                                dispose();
-                                ChooseManagementFrame chooseManagement = new ChooseManagementFrame(user);
-                            } else {
-                                lbMessage.setText("[RepeatPasswort] is not the same as [Passwort]");
-                            }
+                try {
+                    if(ManagementController.usernameUnused(username)) {
+                        if(passwort.equals(repeatPasswort)) {
+                            User user = new User(UUID.randomUUID(), username, passwort);
+
+                            lbMessage.setText("Register Success");
+                            dispose();
+                            ChooseManagementFrame chooseManagement = new ChooseManagementFrame(user);
                         } else {
-                            lbMessage.setText("Username [" + username + "] is already used");
+                            lbMessage.setText("[RepeatPasswort] is not the same as [Passwort]");
                         }
-                    } catch (Exception ex) {
-                        System.out.println(ex);
+                    } else {
+                        lbMessage.setText("Username [" + username + "] is already used");
                     }
+                } catch (Exception ex) {
+                    System.out.println(ex);
                 }
-            });
+            }
+        });
 
-            btnCancel.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
+        btnCancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                     dispose();
                 }
-            });
-        }
+        });
+    }
+
+    public void uiDesignSetup(){
+
+        Color colorFgr = Color.WHITE;
+        Color colorBgr = Color.GRAY;
+        Color colorBorder = Color.DARK_GRAY;
+        int thickness = 2;
+
+        //PANELS
+
+        registerPanel.setBackground(new Color(50,54,58));
+        lbRegisterPanel.setBackground(colorBgr);
+
+        //BUTTONS
+        btnColorPanel.setBackground(Color.DARK_GRAY);
+
+        //Background-Color
+        btnOK.setBackground(colorBgr);
+        btnCancel.setBackground(colorBgr);
+
+        //Text-Color
+        btnOK.setForeground(colorFgr);
+        btnCancel.setForeground(colorFgr);
+
+        //LABELS
+
+        //Text-Color
+        lbRegister.setForeground(colorFgr);
+        lbUsername.setForeground(colorFgr);
+        lbMessage.setForeground(colorFgr);
+        lbPasswort.setForeground(colorFgr);
+        lbRepeatPasswort.setForeground(colorFgr);
+
+        //TEXTFIELDS
+
+        //Background-Color
+        tfUsername.setBackground(colorBgr);
+        tfPasswort.setBackground(colorBgr);
+        tfRepeatPasswort.setBackground(colorBgr);
+        cbPasswort.setBackground(colorBgr);
+
+        //Text-Color
+        tfUsername.setForeground(colorFgr);
+        tfPasswort.setForeground(colorFgr);
+        tfRepeatPasswort.setForeground(colorFgr);
+        cbPasswort.setForeground(colorFgr);
+
+        //Borders
+        tfUsername.setBorder(BorderFactory.createLineBorder(colorBgr,thickness,true));
+        tfPasswort.setBorder(BorderFactory.createLineBorder(colorBgr,thickness,true));
+        tfRepeatPasswort.setBorder(BorderFactory.createLineBorder(colorBgr,thickness,true));
 
     }
+
+}

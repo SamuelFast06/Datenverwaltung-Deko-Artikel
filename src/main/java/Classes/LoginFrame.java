@@ -1,10 +1,11 @@
 package Classes;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.UUID;
 
 
@@ -21,12 +22,15 @@ public class LoginFrame extends JFrame{
 
     //Textfields
     private JTextField tfUsername;
-    private JTextField tfPasswort;
+    private JPasswordField tfPasswort;
 
     //Buttons
     private JButton btnOK;
     private JButton btnCancel;
     private JButton btnRegister;
+    private JPanel lbLoginPanel;
+    private JPanel btnColorPanel;
+    private JCheckBox cbPasswort;
 
     //Other
     private JCheckBox checkBox;
@@ -42,7 +46,10 @@ public class LoginFrame extends JFrame{
        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
        setVisible(true);
        setResizable(false);
+
         btnManager();
+
+        uiDesignSetup();
     }
 
     private void btnManager(){
@@ -100,7 +107,72 @@ public class LoginFrame extends JFrame{
                 dispose();
             }
         });
+
+        cbPasswort.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if(e.getStateChange() == ItemEvent.SELECTED){
+                    tfPasswort.getPassword();
+                }
+                if(e.getStateChange() == ItemEvent.DESELECTED){
+
+                }
+            }
+        });
     }
+
+    public void uiDesignSetup(){
+
+        Color colorFgr = Color.WHITE;
+        Color colorBgr = Color.GRAY;
+        Color colorBorder = Color.DARK_GRAY;
+        int thickness = 2;
+
+        //PANELS
+
+        loginPanel.setBackground(new Color(50,54,58));
+        lbLoginPanel.setBackground(colorBgr);
+
+        //BUTTONS
+        btnColorPanel.setBackground(Color.DARK_GRAY);
+
+        //Background-Color
+        btnOK.setBackground(colorBgr);
+        btnCancel.setBackground(colorBgr);
+        btnRegister.setBackground(colorBgr);
+
+        //Text-Color
+        btnOK.setForeground(colorFgr);
+        btnCancel.setForeground(colorFgr);
+        btnRegister.setForeground(colorFgr);
+
+        //LABELS
+
+        //Text-Color
+        lbLogin.setForeground(colorFgr);
+        lbUsername.setForeground(colorFgr);
+        lbMessage.setForeground(colorFgr);
+        lbPasswort.setForeground(colorFgr);
+        lbToRegistry.setForeground(colorFgr);
+
+        //TEXTFIELDS
+
+        //Background-Color
+        tfUsername.setBackground(colorBgr);
+        tfPasswort.setBackground(colorBgr);
+        cbPasswort.setBackground(colorBgr);
+
+        //Text-Color
+        tfUsername.setForeground(colorFgr);
+        tfPasswort.setForeground(colorFgr);
+        cbPasswort.setForeground(colorFgr);
+
+        //Borders
+        tfUsername.setBorder(BorderFactory.createLineBorder(colorBgr,thickness,true));
+        tfPasswort.setBorder(BorderFactory.createLineBorder(colorBgr,thickness,true));
+
+    }
+
 
     private void startManagment(User user, Data data){
         ManagementFrame management = new ManagementFrame(user, data);

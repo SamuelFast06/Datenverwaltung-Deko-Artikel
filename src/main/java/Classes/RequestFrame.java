@@ -1,6 +1,7 @@
 package Classes;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -19,6 +20,8 @@ public class RequestFrame extends JFrame {
     //Buttons
     private JButton btnNo;
     private JButton btnYes;
+    private JPanel lbQuestionPanel;
+    private JPanel btnColorPanel;
 
     //Other
 
@@ -34,6 +37,8 @@ public class RequestFrame extends JFrame {
         setResizable(false);
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("dog-question.jpg"));
         lbImage.setIcon(icon);
+
+        uiDesignSetup();
 
         try{
 
@@ -90,6 +95,37 @@ public class RequestFrame extends JFrame {
         } catch(NumberFormatException ex){
             throw new RuntimeException(ex);
         }
+
+    }
+
+    public void uiDesignSetup(){
+
+        Color colorFgr = Color.WHITE;
+        Color colorBgr = Color.GRAY;
+        Color colorBorder = Color.DARK_GRAY;
+        int thickness = 2;
+
+        //PANELS
+
+        requestPanel.setBackground(new Color(50,54,58));
+        lbQuestionPanel.setBackground(colorBgr);
+
+        //BUTTONS
+        btnColorPanel.setBackground(Color.DARK_GRAY);
+
+        //Background-Color
+        btnYes.setBackground(colorBgr);
+        btnNo.setBackground(colorBgr);
+
+        //Text-Color
+        btnYes.setForeground(colorFgr);
+        btnYes.setForeground(colorFgr);
+
+        //LABELS
+
+        //Text-Color
+        lbQuestion.setForeground(colorFgr);
+        lbMessage.setForeground(colorFgr);
 
     }
 
