@@ -111,11 +111,14 @@ public class LoginFrame extends JFrame{
         cbPasswort.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                if(e.getStateChange() == ItemEvent.SELECTED){
-                    tfPasswort.getPassword();
-                }
-                if(e.getStateChange() == ItemEvent.DESELECTED){
+                char[] input = tfPasswort.getPassword();
 
+                if(e.getStateChange() == ItemEvent.SELECTED){
+                    tfPasswort.setEchoChar('\u0000');
+                }
+
+                if(e.getStateChange() == ItemEvent.DESELECTED){
+                    tfPasswort.setEchoChar('\u2022');
                 }
             }
         });

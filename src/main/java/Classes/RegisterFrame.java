@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.UUID;
 
 
@@ -80,6 +82,23 @@ public class RegisterFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                     dispose();
                 }
+        });
+
+        cbPasswort.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                char[] input = tfPasswort.getPassword();
+
+                if(e.getStateChange() == ItemEvent.SELECTED){
+                    tfPasswort.setEchoChar('\u0000');
+                    tfRepeatPasswort.setEchoChar('\u0000');
+                }
+
+                if(e.getStateChange() == ItemEvent.DESELECTED){
+                    tfPasswort.setEchoChar('\u2022');
+                    tfRepeatPasswort.setEchoChar('\u2022');
+                }
+            }
         });
     }
 
