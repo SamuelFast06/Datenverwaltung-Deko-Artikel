@@ -1,4 +1,7 @@
-package Classes;
+package Classes.frontend.Frames;
+
+import Classes.ManagementController;
+import Classes.User;
 
 import javax.swing.*;
 import java.awt.*;

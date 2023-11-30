@@ -1,8 +1,8 @@
 package Classes.Costumers;
 
-import Classes.Function;
-import Classes.RequestFrame;
-import Classes.RequestType;
+import Classes.frontend.Function;
+import Classes.frontend.Frames.RequestFrame;
+import Classes.frontend.RequestType;
 import Classes.SubClasses.Address;
 import Classes.SubClasses.Birthdate;
 

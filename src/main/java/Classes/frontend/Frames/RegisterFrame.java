@@ -1,4 +1,7 @@
-package Classes;
+package Classes.frontend.Frames;
+
+import Classes.ManagementController;
+import Classes.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,103 +12,79 @@ import java.awt.event.ItemListener;
 import java.util.UUID;
 
 
-public class LoginFrame extends JFrame{
+public class RegisterFrame extends JFrame {
 
-    private JPanel loginPanel;
+    private JPanel registerPanel;
 
     //Labels
-    private JLabel lbLogin;
+    private JLabel lbMessage;
+    private JLabel lbRegister;
     private JLabel lbUsername;
     private JLabel lbPasswort;
-    private JLabel lbMessage;
-    private JLabel lbToRegistry;
+    private JLabel lbRepeatPasswort;
 
     //Textfields
     private JTextField tfUsername;
     private JPasswordField tfPasswort;
+    private JPasswordField tfRepeatPasswort;
 
     //Buttons
     private JButton btnOK;
     private JButton btnCancel;
-    private JButton btnRegister;
-    private JPanel lbLoginPanel;
-    private JPanel btnColorPanel;
-    private JCheckBox cbPasswort;
 
     //Other
-    private JCheckBox checkBox;
+    private JPanel btnColorPanel;
+    private JPanel lbRegisterPanel;
+    private JCheckBox cbPasswort;
 
-    private int userindex = 0;
-    private int wrongPWcount = 0;
+    private Data data;
+    // private ArrayList<User> users = data.getUsers();
 
-    //Constructor
-    public LoginFrame() {
-       setContentPane(loginPanel);
-       setLocation(800,300);
-       setSize(400,280);
-       setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-       setVisible(true);
-       setResizable(false);
-
+    public RegisterFrame() {
+        setContentPane(registerPanel);
+        setLocation(800,300);
+        setSize(400,280);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setVisible(true);
+        setResizable(false);
         btnManager();
-
         uiDesignSetup();
     }
 
     private void btnManager(){
+
         btnOK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String username = tfUsername.getText();
                 String passwort = tfPasswort.getText();
+                String repeatPasswort = tfRepeatPasswort.getText();
 
-                if(wrongPWcount < 3) {
-                    try {
-                        Data management = ManagementController.getDataManagement(new User(UUID.randomUUID(), username, passwort));
+                try {
+                    if(ManagementController.usernameUnused(username)) {
+                        if(passwort.equals(repeatPasswort)) {
+                            User user = new User(UUID.randomUUID(), username, passwort);
 
-                        if (management != null) {
-                            lbMessage.setText("login success");
-
-                            tfUsername.disable();
-                            btnOK.disable();
-                            btnCancel.disable();
-                            tfUsername.setText(null);
-                            tfPasswort.setText(null);
-
-                            startManagment(new User(UUID.randomUUID(), username, passwort), management);
+                            lbMessage.setText("Register Success");
                             dispose();
-
+                            ChooseManagementFrame chooseManagement = new ChooseManagementFrame(user);
                         } else {
-                            wrongPWcount++;
-                            lbMessage.setText("Passwort or username is wrong! " + (4 - wrongPWcount) + " attempts left");
+                            lbMessage.setText("[RepeatPasswort] is not the same as [Passwort]");
                         }
-                    } catch (Exception ex) {
-                        System.out.println(ex);
+                    } else {
+                        lbMessage.setText("Username [" + username + "] is already used");
                     }
-                }else if(wrongPWcount >= 3){
-                    tfUsername.setText(null);
-                    tfPasswort.setText(null);
-                    lbMessage.setText("TOO MANY ATTEMPTS! Number of Trys is exceeded");
-                    tfPasswort.disable();
-                    tfUsername.disable();
-                    btnOK.disable();
-
+                } catch (Exception ex) {
+                    System.out.println(ex);
                 }
-            }
-        });
-        btnRegister.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                RegisterFrame registry = new RegisterFrame();
             }
         });
 
         btnCancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
+                    dispose();
+                }
         });
 
         cbPasswort.addItemListener(new ItemListener() {
@@ -115,10 +94,12 @@ public class LoginFrame extends JFrame{
 
                 if(e.getStateChange() == ItemEvent.SELECTED){
                     tfPasswort.setEchoChar('\u0000');
+                    tfRepeatPasswort.setEchoChar('\u0000');
                 }
 
                 if(e.getStateChange() == ItemEvent.DESELECTED){
                     tfPasswort.setEchoChar('\u2022');
+                    tfRepeatPasswort.setEchoChar('\u2022');
                 }
             }
         });
@@ -133,8 +114,8 @@ public class LoginFrame extends JFrame{
 
         //PANELS
 
-        loginPanel.setBackground(new Color(50,54,58));
-        lbLoginPanel.setBackground(colorBgr);
+        registerPanel.setBackground(new Color(50,54,58));
+        lbRegisterPanel.setBackground(colorBgr);
 
         //BUTTONS
         btnColorPanel.setBackground(Color.DARK_GRAY);
@@ -142,46 +123,39 @@ public class LoginFrame extends JFrame{
         //Background-Color
         btnOK.setBackground(colorBgr);
         btnCancel.setBackground(colorBgr);
-        btnRegister.setBackground(colorBgr);
 
         //Text-Color
         btnOK.setForeground(colorFgr);
         btnCancel.setForeground(colorFgr);
-        btnRegister.setForeground(colorFgr);
 
         //LABELS
 
         //Text-Color
-        lbLogin.setForeground(colorFgr);
+        lbRegister.setForeground(colorFgr);
         lbUsername.setForeground(colorFgr);
         lbMessage.setForeground(colorFgr);
         lbPasswort.setForeground(colorFgr);
-        lbToRegistry.setForeground(colorFgr);
+        lbRepeatPasswort.setForeground(colorFgr);
 
         //TEXTFIELDS
 
         //Background-Color
         tfUsername.setBackground(colorBgr);
         tfPasswort.setBackground(colorBgr);
+        tfRepeatPasswort.setBackground(colorBgr);
         cbPasswort.setBackground(colorBgr);
 
         //Text-Color
         tfUsername.setForeground(colorFgr);
         tfPasswort.setForeground(colorFgr);
+        tfRepeatPasswort.setForeground(colorFgr);
         cbPasswort.setForeground(colorFgr);
 
         //Borders
         tfUsername.setBorder(BorderFactory.createLineBorder(colorBgr,thickness,true));
         tfPasswort.setBorder(BorderFactory.createLineBorder(colorBgr,thickness,true));
+        tfRepeatPasswort.setBorder(BorderFactory.createLineBorder(colorBgr,thickness,true));
 
     }
 
-
-    private void startManagment(User user, Data data){
-        ManagementFrame management = new ManagementFrame(user, data);
-    }
-
-    public static void main(String[] args){
-        LoginFrame login = new LoginFrame();
-    }
 }

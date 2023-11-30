@@ -1,6 +1,7 @@
-package Classes;
+package Classes.frontend;
 
 import Classes.Costumers.*;
+import Classes.User;
 import Classes.User.*;
 import Classes.ContactPersons.*;
 import Classes.Articles.*;

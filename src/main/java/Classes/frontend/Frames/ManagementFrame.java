@@ -1,8 +1,11 @@
-package Classes;
+package Classes.frontend.Frames;
 
 import Classes.Articles.ArticlesFrame;
 import Classes.ContactPersons.ContactPersonsFrame;
 import Classes.Costumers.CostumersFrame;
+import Classes.ManagementController;
+import Classes.User;
+import Classes.frontend.InformationType;
 
 import javax.swing.*;
 import java.awt.*;

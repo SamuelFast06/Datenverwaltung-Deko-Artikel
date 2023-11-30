@@ -1,6 +1,8 @@
 package Classes.Articles;
 
 import Classes.*;
+import Classes.frontend.*;
+import Classes.frontend.Frames.RequestFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
