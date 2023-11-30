@@ -3,6 +3,7 @@ import Classes.HasName;
 import Classes.SubClasses.Measures;
 import Classes.SubClasses.UnitsAndValues.WeightValue;
 
+import java.awt.*;
 import java.util.*;
 
 public class Article implements HasName {
@@ -12,7 +13,7 @@ public class Article implements HasName {
     private String articleName;
     private WeightValue articleWeight;
     private String articleDescription;
-    private String articleColor;
+    private Color articleColor;
     private double articlePrice;
     private int articleQuantity;
     private Measures articleMeasures;
@@ -21,7 +22,7 @@ public class Article implements HasName {
         super();
     }
 
-    public Article(UUID id, int articleNo, String articleName, WeightValue articleWeight, String articleDescription, String articleColor, double articlePrice, int articleQuantity, Measures articleMeasures) {
+    public Article(UUID id, int articleNo, String articleName, WeightValue articleWeight, String articleDescription, Color articleColor, double articlePrice, int articleQuantity, Measures articleMeasures) {
         this.id = id;
         this.articleNo = articleNo;
         this.articleName = articleName;
@@ -75,11 +76,11 @@ public class Article implements HasName {
         this.articleDescription = articleDescription;
     }
 
-    public String getArticleColor() {
+    public Color getArticleColor() {
         return articleColor;
     }
 
-    public void setArticleColor(String articleColor) {
+    public void setArticleColor(Color articleColor) {
         this.articleColor = articleColor;
     }
 
@@ -124,6 +125,6 @@ public class Article implements HasName {
 
     @Override
     public String getName() {
-        return null;
+        return articleName;
     }
 }

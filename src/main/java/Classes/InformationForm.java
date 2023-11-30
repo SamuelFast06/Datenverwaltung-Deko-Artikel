@@ -71,6 +71,30 @@ public class InformationForm<T> extends JPanel {
                 CostumersFrame costumersFrame = (CostumersFrame) parent;
                 for (int i = 0; i < data.getCostumers().size(); i++) {
                     Costumer costumer = data.getCostumers().get(i);
+                    int currentValue = i + 1;
+                    DataButton dataButton = new DataButton(costumer);
+                    JButton button = new JButton();
+                    button.setBorder(BorderFactory.createLineBorder(currentValue == highlited ? new Color(35, 198, 211) : new Color(24, 129, 165), 5, true));
+
+                    JPanel buttonPanel = new JPanel();
+                    button.add(dataButton);
+                    buttonPanel.add(button);
+                    buttonPanel.setBorder(paddingBorder);
+                    button.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            if (highlited != currentValue) {
+                                highlited = currentValue;
+                                costumersFrame.setSelectedCostumer(costumer);
+                                refresh();
+                            } else {
+                                highlited = 0;
+                                costumersFrame.setSelectedCostumer(null);
+                                refresh();
+                            }
+                        }
+                    });
+                    this.add(buttonPanel);
                 }
                 break;
             case contactPeople:

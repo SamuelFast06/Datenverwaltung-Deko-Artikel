@@ -8,6 +8,7 @@ import Classes.SubClasses.UnitsAndValues.Units.WeightUnit;
 import Classes.SubClasses.UnitsAndValues.WeightValue;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -85,14 +86,14 @@ public class AddArticleFrame extends JFrame{
                 String atName = tfName.getText();
                 String atPrice = tfPrice.getText();
                 String atQuantity = tfQuantity.getText();
-                String atColor = tfColor.getText();
+
                 String atWeight = tfWeight.getText();
                 String atLength = tfLength.getText();
                 String atWide = tfWide.getText();
                 String atHeight = tfHeight.getText();
                 String atDescription = tfDescription.getText();
 
-                Article newArticle = new Article(UUID.randomUUID(),Integer.valueOf(atNo),atName,new WeightValue(Double.valueOf(tfWeight.getText()),weightUnit),atDescription,atColor,Double.valueOf(atPrice),Integer.valueOf(atQuantity), new Measures(new MeasuresValue(Double.valueOf(tfLength.getText()), lengthUnit),new MeasuresValue(Double.valueOf(tfWide.getText()),wideUnit),new MeasuresValue(Double.valueOf(tfHeight.getText()),heightUnit)));
+                Article newArticle = new Article(UUID.randomUUID(),Integer.valueOf(atNo),atName,new WeightValue(Double.valueOf(tfWeight.getText()),weightUnit),atDescription, Color.BLUE,Double.valueOf(atPrice),Integer.valueOf(atQuantity), new Measures(new MeasuresValue(Double.valueOf(tfLength.getText()), lengthUnit),new MeasuresValue(Double.valueOf(tfWide.getText()),wideUnit),new MeasuresValue(Double.valueOf(tfHeight.getText()),heightUnit)));
                 data.addArticle(newArticle);
                 parent.refreshInformationPanel();
 

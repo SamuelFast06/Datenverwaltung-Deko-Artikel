@@ -1,8 +1,10 @@
 package Classes;
 
+import Classes.Files.User;
+
 import javax.swing.*;
 
-public class DataButton extends JPanel{
+public class DataButton<T> extends JPanel{
 
     private JPanel panel1;
 
@@ -10,9 +12,19 @@ public class DataButton extends JPanel{
     private JLabel lbName;
 
 
-    //T dataElement;
+    T dataElement;
 
-    public DataButton() {
+    public DataButton(T dataElement) {
+        if (dataElement.getClass().equals(Costumer.class)) {
+            Costumer costumer = (Costumer) dataElement;
+            lbName.setText(costumer.getName());
+        } else if (dataElement.getClass().equals(ContactPerson.class)) {
+            ContactPerson contactPerson = (ContactPerson) dataElement;
+            lbName.setText(contactPerson.getName());
+        } else if (dataElement.getClass().equals(User.class)) {
+            User user = (User) dataElement;
+            lbName.setText(user.getUsername());
+        }
     }
 
 }

@@ -97,7 +97,6 @@ public class ShowArticleFrame extends JFrame implements Function {
         tfName.setText(slcArticle.getArticleName());
         tfPrice.setText(Double.toString(slcArticle.getArticlePrice()));
         tfQuantity.setText(Integer.toString(slcArticle.getArticleQuantity()));
-        tfColor.setText(slcArticle.getArticleColor());
         tfWeight.setText(slcArticle.getArticleName());
         tfDescription.setText(slcArticle.getArticleDescription());
         tfLength.setText(Double.toString(slcArticle.getArticleMeasures().getLength().getValue()));
@@ -161,7 +160,7 @@ public class ShowArticleFrame extends JFrame implements Function {
         slcArticle.setArticleName(tfName.getText());
         slcArticle.setArticlePrice(Double.valueOf(tfPrice.getText()));
         slcArticle.setArticleQuantity(Integer.valueOf(tfQuantity.getText()));
-        slcArticle.setArticleColor(tfColor.getText());
+
         //slcArticle.setArticleWeight(Double.valueOf(tfWeight.getText()),/*WeightUnit*/);
         slcArticle.setArticleDescription(tfDescription.getText());
         //slcArticle.setArticleMeasures(new Measures(Double.valueOf(tfLength.getText()),Double.valueOf(tfWide.getText()),Double.valueOf(tfHeight.getText())));

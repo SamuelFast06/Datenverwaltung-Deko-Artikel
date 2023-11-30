@@ -122,5 +122,9 @@ public class CostumersFrame extends JFrame implements Refreshable, Function {
             throw new RuntimeException(e);
         }
     }
+
+    public void setSelectedCostumer(Costumer newCostumer) {
+        this.selectedCostumer = newCostumer;
+    }
 }
 
