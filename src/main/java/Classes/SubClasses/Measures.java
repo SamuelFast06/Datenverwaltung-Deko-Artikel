@@ -5,16 +5,16 @@ import Classes.SubClasses.UnitsAndValues.MeasuresValue;
 public class Measures {
 
     private MeasuresValue length;
-    private MeasuresValue wide;
+    private MeasuresValue width;
     private MeasuresValue height;
 
     public Measures() {
         super();
     }
 
-    public Measures(MeasuresValue ilength, MeasuresValue iwide, MeasuresValue iheight) {
+    public Measures(MeasuresValue ilength, MeasuresValue iwidth, MeasuresValue iheight) {
         length = ilength;
-        wide = iwide;
+        width = iwidth;
         height = iheight;
 
     }
@@ -28,11 +28,11 @@ public class Measures {
     }
 
     public MeasuresValue getWide() {
-        return wide;
+        return width;
     }
 
-    public void setWide(MeasuresValue wide) {
-        this.wide = wide;
+    public void setWide(MeasuresValue width) {
+        this.width = width;
     }
 
     public MeasuresValue getHeight() {
@@ -47,7 +47,7 @@ public class Measures {
     public String toString() {
         return "Measures{" +
                 "length=" + length +
-                ", wide=" + wide +
+                ", wide=" + width +
                 ", height=" + height +
                 '}';
     }

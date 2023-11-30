@@ -1,6 +1,5 @@
 package Classes.Costumers;
 
-import Classes.Data;
 import Classes.SubClasses.Address;
 import Classes.SubClasses.Birthdate;
 

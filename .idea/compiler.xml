@@ -1,6 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+    <excludeFromCompile>
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/ChooseManagementFrame.form" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/ChooseManagementFrame.java" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/InformationForm.java" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/InformationType.java" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/LoginFrame.form" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/LoginFrame.java" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/ManagementFrame.form" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/ManagementFrame.java" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/RegisterFrame.form" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/RegisterFrame.java" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/RequestFrame.form" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/RequestFrame.java" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/RequestType.java" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/SettingsFrame.form" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/SettingsFrame.java" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/DataButton.form" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/Function.java" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/Refreshable.java" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/testClass.java" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/Articles/AddArticleFrame.form" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/Articles/AddArticleFrame.java" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/Articles/ArticleButton.form" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/Articles/ArticleButton.java" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/Articles/ArticlesFrame.form" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/Articles/ArticlesFrame.java" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/Articles/SetQuantityFrame.form" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/Articles/SetQuantityFrame.java" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/Articles/ShowArticleFrame.form" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/Articles/ShowArticleFrame.java" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/ContactPersons/AddContactPersonFrame.form" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/ContactPersons/AddContactPersonFrame.java" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/ContactPersons/ContactPersonFrame.form" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/ContactPersons/ContactPersonsFrame.java" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/ContactPersons/ShowContactPersonFrame.form" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/ContactPersons/ShowContactPersonFrame.java" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/Costumers/AddCostumerFrame.form" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/Costumers/AddCostumerFrame.java" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/Costumers/CostumersFrame.form" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/Costumers/CostumersFrame.java" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/Costumers/ShowCostumerFrame.form" />
+      <file url="file://$PROJECT_DIR$/src/main/java/Classes/Costumers/ShowCostumerFrame.java" />
+    </excludeFromCompile>
     <annotationProcessing>
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />

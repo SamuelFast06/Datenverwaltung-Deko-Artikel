@@ -3,6 +3,7 @@ package Classes;
 import Classes.Articles.ArticlesFrame;
 import Classes.ContactPersons.ContactPersonsFrame;
 import Classes.Costumers.CostumersFrame;
+import Classes.User.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,20 +39,17 @@ public class ManagementFrame extends JFrame{
     //Other
 
     InformationType tappedType = InformationType.noType;
-    private Data data;
     private User user;
 
     //Constructor
-    public ManagementFrame(User iuser, Data data){
-        this.data = data;
+    public ManagementFrame(User iuser){
         this.user = iuser;
 
         uiDesignSetup();
 
 
         setContentPane(managementPanel);
-        lbCurrentUser.setText("Current User: "+user.username);
-        lbManagementName.setText(data.getName());
+        lbCurrentUser.setText("Current User: "+user.getEmailAddress());
         setLocation(800,300);
         setSize(1080,720);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -68,7 +66,7 @@ public class ManagementFrame extends JFrame{
         btnArticles.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ArticlesFrame articlesManagement = new ArticlesFrame(user, data);
+                ArticlesFrame articlesManagement = new ArticlesFrame(user);
             }
         });
 
@@ -76,7 +74,7 @@ public class ManagementFrame extends JFrame{
         btnCustomers.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CostumersFrame costumersManagement = new CostumersFrame(user, data);
+                CostumersFrame costumersManagement = new CostumersFrame();
             }
         });
 

@@ -13,7 +13,7 @@ public class Article implements HasName {
     private String articleName;
     private WeightValue articleWeight;
     private String articleDescription;
-    private Color articleColor;
+    private String articleColor;
     private double articlePrice;
     private int articleQuantity;
     private Measures articleMeasures;
@@ -22,7 +22,7 @@ public class Article implements HasName {
         super();
     }
 
-    public Article(UUID id, int articleNo, String articleName, WeightValue articleWeight, String articleDescription, Color articleColor, double articlePrice, int articleQuantity, Measures articleMeasures) {
+    public Article(UUID id, int articleNo, String articleName, WeightValue articleWeight, String articleDescription, String articleColor, double articlePrice, int articleQuantity, Measures articleMeasures) {
         this.id = id;
         this.articleNo = articleNo;
         this.articleName = articleName;
@@ -76,11 +76,11 @@ public class Article implements HasName {
         this.articleDescription = articleDescription;
     }
 
-    public Color getArticleColor() {
+    public String getArticleColor() {
         return articleColor;
     }
 
-    public void setArticleColor(Color articleColor) {
+    public void setArticleColor(String articleColor) {
         this.articleColor = articleColor;
     }
 

@@ -107,7 +107,7 @@ public class InformationForm<T> extends JPanel {
             case users:
                 for (int i = 0; i < data.getUsers().size(); i++) {
                     JLabel label = new JLabel();
-                    label.setText(data.getUsers().get(i).getUsername());
+                    label.setText(data.getUsers().get(i).getEmailAddress());
                     this.add(label);
                 }
                 break;

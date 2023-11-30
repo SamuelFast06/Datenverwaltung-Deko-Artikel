@@ -1,10 +1,8 @@
 package Classes.Articles;
 
-import Classes.Data;
 import Classes.Function;
 import Classes.RequestFrame;
 import Classes.RequestType;
-import Classes.SubClasses.Measures;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

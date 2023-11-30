@@ -1,5 +1,7 @@
 package Classes;
 
+import Classes.User.User;
+
 import javax.swing.*;
 
 public class SettingsFrame extends JFrame{

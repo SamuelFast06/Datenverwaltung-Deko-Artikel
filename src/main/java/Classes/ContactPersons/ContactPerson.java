@@ -7,35 +7,35 @@ import java.util.*;
 public class ContactPerson implements HasName {
 
     private UUID id;
-    private String firstname;
-    private String lastname;
+    private String firstName;
+    private String lastName;
     private String company;
     private Address address;
-    private String branchtype;
-    private String mobilenumber;
+    private String branchType;
+    private String mobileNumber;
 
     public ContactPerson() {
         super();
     }
 
-    public ContactPerson(UUID id, String firstname, String lastname, String company, Address address, String branchtype, String mobilenumber) {
+    public ContactPerson(UUID id, String firstName, String lastName, String company, Address address, String branchType, String mobileNumber) {
         this.id = id;
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.company = company;
         this.address = address;
-        this.branchtype = branchtype;
-        this.mobilenumber = mobilenumber;
+        this.branchType = branchType;
+        this.mobileNumber = mobileNumber;
     }
 
     //getter
 
     public UUID getId() { return id; }
     public String getFirstname() {
-        return firstname;
+        return firstName;
     }
     public String getLastname() {
-        return lastname;
+        return lastName;
     }
     public String getCompany() {
         return company;
@@ -44,22 +44,22 @@ public class ContactPerson implements HasName {
         return address;
     }
     public String getBranchtype() {
-        return branchtype;
+        return branchType;
     }
     public String getMobilenumber() {
-        return mobilenumber;
+        return mobileNumber;
     }
 
-    public String getName() { return "" + firstname + " " +  lastname + "";}
+    public String getName() { return "" + firstName + " " +  lastName + "";}
 
     //setter
 
     public void setId(UUID id) { this.id = id; }
     public void setFirstname(String firstname) {
-        this.firstname = firstname;
+        this.firstName = firstname;
     }
     public void setLastname(String lastname) {
-        this.lastname = lastname;
+        this.lastName = lastname;
     }
     public void setCompany(String company) {
         this.company = company;
@@ -68,10 +68,10 @@ public class ContactPerson implements HasName {
         this.address = address;
     }
     public void setBranchtype(String branchtype) {
-        this.branchtype = branchtype;
+        this.branchType = branchtype;
     }
     public void setMobilenumber(String mobilenumber) {
-        this.mobilenumber = mobilenumber;
+        this.mobileNumber = mobilenumber;
     }
 
     //ToString
@@ -80,12 +80,12 @@ public class ContactPerson implements HasName {
     public String toString() {
         return "ContactPerson{" +
                 "id=" + id +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
+                ", firstname='" + firstName + '\'' +
+                ", lastname='" + lastName + '\'' +
                 ", company='" + company + '\'' +
                 ", address='" + address + '\'' +
-                ", branchtype='" + branchtype + '\'' +
-                ", mobilenumber='" + mobilenumber + '\'' +
+                ", branchtype='" + branchType + '\'' +
+                ", mobilenumber='" + mobileNumber + '\'' +
                 '}';
     }
 }

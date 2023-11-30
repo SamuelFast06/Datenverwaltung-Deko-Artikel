@@ -1,16 +1,13 @@
 package Classes;
 
+import Classes.Firebase.FirebaseContext;
+import Classes.Management.Management;
+import Classes.User.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.awt.*;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.UUID;
 
 public class Main {
     public static void main(String[] args) throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
-        System.out.println(mapper.writeValueAsString(Color.BLUE));
+        FirebaseContext firebaseContext = new FirebaseContext();
+        firebaseContext.addUser(new User("pablo", "kkd", "nbjaefj"), new Management());
     }
 }
