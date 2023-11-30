@@ -1,4 +1,4 @@
-package Classes;
+package Classes.frontend;
 
 import Classes.Articles.Article;
 import Classes.Articles.ArticleButton;

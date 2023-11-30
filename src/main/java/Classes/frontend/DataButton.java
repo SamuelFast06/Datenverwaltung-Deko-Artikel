@@ -1,8 +1,10 @@
-package Classes;
+package Classes.frontend;
 
-import Classes.Files.User;
-import Classes.Costumers.Costumer;
-import Classes.ContactPersons.ContactPerson;
+import Classes.Costumers.*;
+import Classes.User;
+import Classes.User.*;
+import Classes.ContactPersons.*;
+import Classes.Articles.*;
 
 import javax.swing.*;
 

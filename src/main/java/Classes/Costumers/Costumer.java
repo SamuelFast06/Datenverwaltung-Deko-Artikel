@@ -2,6 +2,7 @@ package Classes.Costumers;
 import Classes.HasName;
 import Classes.SubClasses.Address;
 import Classes.SubClasses.Birthdate;
+import Classes.SubClasses.Gender;
 
 import java.util.*;
 
@@ -13,13 +14,13 @@ public class Costumer implements HasName {
     Address address;
     String mobilenumber;
     String emailAddress;
-    String gender;
+    Gender gender;
 
     public Costumer() {
         super();
     }
 
-    public Costumer(UUID id, String firstName, String lastName, Birthdate birthdate, Address address, String mobilenumber, String emailAddress, String gender) {
+    public Costumer(UUID id, String firstName, String lastName, Birthdate birthdate, Address address, String mobilenumber, String emailAddress, Gender gender) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -55,7 +56,7 @@ public class Costumer implements HasName {
         return emailAddress;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
     public String getName() { return "" + firstName + " " + lastName + "";}
@@ -86,7 +87,7 @@ public class Costumer implements HasName {
         this.emailAddress = emailAddress;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 }

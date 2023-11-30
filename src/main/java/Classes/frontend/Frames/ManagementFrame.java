@@ -1,9 +1,11 @@
-package Classes;
+package Classes.frontend.Frames;
 
 import Classes.Articles.ArticlesFrame;
 import Classes.ContactPersons.ContactPersonsFrame;
 import Classes.Costumers.CostumersFrame;
-import Classes.User.User;
+import Classes.ManagementController;
+import Classes.User;
+import Classes.frontend.InformationType;
 
 import javax.swing.*;
 import java.awt.*;
@@ -39,17 +41,20 @@ public class ManagementFrame extends JFrame{
     //Other
 
     InformationType tappedType = InformationType.noType;
+    private Data data;
     private User user;
 
     //Constructor
-    public ManagementFrame(User iuser){
+    public ManagementFrame(User iuser, Data data){
+        this.data = data;
         this.user = iuser;
 
         uiDesignSetup();
 
 
         setContentPane(managementPanel);
-        lbCurrentUser.setText("Current User: "+user.getEmailAddress());
+        lbCurrentUser.setText("Current User: "+user.username);
+        lbManagementName.setText(data.getName());
         setLocation(800,300);
         setSize(1080,720);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -66,7 +71,7 @@ public class ManagementFrame extends JFrame{
         btnArticles.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ArticlesFrame articlesManagement = new ArticlesFrame(user);
+                ArticlesFrame articlesManagement = new ArticlesFrame(user, data);
             }
         });
 
@@ -74,7 +79,7 @@ public class ManagementFrame extends JFrame{
         btnCustomers.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CostumersFrame costumersManagement = new CostumersFrame();
+                CostumersFrame costumersManagement = new CostumersFrame(user, data);
             }
         });
 

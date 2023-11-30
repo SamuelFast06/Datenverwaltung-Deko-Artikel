@@ -1,7 +1,6 @@
 package Classes.Articles;
 
 import Classes.*;
-import Classes.User.User;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -39,7 +38,7 @@ public class ArticlesFrame extends JFrame implements Refreshable, Function {
         this.informationForm = new InformationForm(data, InformationType.articles, this);
         this.scrollPanel.add(this.informationForm);
         this.lbManagementName.setText(data.getName());
-        this.lbCurrentUser.setText(iuser.getEmailAddress());
+        this.lbCurrentUser.setText(iuser.getUsername());
         this.btnShowArticle.disable();
         setContentPane(articlesPanel);
         setLocation(800,300);
@@ -165,7 +164,7 @@ public class ArticlesFrame extends JFrame implements Refreshable, Function {
 
     public static void main(String[] args){
         User testuser = new User();
-        testuser.setEmailAddress("testuser");
+        testuser.setUsername("testuser");
         testuser.setPasswort("test");
         try {
             ArticlesFrame articlesManage = new ArticlesFrame(testuser, ManagementController.getDataManagement("654c908654105e766fcd758e"));

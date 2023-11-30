@@ -1,6 +1,6 @@
 package Classes.Articles;
 
-import Classes.Refreshable;
+import Classes.frontend.Refreshable;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

@@ -1,7 +1,8 @@
 package Classes.ContactPersons;
 
 import Classes.*;
-import Classes.User.User;
+import Classes.frontend.*;
+import Classes.frontend.Frames.RequestFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -36,7 +37,7 @@ public class ContactPersonsFrame extends JFrame implements Refreshable, Function
         this.informationForm = new InformationForm(data, InformationType.contactPeople, this);
         this.scrollPanel.add(this.informationForm);
         this.lbManagementName.setText(data.getName());
-        this.lbCurrentUser.setText(iuser.getEmailAddress());
+        this.lbCurrentUser.setText(iuser.getUsername());
         this.btnShowContactPerson.disable();
         setContentPane(contactPersonPanel);
         setLocation(800,300);
@@ -116,7 +117,7 @@ public class ContactPersonsFrame extends JFrame implements Refreshable, Function
 
     public static void main(String[] args){
         User testuser = new User();
-        testuser.setEmailAddress("testuser");
+        testuser.setUsername("testuser");
         testuser.setPasswort("test");
         try {
             ContactPersonsFrame contactPersonManage = new ContactPersonsFrame(testuser, ManagementController.getDataManagement("654c908654105e766fcd758e"));

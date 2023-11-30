@@ -1,7 +1,8 @@
 package Classes.Costumers;
 
 import Classes.*;
-import Classes.User.User;
+import Classes.frontend.*;
+import Classes.frontend.Frames.RequestFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -36,7 +37,7 @@ public class CostumersFrame extends JFrame implements Refreshable, Function {
         this.informationForm = new InformationForm(data, InformationType.costumer, this);
         this.scrollPanel.add(this.informationForm);
         this.lbManagementName.setText(data.getName());
-        this.lbCurrentUser.setText(iuser.getEmailAddress());
+        this.lbCurrentUser.setText(iuser.getUsername());
         this.btnShowCostumer.disable();
         setContentPane(costumersPanel);
         setLocation(800,300);
@@ -91,7 +92,7 @@ public class CostumersFrame extends JFrame implements Refreshable, Function {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (selectedCostumer != null) {
-                    //ShowCostumerFrame showCostumerFrame = new ShowCostumerFrame(data, selectedCostumer, self);
+                    ShowCostumerFrame showCostumerFrame = new ShowCostumerFrame(data, selectedCostumer, self);
                 }
             }
         });
@@ -115,7 +116,7 @@ public class CostumersFrame extends JFrame implements Refreshable, Function {
     //TEST
     public static void main(String[] args){
         User testuser = new User();
-        testuser.setEmailAddress("testuser");
+        testuser.setUsername("testuser");
         testuser.setPasswort("test");
         try {
             CostumersFrame costumersFrame = new CostumersFrame(testuser, ManagementController.getDataManagement("654c908654105e766fcd758e"));

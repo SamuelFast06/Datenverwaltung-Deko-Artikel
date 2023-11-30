@@ -1,4 +1,7 @@
-package Classes;
+package Classes.frontend.Frames;
+
+import Classes.User;
+import Classes.frontend.InformationType;
 
 import Classes.User.User;
 
