@@ -1,6 +1,9 @@
 package Classes;
 
-import Classes.Files.User;
+import Classes.Costumers.*;
+import Classes.User.*;
+import Classes.ContactPersons.*;
+import Classes.Articles.*;
 
 import javax.swing.*;
 

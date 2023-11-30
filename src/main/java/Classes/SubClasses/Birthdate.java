@@ -1,9 +1,9 @@
 package Classes.SubClasses;
 
 public class Birthdate {
-    int day;
-    int month;
-    int year;
+    private int day;
+    private int month;
+    private int year;
 
     public Birthdate() {
         super();

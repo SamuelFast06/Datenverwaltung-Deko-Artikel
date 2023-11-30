@@ -1,8 +1,5 @@
 package Classes.ContactPersons;
 
-import Classes.ContactPersons.ContactPerson;
-import Classes.ContactPersons.ContactPersonsFrame;
-import Classes.Data;
 import Classes.Function;
 import Classes.RequestFrame;
 import Classes.RequestType;

@@ -90,7 +90,7 @@ public class CostumersFrame extends JFrame implements Refreshable, Function {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (selectedCostumer != null) {
-                    //ShowCostumerFrame showCostumerFrame = new ShowCostumerFrame(data, selectedCostumer, self);
+                    ShowCostumerFrame showCostumerFrame = new ShowCostumerFrame(data, selectedCostumer, self);
                 }
             }
         });

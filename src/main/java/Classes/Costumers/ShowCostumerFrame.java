@@ -1,6 +1,5 @@
 package Classes.Costumers;
 
-import Classes.Data;
 import Classes.Function;
 import Classes.RequestFrame;
 import Classes.RequestType;

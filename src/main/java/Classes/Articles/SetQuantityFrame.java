@@ -1,7 +1,5 @@
 package Classes.Articles;
 
-import Classes.Articles.Article;
-import Classes.Data;
 import Classes.Refreshable;
 
 import javax.swing.*;

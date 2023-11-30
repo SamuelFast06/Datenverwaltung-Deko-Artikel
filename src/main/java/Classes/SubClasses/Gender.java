@@ -1,7 +1,10 @@
 package Classes.SubClasses;
 
 public enum Gender {
-    man,
-    woman,
-    divers
+    male,
+    female,
+    divers,
+    kampfhelikopter,
+    kriegsschiff,
+    turbolader
 }

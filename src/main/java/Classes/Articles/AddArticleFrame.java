@@ -1,6 +1,5 @@
 package Classes.Articles;
 
-import Classes.Data;
 import Classes.SubClasses.*;
 import Classes.SubClasses.UnitsAndValues.Units.MeasuresUnit;
 import Classes.SubClasses.UnitsAndValues.MeasuresValue;
