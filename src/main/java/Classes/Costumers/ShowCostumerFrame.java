@@ -1,11 +1,11 @@
 package Classes.Costumers;
 
-import Classes.ContactPersons.ContactPerson;
-import Classes.ContactPersons.ContactPersonsFrame;
 import Classes.Data;
 import Classes.Function;
 import Classes.RequestFrame;
 import Classes.RequestType;
+import Classes.SubClasses.Address;
+import Classes.SubClasses.Birthdate;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

@@ -86,7 +86,7 @@ public class ShowContactPersonFrame extends JFrame implements Function {
 
     public void setup(){
 
-        lbAddress.setText(slcContactPerson.getAddress());
+        //lbAddress.setText(slcContactPerson.getAddress());
         lbBranchtype.setText(""+slcContactPerson.getBranchtype()+"");
         lbCompany.setText(""+slcContactPerson.getCompany()+"");
         lbFirstName.setText(slcContactPerson.getFirstname());
@@ -141,7 +141,7 @@ public class ShowContactPersonFrame extends JFrame implements Function {
     }
 
     void editContactPerson() {
-        slcContactPerson.setAddress(tfAddress.getText());
+        //slcContactPerson.setAddress(tfAddress.getText());
         slcContactPerson.setCompany(tfCompany.getText());
         slcContactPerson.setBranchtype(tfBranchtype.getText());
         slcContactPerson.setFirstname(tfFirstName.getText());

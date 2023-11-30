@@ -4,6 +4,7 @@ import Classes.Data;
 import Classes.Function;
 import Classes.RequestFrame;
 import Classes.RequestType;
+import Classes.SubClasses.Measures;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -99,9 +100,9 @@ public class ShowArticleFrame extends JFrame implements Function {
         tfColor.setText(slcArticle.getArticleColor());
         tfWeight.setText(slcArticle.getArticleName());
         tfDescription.setText(slcArticle.getArticleDescription());
-        tfLength.setText(Double.toString(slcArticle.getArticleMeasures().getLength()));
-        tfWide.setText(Double.toString(slcArticle.getArticleMeasures().getWide()));
-        tfHeight.setText(Double.toString(slcArticle.getArticleMeasures().getHeight()));
+        tfLength.setText(Double.toString(slcArticle.getArticleMeasures().getLength().getValue()));
+        tfWide.setText(Double.toString(slcArticle.getArticleMeasures().getWide().getValue()));
+        tfHeight.setText(Double.toString(slcArticle.getArticleMeasures().getHeight().getValue()));
 
         btnSave.setEnabled(false);
 
@@ -161,9 +162,9 @@ public class ShowArticleFrame extends JFrame implements Function {
         slcArticle.setArticlePrice(Double.valueOf(tfPrice.getText()));
         slcArticle.setArticleQuantity(Integer.valueOf(tfQuantity.getText()));
         slcArticle.setArticleColor(tfColor.getText());
-        slcArticle.setArticleWeight(tfWeight.getText());
+        //slcArticle.setArticleWeight(Double.valueOf(tfWeight.getText()),/*WeightUnit*/);
         slcArticle.setArticleDescription(tfDescription.getText());
-        slcArticle.setArticleMeasures(new Measures(Double.valueOf(tfLength.getText()),Double.valueOf(tfWide.getText()),Double.valueOf(tfHeight.getText())));
+        //slcArticle.setArticleMeasures(new Measures(Double.valueOf(tfLength.getText()),Double.valueOf(tfWide.getText()),Double.valueOf(tfHeight.getText())));
 
         data.uploadDataToServer();
 

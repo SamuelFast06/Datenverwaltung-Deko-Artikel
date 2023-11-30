@@ -1,13 +1,17 @@
 package Classes.Articles;
 
 import Classes.Data;
+import Classes.SubClasses.*;
+import Classes.SubClasses.UnitsAndValues.Units.MeasuresUnit;
+import Classes.SubClasses.UnitsAndValues.MeasuresValue;
+import Classes.SubClasses.UnitsAndValues.Units.WeightUnit;
+import Classes.SubClasses.UnitsAndValues.WeightValue;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.Arrays;
 import java.util.UUID;
 
 public class AddArticleFrame extends JFrame{
@@ -48,7 +52,15 @@ public class AddArticleFrame extends JFrame{
 
     //Other
     private JTextPane tfDescription;
-    private JComboBox comboBox;
+    private JComboBox comboBoxWeight;
+    private JComboBox comboBoxLenght;
+    private JComboBox comboBoxWide;
+    private JComboBox comboBoxHeight;
+
+    private WeightUnit weightUnit;
+    private MeasuresUnit lengthUnit;
+    private MeasuresUnit wideUnit;
+    private MeasuresUnit heightUnit;
 
     private Data data;
     private ArticlesFrame parent;
@@ -80,7 +92,7 @@ public class AddArticleFrame extends JFrame{
                 String atHeight = tfHeight.getText();
                 String atDescription = tfDescription.getText();
 
-                Article newArticle = new Article(UUID.randomUUID(),Integer.valueOf(atNo),atName,atWeight,atDescription,atColor,Double.valueOf(atPrice),Integer.valueOf(atQuantity), new Measures(Double.valueOf(atLength),Double.valueOf(atWide),Double.valueOf(atHeight)));
+                Article newArticle = new Article(UUID.randomUUID(),Integer.valueOf(atNo),atName,new WeightValue(Double.valueOf(tfWeight.getText()),weightUnit),atDescription,atColor,Double.valueOf(atPrice),Integer.valueOf(atQuantity), new Measures(new MeasuresValue(Double.valueOf(tfLength.getText()), lengthUnit),new MeasuresValue(Double.valueOf(tfWide.getText()),wideUnit),new MeasuresValue(Double.valueOf(tfHeight.getText()),heightUnit)));
                 data.addArticle(newArticle);
                 parent.refreshInformationPanel();
 
@@ -88,17 +100,54 @@ public class AddArticleFrame extends JFrame{
             }
         });
 
-        String[] weightUnits = {"mg","g","kg","t","Stk."};
+        WeightUnit[] weightUnits = WeightUnit.values();
         for(int i = 0; i < weightUnits.length; i++){
-            comboBox.addItem(weightUnits[i]);
+            comboBoxWeight.addItem(weightUnits[i]);
         }
-
-        comboBox.addActionListener(new ActionListener() {
+        comboBoxWeight.addItemListener(new ItemListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-
+            public void itemStateChanged(ItemEvent e) {
+                WeightUnit weightUnit = (WeightUnit) e.getItem();
             }
         });
+
+        MeasuresUnit[] lengthUnits = MeasuresUnit.values();
+        for(int i = 0; i < lengthUnits.length; i++){
+            comboBoxLenght.addItem(lengthUnits[i]);
+        }
+
+        comboBoxLenght.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                MeasuresUnit lengthUnit = (MeasuresUnit) e.getItem();
+            }
+        });
+
+        MeasuresUnit[] wideUnits = MeasuresUnit.values();
+        for(int i = 0; i < wideUnits.length; i++){
+            comboBoxWide.addItem(wideUnits[i]);
+        }
+
+        comboBoxWide.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                MeasuresUnit wideUnit = (MeasuresUnit) e.getItem();
+            }
+        });
+
+        MeasuresUnit[] heightUnits = MeasuresUnit.values();
+        for(int i = 0; i < wideUnits.length; i++){
+            comboBoxHeight.addItem(heightUnits[i]);
+        }
+
+        comboBoxHeight.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+               MeasuresUnit heightUnit = (MeasuresUnit) e.getItem();
+            }
+        });
+
+
     }
 
     public static void main(String[] args) {

@@ -1,4 +1,5 @@
 package Classes.ContactPersons;
+import Classes.SubClasses.Address;
 import Classes.HasName;
 
 import java.util.*;
@@ -9,7 +10,7 @@ public class ContactPerson implements HasName {
     private String firstname;
     private String lastname;
     private String company;
-    private String address;
+    private Address address;
     private String branchtype;
     private String mobilenumber;
 
@@ -17,7 +18,7 @@ public class ContactPerson implements HasName {
         super();
     }
 
-    public ContactPerson(UUID id, String firstname, String lastname, String company, String address, String branchtype, String mobilenumber) {
+    public ContactPerson(UUID id, String firstname, String lastname, String company, Address address, String branchtype, String mobilenumber) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -39,7 +40,7 @@ public class ContactPerson implements HasName {
     public String getCompany() {
         return company;
     }
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
     public String getBranchtype() {
@@ -63,7 +64,7 @@ public class ContactPerson implements HasName {
     public void setCompany(String company) {
         this.company = company;
     }
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
     public void setBranchtype(String branchtype) {

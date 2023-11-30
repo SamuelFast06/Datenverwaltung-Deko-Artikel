@@ -58,13 +58,13 @@ public class AddContactPersonFrame extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String cpFirstName = tfFirstName.getText();
                 String cpLastName = tfLastName.getText();
-                String cpAddress = tfAddress.getText();
+                //Address cpAddress = tfAddress.getText();
                 String cpMobilenumber = tfMobilenumber.getText();
                 String cpCompany = tfCompany.getText();
                 String cpBranchtype = tfBranchtype.getText();
 
-                ContactPerson newContactPerson = new ContactPerson(UUID.randomUUID(),cpFirstName,cpLastName,cpCompany,cpAddress,cpBranchtype,cpMobilenumber);
-                data.addContactPerson(newContactPerson);
+                //ContactPerson newContactPerson = new ContactPerson(UUID.randomUUID(),cpFirstName,cpLastName,cpCompany,cpAddress,cpBranchtype,cpMobilenumber);
+                //data.addContactPerson(newContactPerson);
                 parent.refreshInformationPanel();
 
                 dispose();
