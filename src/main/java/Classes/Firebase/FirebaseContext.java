@@ -80,7 +80,6 @@ public class FirebaseContext {
         }
     }
 
-
     public <T> ArrayList<T> getDocuments(Class<T> classType) throws Exception {
         String key = "";
         if (classType == Article.class) {
@@ -105,7 +104,6 @@ public class FirebaseContext {
         }
         return items;
     }
-
 
     public <T> void addDocument(T item, String docId){
         try {
