@@ -126,6 +126,7 @@ public class FirebaseContext {
 
         List<QueryDocumentSnapshot> documents = querySnapshot.getDocuments();
         for (QueryDocumentSnapshot document : documents) {
+            System.out.println(document.getData());
             items.add(document.toObject(classType));
         }
         return items;
