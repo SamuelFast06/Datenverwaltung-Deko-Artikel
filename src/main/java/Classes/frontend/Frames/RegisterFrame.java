@@ -1,5 +1,6 @@
 package Classes.frontend.Frames;
 
+import Classes.Firebase.FirebaseContext;
 import Classes.ManagementController;
 import Classes.User;
 
@@ -21,12 +22,12 @@ public class RegisterFrame extends JFrame {
     //Labels
     private JLabel lbMessage;
     private JLabel lbRegister;
-    private JLabel lbUsername;
+    private JLabel lbEmail;
     private JLabel lbPasswort;
     private JLabel lbRepeatPasswort;
 
     //Textfields
-    private JTextField tfUsername;
+    private JTextField tfEmail;
     private JPasswordField tfPasswort;
     private JPasswordField tfRepeatPasswort;
 
@@ -39,7 +40,7 @@ public class RegisterFrame extends JFrame {
     private JPanel lbRegisterPanel;
     private JCheckBox cbPasswort;
 
-    private Data data;
+    private FirebaseContext firebaseContext;
     // private ArrayList<User> users = data.getUsers();
 
     public RegisterFrame() {
@@ -58,14 +59,13 @@ public class RegisterFrame extends JFrame {
         btnOK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String username = tfUsername.getText();
+                String email = tfEmail.getText();
                 String passwort = tfPasswort.getText();
                 String repeatPasswort = tfRepeatPasswort.getText();
 
                 try {
-                    if(ManagementController.usernameUnused(username)) {
                         if(passwort.equals(repeatPasswort)) {
-                            User user = new User(UUID.randomUUID(), username, passwort);
+                            User user = new User(UUID.randomUUID().toString(), email, passwort,null);
 
                             lbMessage.setText("Register Success");
                             dispose();
@@ -73,9 +73,6 @@ public class RegisterFrame extends JFrame {
                         } else {
                             lbMessage.setText("[RepeatPasswort] is not the same as [Passwort]");
                         }
-                    } else {
-                        lbMessage.setText("Username [" + username + "] is already used");
-                    }
                 } catch (Exception ex) {
                     System.out.println(ex);
                 }
@@ -134,7 +131,7 @@ public class RegisterFrame extends JFrame {
 
         //Text-Color
         lbRegister.setForeground(colorFgr);
-        lbUsername.setForeground(colorFgr);
+        lbEmail.setForeground(colorFgr);
         lbMessage.setForeground(colorFgr);
         lbPasswort.setForeground(colorFgr);
         lbRepeatPasswort.setForeground(colorFgr);
@@ -142,19 +139,19 @@ public class RegisterFrame extends JFrame {
         //TEXTFIELDS
 
         //Background-Color
-        tfUsername.setBackground(colorBgr);
+        tfEmail.setBackground(colorBgr);
         tfPasswort.setBackground(colorBgr);
         tfRepeatPasswort.setBackground(colorBgr);
         cbPasswort.setBackground(colorBgr);
 
         //Text-Color
-        tfUsername.setForeground(colorFgr);
+        tfEmail.setForeground(colorFgr);
         tfPasswort.setForeground(colorFgr);
         tfRepeatPasswort.setForeground(colorFgr);
         cbPasswort.setForeground(colorFgr);
 
         //Borders
-        tfUsername.setBorder(BorderFactory.createLineBorder(colorBgr,thickness,true));
+        tfEmail.setBorder(BorderFactory.createLineBorder(colorBgr,thickness,true));
         tfPasswort.setBorder(BorderFactory.createLineBorder(colorBgr,thickness,true));
         tfRepeatPasswort.setBorder(BorderFactory.createLineBorder(colorBgr,thickness,true));
 
