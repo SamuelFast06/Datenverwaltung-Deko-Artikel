@@ -7,6 +7,10 @@ public class WeightValue {
     public double value;
     public WeightUnit weightUnit;
 
+    public WeightValue(){
+        super();
+    }
+
     public WeightValue(double value, WeightUnit weightUnit){
         this.value = value;
         this.weightUnit = weightUnit;

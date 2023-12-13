@@ -6,9 +6,10 @@ public class MeasuresValue {
     private double value;
     private MeasuresUnit measuresUnit;
 
-    public MeasuresValue() {
+    public MeasuresValue(){
         super();
     }
+
     public MeasuresValue(double value, MeasuresUnit measuresUnit){
         this.value = value;
         this.measuresUnit = measuresUnit;
