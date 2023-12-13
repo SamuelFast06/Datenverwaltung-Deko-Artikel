@@ -7,15 +7,25 @@ public class User {
     String emailAddress;
     String passwort;
     String id;
+    String managementID;
 
     public User() {
         super();
     }
 
-    public User(String id, String emailAddress, String passwort) {
+    public User(String emailAddress, String passwort, String id, String managementID) {
         this.emailAddress = emailAddress;
         this.passwort = passwort;
         this.id = id;
+        this.managementID = managementID;
+    }
+
+    public String getManagementID() {
+        return managementID;
+    }
+
+    public void setManagementID(String managementID) {
+        this.managementID = managementID;
     }
 
     //getter
