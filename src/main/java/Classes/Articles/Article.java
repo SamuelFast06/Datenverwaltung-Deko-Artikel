@@ -8,7 +8,7 @@ import java.util.*;
 
 public class Article implements HasName {
 
-    private UUID id;
+    private String id;
     private int articleNo;
     private String articleName;
     private WeightValue articleWeight;
@@ -22,7 +22,7 @@ public class Article implements HasName {
         super();
     }
 
-    public Article(UUID id, int articleNo, String articleName, WeightValue articleWeight, String articleDescription, String articleColor, double articlePrice, int articleQuantity, Measures articleMeasures) {
+    public Article(String id, int articleNo, String articleName, WeightValue articleWeight, String articleDescription, String articleColor, double articlePrice, int articleQuantity, Measures articleMeasures) {
         this.id = id;
         this.articleNo = articleNo;
         this.articleName = articleName;
@@ -36,11 +36,11 @@ public class Article implements HasName {
 
     //getter-setter-ToString
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -7,7 +7,7 @@ import Classes.SubClasses.Gender;
 import java.util.*;
 
 public class Costumer implements HasName {
-    private UUID id;
+    private String id;
     String firstName;
     String lastName;
     Birthdate birthdate;
@@ -20,7 +20,7 @@ public class Costumer implements HasName {
         super();
     }
 
-    public Costumer(UUID id, String firstName, String lastName, Birthdate birthdate, Address address, String mobilenumber, String emailAddress, Gender gender) {
+    public Costumer(String id, String firstName, String lastName, Birthdate birthdate, Address address, String mobilenumber, String emailAddress, Gender gender) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -31,7 +31,7 @@ public class Costumer implements HasName {
         this.gender = gender;
     }
 
-    public UUID getId() { return id; }
+    public String getId() { return id; }
     public String getFirstName() {
         return firstName;
     }
@@ -62,7 +62,7 @@ public class Costumer implements HasName {
     public String getName() { return "" + firstName + " " + lastName + "";}
 
 
-    public void setId(UUID id) { this.id = id; }
+    public void setId(String id) { this.id = id; }
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }

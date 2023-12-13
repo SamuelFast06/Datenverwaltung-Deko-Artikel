@@ -6,7 +6,7 @@ import java.util.*;
 
 public class ContactPerson implements HasName {
 
-    private UUID id;
+    private String id;
     private String firstName;
     private String lastName;
     private String company;
@@ -18,7 +18,7 @@ public class ContactPerson implements HasName {
         super();
     }
 
-    public ContactPerson(UUID id, String firstName, String lastName, String company, Address address, String branchType, String mobileNumber) {
+    public ContactPerson(String id, String firstName, String lastName, String company, Address address, String branchType, String mobileNumber) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -30,7 +30,7 @@ public class ContactPerson implements HasName {
 
     //getter
 
-    public UUID getId() { return id; }
+    public String getId() { return id; }
     public String getFirstname() {
         return firstName;
     }
@@ -54,7 +54,7 @@ public class ContactPerson implements HasName {
 
     //setter
 
-    public void setId(UUID id) { this.id = id; }
+    public void setId(String id) { this.id = id; }
     public void setFirstname(String firstname) {
         this.firstName = firstname;
     }
