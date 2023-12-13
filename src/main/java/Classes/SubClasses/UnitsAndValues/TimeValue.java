@@ -1,8 +1,13 @@
 package Classes.SubClasses.UnitsAndValues;
 
+
 public class TimeValue {
     private double value;
     private TimeValue timeValue;
+
+    public TimeValue(){
+        super();
+    }
 
     public TimeValue(double value, TimeValue timeValue){
         this.value = value;
