@@ -1,5 +1,9 @@
 package Classes.Firebase;
 
+import Classes.Articles.Article;
+import Classes.ContactPersons.ContactPerson;
+import Classes.Costumers.Costumer;
+import Classes.Costumers.CostumersFrame;
 import Classes.Management.Management;
 import Classes.User.User;
 
@@ -64,6 +68,7 @@ public class FirebaseContext {
             data.put("id", user.getId());
             data.put("managementID", management.getId());
             data.put("passwort", user.getPasswort());
+            data.put("user", user);
 
             ApiFuture<WriteResult> result = docRef.set(data);
             System.out.println(result.get().getUpdateTime());
@@ -75,20 +80,32 @@ public class FirebaseContext {
         } catch (Exception e) {
             System.out.println("Failed to create new user: " + e.getLocalizedMessage());
         }
-
     }
 
-    public String getDocument() throws Exception {
-        ApiFuture<QuerySnapshot> query = db.collection("managements").get();
-// ...
-// query.get() blocks on response
+    public void signIn
+
+    public <T> ArrayList<T> getDocuments(Class<T> classType) throws Exception {
+        String key = "";
+        if (classType == Article.class) {
+            key = "Articles";
+        } else if (classType == Costumer.class) {
+            key = "Costumers";
+        } else if (classType == ContactPerson.class) {
+            key = "ContactPeople";
+        } else if (classType == User.class) {
+            key = "Users";
+        }
+
+        ApiFuture<QuerySnapshot> query = db.collection("managements").document(currentUser.getManagementID()).collection(key).get();
+
+        ArrayList<T> items = new ArrayList<>();
+
         QuerySnapshot querySnapshot = query.get();
-        String str = "";
 
         List<QueryDocumentSnapshot> documents = querySnapshot.getDocuments();
         for (QueryDocumentSnapshot document : documents) {
-            str += (String) document.get("name") + " ";
+            items.add(document.toObject(classType));
         }
-        return str;
+        return items;
     }
 }
