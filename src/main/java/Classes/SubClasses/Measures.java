@@ -27,11 +27,11 @@ public class Measures {
         this.length = length;
     }
 
-    public MeasuresValue getWide() {
+    public MeasuresValue getWidth() {
         return width;
     }
 
-    public void setWide(MeasuresValue width) {
+    public void setWidth(MeasuresValue width) {
         this.width = width;
     }
 
