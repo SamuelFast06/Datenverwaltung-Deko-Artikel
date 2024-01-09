@@ -131,18 +131,25 @@ public class FirebaseContext {
         return items;
     }
 
-    public <T> void addDocument(T item, String docId){
+    public <T> void addDocument(T item){
         try {
         String key = "";
+        String docId;
 
         if (item.getClass() == Article.class) {
             key = "Articles";
+            docId = ((Article) item).getId();
         } else if (item.getClass() == Costumer.class) {
             key = "Costumers";
+            docId = ((Costumer) item).getId();
         } else if (item.getClass() == ContactPerson.class) {
             key = "ContactPeople";
+            docId = ((ContactPerson) item).getId();
         } else if (item.getClass() == User.class) {
             key = "Users";
+            docId = ((User) item).getId();
+        } else{
+            docId = null;
         }
 
         ObjectMapper mapper = new ObjectMapper();

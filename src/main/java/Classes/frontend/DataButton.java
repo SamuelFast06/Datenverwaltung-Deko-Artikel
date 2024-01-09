@@ -1,7 +1,6 @@
 package Classes.frontend;
 
 import Classes.Costumers.*;
-import Classes.User;
 import Classes.User.*;
 import Classes.ContactPersons.*;
 import Classes.Articles.*;
@@ -27,7 +26,7 @@ public class DataButton<T> extends JPanel{
             lbName.setText(contactPerson.getName());
         } else if (dataElement.getClass().equals(User.class)) {
             User user = (User) dataElement;
-            lbName.setText(user.getUsername());
+            //lbName.setText(user.getUsername());
         }
     }
 

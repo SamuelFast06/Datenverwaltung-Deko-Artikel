@@ -13,7 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class InformationForm<T> extends JPanel {
-    Data data;
+
     InformationType type;
     T parent;
 

@@ -1,10 +1,13 @@
 package Classes.Articles;
-import Classes.HasName;
-import Classes.SubClasses.Measures;
-import Classes.SubClasses.UnitsAndValues.WeightValue;
 
-import java.awt.*;
-import java.util.*;
+import Classes.HasName;
+import Classes.SubClasses.UnitsAndValues.MeasuresValue;
+import Classes.SubClasses.UnitsAndValues.Units.MeasuresUnit;
+import Classes.SubClasses.UnitsAndValues.Units.WeightUnit;
+import Classes.SubClasses.UnitsAndValues.WeightValue;
+import Classes.SubClasses.Measures;
+
+import java.util.UUID;
 
 public class Article implements HasName {
 
@@ -127,4 +130,6 @@ public class Article implements HasName {
     public String getName() {
         return articleName;
     }
+
+    public static Article exampleArticle = new Article(UUID.randomUUID().toString(), 532, "bababanana", new WeightValue(80, WeightUnit.g), "This is a description", "This is a color", 99.99, 100, new Measures(new MeasuresValue(100, MeasuresUnit.cm), new MeasuresValue(100, MeasuresUnit.cm), new MeasuresValue(100, MeasuresUnit.cm)));
 }

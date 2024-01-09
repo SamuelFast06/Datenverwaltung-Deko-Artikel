@@ -24,14 +24,13 @@ public class Main {
 
 
         firebaseContext.signIn("samuel.fast@icloud.com", "SamuelFast06");
-        //firebaseContext.addDocument(article, article.getId());
-
+        firebaseContext.addDocument(article);
         ArrayList list = firebaseContext.getDocuments(Article.class);
 
         System.out.println(list);
 
         //firebaseContext.removeDocument("0b174d5b-db0f-46ec-ac35-01d019b12e56" ,Article.class);
-
-        firebaseContext.editDocument(article,"0b174d5b-db0f-46ec-ac35-01d019b12e56");
+        article.setArticleName("bumbum");
+        firebaseContext.editDocument(article);
     }
 }
