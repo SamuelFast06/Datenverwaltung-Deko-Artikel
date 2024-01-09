@@ -153,6 +153,7 @@ public class FirebaseContext {
         CollectionReference collRef = db.collection("managements").document(currentUser.getManagementID()).collection(key);
         ApiFuture<WriteResult> result = db.collection("managements").document(currentUser.getManagementID()).collection(key).document(docId).set(data);
         System.out.println("added Document: " + item);
+        System.out.println(result.get().getUpdateTime());
 
         } catch (Exception e) {
             System.out.println("Failed to add Document: " + e.getLocalizedMessage());
@@ -161,4 +162,61 @@ public class FirebaseContext {
 
     }
 
+    public <T> void removeDocument(String docId,Class<T> classType){
+        try{
+        String key = "";
+        if (classType == Article.class) {
+            key = "Articles";
+        } else if (classType == Costumer.class) {
+            key = "Costumers";
+        } else if (classType == ContactPerson.class) {
+            key = "ContactPeople";
+        } else if (classType == User.class) {
+            key = "Users";
+        }
+
+        CollectionReference collRef = db.collection("managements").document(currentUser.getManagementID()).collection(key);
+        ApiFuture<WriteResult> result = db.collection("managements").document(currentUser.getManagementID()).collection(key).document(docId).delete();
+        System.out.println("removed Document: " + collRef.document(docId));
+        System.out.println(result.get().getUpdateTime());
+
+        } catch (Exception e) {
+        System.out.println("Failed to remove Document: " + e.getLocalizedMessage());
+        }
+
+    }
+
+    public <T> void editDocument(T item){
+        try {
+            String key = "";
+            String docId;
+
+            if (item.getClass() == Article.class) {
+                key = "Articles";
+                docId = ((Article) item).getId();
+            } else if (item.getClass() == Costumer.class) {
+                key = "Costumers";
+                docId = ((Costumer) item).getId();
+            } else if (item.getClass() == ContactPerson.class) {
+                key = "ContactPeople";
+                docId = ((ContactPerson) item).getId();
+            } else if (item.getClass() == User.class) {
+                key = "Users";
+                docId = ((User) item).getId();
+            } else{
+                docId = null;
+            }
+
+            ObjectMapper mapper = new ObjectMapper();
+            Map<String, Object> data = mapper.convertValue(item, Map.class);
+
+            CollectionReference collRef = db.collection("managements").document(currentUser.getManagementID()).collection(key);
+            ApiFuture<WriteResult> result = db.collection("managements").document(currentUser.getManagementID()).collection(key).document(docId).set(data);
+            System.out.println("edit Document: " + item);
+            System.out.println(result.get().getUpdateTime());
+
+        } catch (Exception e) {
+            System.out.println("Failed to remove Document: " + e.getLocalizedMessage());
+        }
+    }
 }

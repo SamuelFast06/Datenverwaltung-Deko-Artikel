@@ -1,5 +1,6 @@
 package Classes.frontend.Frames;
 
+import Classes.Firebase.FirebaseContext;
 import Classes.ManagementController;
 import Classes.User;
 
@@ -61,12 +62,12 @@ public class LoginFrame extends JFrame{
         btnOK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String username = tfUsername.getText();
+                String email = tfUsername.getText();
                 String passwort = tfPasswort.getText();
 
                 if(wrongPWcount < 3) {
                     try {
-                        Data management = ManagementController.getDataManagement(new User(UUID.randomUUID(), username, passwort));
+                        FirebaseContext firebaseContext = new FirebaseContext();
 
                         if (management != null) {
                             lbMessage.setText("login success");
@@ -77,7 +78,7 @@ public class LoginFrame extends JFrame{
                             tfUsername.setText(null);
                             tfPasswort.setText(null);
 
-                            startManagment(new User(UUID.randomUUID(), username, passwort), management);
+                            startManagment(new User(UUID.randomUUID().toString(), email, passwort,), management);
                             dispose();
 
                         } else {
