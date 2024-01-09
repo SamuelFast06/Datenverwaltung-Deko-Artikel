@@ -1,5 +1,6 @@
 package Classes.Articles;
 
+import Classes.Firebase.FirebaseContext;
 import Classes.SubClasses.*;
 import Classes.SubClasses.UnitsAndValues.Units.MeasuresUnit;
 import Classes.SubClasses.UnitsAndValues.MeasuresValue;
@@ -61,11 +62,11 @@ public class AddArticleFrame extends JFrame{
     private MeasuresUnit wideUnit;
     private MeasuresUnit heightUnit;
 
-    private Data data;
+    private FirebaseContext firebaseContext;
     private ArticlesFrame parent;
 
-    public AddArticleFrame(Data data, ArticlesFrame parent){
-        this.data = data;
+    public AddArticleFrame(FirebaseContext firebaseContext, ArticlesFrame parent){
+        this.firebaseContext = firebaseContext;
         this.parent = parent;
         setContentPane(addCustomerPane);
         setLocation(800,300);
@@ -91,8 +92,8 @@ public class AddArticleFrame extends JFrame{
                 String atHeight = tfHeight.getText();
                 String atDescription = tfDescription.getText();
 
-                Article newArticle = new Article(UUID.randomUUID(),Integer.valueOf(atNo),atName,new WeightValue(Double.valueOf(tfWeight.getText()),weightUnit),atDescription, "00ff00",Double.valueOf(atPrice),Integer.valueOf(atQuantity), new Measures(new MeasuresValue(Double.valueOf(tfLength.getText()), lengthUnit),new MeasuresValue(Double.valueOf(tfWide.getText()),wideUnit),new MeasuresValue(Double.valueOf(tfHeight.getText()),heightUnit)));
-                data.addArticle(newArticle);
+                Article newArticle = new Article(UUID.randomUUID().toString(),Integer.valueOf(atNo),atName,new WeightValue(Double.valueOf(tfWeight.getText()),weightUnit),atDescription, "00ff00",Double.valueOf(atPrice),Integer.valueOf(atQuantity), new Measures(new MeasuresValue(Double.valueOf(tfLength.getText()), lengthUnit),new MeasuresValue(Double.valueOf(tfWide.getText()),wideUnit),new MeasuresValue(Double.valueOf(tfHeight.getText()),heightUnit)));
+                firebaseContext.addDocument(newArticle);
                 parent.refreshInformationPanel();
 
                 dispose();
