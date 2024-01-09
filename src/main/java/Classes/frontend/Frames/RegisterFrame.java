@@ -1,8 +1,6 @@
 package Classes.frontend.Frames;
 
 import Classes.Firebase.FirebaseContext;
-import Classes.ManagementController;
-import Classes.User;
 
 import Classes.User.User;
 

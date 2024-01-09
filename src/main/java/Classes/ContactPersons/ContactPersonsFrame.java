@@ -1,6 +1,7 @@
 package Classes.ContactPersons;
 
 import Classes.*;
+import Classes.Firebase.FirebaseContext;
 import Classes.frontend.*;
 import Classes.frontend.Frames.RequestFrame;
 
@@ -23,21 +24,18 @@ public class ContactPersonsFrame extends JFrame implements Refreshable, Function
     private JButton btnShowContactPerson;
     private JScrollPane scrollPane;
     private JPanel scrollPanel;
-
-    private User user;
-    private Data data;
+    private FirebaseContext firebaseContext;
     private ContactPerson selectedContactPerson;
     private InformationForm informationForm;
     private ContactPersonsFrame self = this;
 
-    public ContactPersonsFrame(User iuser, Data data){
-        this.data = data;
-        user = iuser;
+    public ContactPersonsFrame(FirebaseContext firebaseContext){
+        this.firebaseContext = firebaseContext;
         self = this;
-        this.informationForm = new InformationForm(data, InformationType.contactPeople, this);
+        this.informationForm = new InformationForm(firebaseContext, InformationType.contactPeople, this);
         this.scrollPanel.add(this.informationForm);
-        this.lbManagementName.setText(data.getName());
-        this.lbCurrentUser.setText(iuser.getUsername());
+        this.lbManagementName.setText(firebaseContext.getManagement().getName());
+        this.lbCurrentUser.setText(firebaseContext.currentUser.getEmailAddress());
         this.btnShowContactPerson.disable();
         setContentPane(contactPersonPanel);
         setLocation(800,300);
@@ -80,7 +78,7 @@ public class ContactPersonsFrame extends JFrame implements Refreshable, Function
         btnAddContactPerson.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AddContactPersonFrame addContactPersonFrame = new AddContactPersonFrame(data, self);
+                AddContactPersonFrame addContactPersonFrame = new AddContactPersonFrame(firebaseContext, self);
             }
         });
 
@@ -95,7 +93,7 @@ public class ContactPersonsFrame extends JFrame implements Refreshable, Function
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (selectedContactPerson != null) {
-                    ShowContactPersonFrame showContactPersonFrame = new ShowContactPersonFrame(data, selectedContactPerson, self);
+                    ShowContactPersonFrame showContactPersonFrame = new ShowContactPersonFrame(firebaseContext, selectedContactPerson, self);
                 }
             }
         });
@@ -104,7 +102,7 @@ public class ContactPersonsFrame extends JFrame implements Refreshable, Function
 
     public void apply(Boolean success) {
         if (success) {
-            data.removeContactPerson(selectedContactPerson);
+            firebaseContext.removeDocument(selectedContactPerson.getId(), ContactPerson.class);
             informationForm.refresh();
             System.out.println("'remove contactPerson'");
             informationForm.setHighlited(0);
@@ -115,15 +113,5 @@ public class ContactPersonsFrame extends JFrame implements Refreshable, Function
 
     public void refreshInformationPanel() { informationForm.refresh(); }
 
-    public static void main(String[] args){
-        User testuser = new User();
-        testuser.setUsername("testuser");
-        testuser.setPasswort("test");
-        try {
-            ContactPersonsFrame contactPersonManage = new ContactPersonsFrame(testuser, ManagementController.getDataManagement("654c908654105e766fcd758e"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }
 

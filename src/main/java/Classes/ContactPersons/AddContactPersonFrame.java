@@ -1,8 +1,13 @@
 package Classes.ContactPersons;
 
+import Classes.Firebase.FirebaseContext;
+import Classes.SubClasses.Address;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import java.util.UUID;
 
 public class AddContactPersonFrame extends JFrame{
 
@@ -34,11 +39,11 @@ public class AddContactPersonFrame extends JFrame{
     //Other
     private JScrollBar scrollBar1;
 
-    private Data data;
+    private FirebaseContext firebaseContext;
     private ContactPersonsFrame parent;
 
-    public AddContactPersonFrame(Data data, ContactPersonsFrame parent){
-        this.data = data;
+    public AddContactPersonFrame(FirebaseContext firebaseContext, ContactPersonsFrame parent){
+        this.firebaseContext = firebaseContext;
         this.parent = parent;
         setContentPane(addCustomerPane);
         setLocation(800,300);
@@ -60,7 +65,7 @@ public class AddContactPersonFrame extends JFrame{
                 String cpCompany = tfCompany.getText();
                 String cpBranchtype = tfBranchtype.getText();
 
-                //ContactPerson newContactPerson = new ContactPerson(UUID.randomUUID(),cpFirstName,cpLastName,cpCompany,cpAddress,cpBranchtype,cpMobilenumber);
+                ContactPerson newContactPerson = new ContactPerson(UUID.randomUUID().toString(),cpFirstName,cpLastName,cpCompany,new Address("a", "a", "a", "a", "a"),cpBranchtype,cpMobilenumber);
                 //data.addContactPerson(newContactPerson);
                 parent.refreshInformationPanel();
 

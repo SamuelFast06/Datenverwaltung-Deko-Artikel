@@ -1,6 +1,6 @@
 package Classes.frontend.Frames;
 
-import Classes.User;
+import Classes.Firebase.FirebaseContext;
 import Classes.frontend.InformationType;
 
 import Classes.User.User;
@@ -64,11 +64,11 @@ public class SettingsFrame extends JFrame{
 
 
     InformationType tappedType = InformationType.noType;
-    private User user;
+    private FirebaseContext firebaseContext;
 
-        public SettingsFrame(User user ){
+        public SettingsFrame(FirebaseContext firebaseContext){
 
-            this.user = user;
+            this.firebaseContext = firebaseContext;
 
             setContentPane(settingsPanel);
 

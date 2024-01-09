@@ -1,5 +1,6 @@
 package Classes.ContactPersons;
 
+import Classes.Firebase.FirebaseContext;
 import Classes.frontend.Function;
 import Classes.frontend.Frames.RequestFrame;
 import Classes.frontend.RequestType;
@@ -42,15 +43,15 @@ public class ShowContactPersonFrame extends JFrame implements Function {
     private JScrollBar scrollBar1;
 
 
-    private Data data;
+    private FirebaseContext firebaseContext;
     private ContactPersonsFrame contactPersonsFrame;
 
     private ContactPerson slcContactPerson;
     private ShowContactPersonFrame self = this;
 
 
-    public ShowContactPersonFrame(Data data, ContactPerson contactPerson, ContactPersonsFrame contactPersonsFrame){
-        this.data = data;
+    public ShowContactPersonFrame(FirebaseContext firebaseContext, ContactPerson contactPerson, ContactPersonsFrame contactPersonsFrame){
+        this.firebaseContext = firebaseContext;
         this.contactPersonsFrame = contactPersonsFrame;
         slcContactPerson = contactPerson;
         setContentPane(showContactPersonPane);
@@ -145,7 +146,7 @@ public class ShowContactPersonFrame extends JFrame implements Function {
         slcContactPerson.setLastname(tfLastName.getText());
         slcContactPerson.setMobilenumber(tfMobilenumber.getText());
 
-        data.uploadDataToServer();
+        firebaseContext.editDocument(slcContactPerson);
 
         System.out.println("contactPerson changed");
         dispose();

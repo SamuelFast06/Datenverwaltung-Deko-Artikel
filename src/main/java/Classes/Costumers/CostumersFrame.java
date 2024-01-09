@@ -32,14 +32,13 @@ public class CostumersFrame extends JFrame implements Refreshable, Function {
     private InformationForm informationForm;
     private CostumersFrame self = this;
 
-    public CostumersFrame(User iuser, FirebaseContext firebaseContext){
+    public CostumersFrame(FirebaseContext firebaseContext){
         this.firebaseContext = firebaseContext;
-        user = iuser;
         self = this;
         this.informationForm = new InformationForm(firebaseContext, InformationType.costumer, this);
         this.scrollPanel.add(this.informationForm);
         this.lbManagementName.setText(firebaseContext.getManagement().getName());
-        this.lbCurrentUser.setText(firebaseContext.currentUser.getEmailAddress();
+        this.lbCurrentUser.setText(firebaseContext.currentUser.getEmailAddress());
         this.btnShowCostumer.disable();
         setContentPane(costumersPanel);
         setLocation(800,300);
