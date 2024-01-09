@@ -1,5 +1,7 @@
 package Classes.frontend.Frames;
 
+import Classes.Firebase.FirebaseContext;
+import Classes.Management.Management;
 import Classes.ManagementController;
 import Classes.User;
 
@@ -10,6 +12,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.UUID;
 
 public class ChooseManagementFrame extends JFrame{
 
@@ -33,11 +36,14 @@ public class ChooseManagementFrame extends JFrame{
     private JPanel btnColorPanel;
 
     //Other
+    private FirebaseContext firebaseContext;
     private User user;
 
 
-    public ChooseManagementFrame(User iuser){
-        user = iuser;
+    public ChooseManagementFrame(User user, FirebaseContext firebaseContext){
+        this.firebaseContext = firebaseContext;
+        this.user = user;
+
         setContentPane(chooseManagementPanel);
         setLocation(800,300);
         setSize(400,180);
@@ -54,22 +60,24 @@ public class ChooseManagementFrame extends JFrame{
         btnCreateManagement.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String newManagementName = tfCreateName.getText();
                 try {
-                    String t = tfCreateName.getText().replaceAll("[\n \t]","");
-                    if(t.toCharArray().length > 0){
-                        ManagementController.createManagement(newManagementName, user);
+                    String newManagementName = tfCreateName.getText();
+
+                    String name = tfCreateName.getText().replaceAll("[\n \t]", "");
+                    if (name.toCharArray().length > 0) {
+                        firebaseContext.createManagementWithUser(user, new Management(name, UUID.randomUUID().toString()));
+
                         lbMessage.setText("Created " + newManagementName);
 
                         dispose();
                         LoginFrame loginFrame = new LoginFrame();
-                    }else{
+                    } else {
                         lbMessageCreate.setText("Invalid ManagementName");
                     }
-
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
+                } catch (Exception ex) {
+                    System.out.println("Failed to create a new Management: " + ex.toString());
                 }
+
             }
         });
 
@@ -80,16 +88,16 @@ public class ChooseManagementFrame extends JFrame{
                 try {
                     String t = tfCreateName.getText().replaceAll("[\n \t]","");
                     if(t.toCharArray().length > 0) {
-                        Data data = ManagementController.getDataManagement(joinID);
-                        data.addUser(user);
-                        lbMessage.setText("Joined " + data.getName());
+
+                        firebaseContext.joinManagementWithUser(user, joinID);
+                        lbMessage.setText("Joined " + firebaseContext.getManagement().getName());
 
                         dispose();
                         LoginFrame loginFrame = new LoginFrame();
                     }else{
                         lbMessage.setText("Join-ID does not exist");
                     }
-                } catch (IOException ex) {
+                } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
             }
@@ -141,10 +149,5 @@ public class ChooseManagementFrame extends JFrame{
         tfCreateName.setBorder(BorderFactory.createLineBorder(colorBgr,thickness,true));
         tfJoinID.setBorder(BorderFactory.createLineBorder(colorBgr,thickness,true));
 
-    }
-
-    public static void main(String[] pablo){
-        User testUser = new User();
-        ChooseManagementFrame frame = new ChooseManagementFrame(testUser);
     }
 }

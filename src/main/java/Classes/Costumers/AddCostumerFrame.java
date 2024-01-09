@@ -1,7 +1,9 @@
 package Classes.Costumers;
 
+import Classes.Firebase.FirebaseContext;
 import Classes.SubClasses.Address;
 import Classes.SubClasses.Birthdate;
+import Classes.SubClasses.Gender;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -51,11 +53,11 @@ public class AddCostumerFrame extends JFrame{
     //Other
     private JScrollBar scrollBar1;
 
-    private Data data;
+    private FirebaseContext firebaseContext;
     private CostumersFrame parent;
 
-    public AddCostumerFrame(Data data, CostumersFrame parent){
-        this.data = data;
+    public AddCostumerFrame(FirebaseContext firebaseContext, CostumersFrame parent){
+        this.firebaseContext = firebaseContext;
         this.parent = parent;
         setContentPane(addCustomerPane);
         setLocation(800,300);
@@ -88,8 +90,8 @@ public class AddCostumerFrame extends JFrame{
                 String cpHouseNumber = tfHouseNumber.getText();
 
 
-                Costumer newCostumer = new Costumer(UUID.randomUUID(),cpFirstName,cpLastName,new Birthdate(Integer.valueOf(cpDay),Integer.valueOf(cpMonth),Integer.valueOf(cpYear)),new Address(cpCountry,cpCity,cpStreet,cpZip,cpHouseNumber),cpMobilenumber,cpEmail,cpGender);
-                data.addCostumer(newCostumer);
+                Costumer newCostumer = new Costumer(UUID.randomUUID().toString(),cpFirstName,cpLastName,new Birthdate(Integer.valueOf(cpDay),Integer.valueOf(cpMonth),Integer.valueOf(cpYear)),new Address(cpCountry,cpCity,cpStreet,cpZip,cpHouseNumber),cpMobilenumber,cpEmail, Gender.male);
+                firebaseContext.addDocument(newCostumer);
                 parent.refreshInformationPanel();
 
                 dispose();

@@ -1,6 +1,8 @@
 package Classes.Costumers;
 
 import Classes.*;
+import Classes.Firebase.FirebaseContext;
+import Classes.User.User;
 import Classes.frontend.*;
 import Classes.frontend.Frames.RequestFrame;
 
@@ -25,19 +27,19 @@ public class CostumersFrame extends JFrame implements Refreshable, Function {
     private JPanel scrollPanel;
 
     private User user;
-    private Data data;
+    private FirebaseContext firebaseContext;
     private Costumer selectedCostumer;
     private InformationForm informationForm;
     private CostumersFrame self = this;
 
-    public CostumersFrame(User iuser, Data data){
-        this.data = data;
+    public CostumersFrame(User iuser, FirebaseContext firebaseContext){
+        this.firebaseContext = firebaseContext;
         user = iuser;
         self = this;
-        this.informationForm = new InformationForm(data, InformationType.costumer, this);
+        this.informationForm = new InformationForm(firebaseContext, InformationType.costumer, this);
         this.scrollPanel.add(this.informationForm);
-        this.lbManagementName.setText(data.getName());
-        this.lbCurrentUser.setText(iuser.getUsername());
+        this.lbManagementName.setText(firebaseContext.getManagement().getName());
+        this.lbCurrentUser.setText(firebaseContext.currentUser.getEmailAddress();
         this.btnShowCostumer.disable();
         setContentPane(costumersPanel);
         setLocation(800,300);
@@ -92,7 +94,7 @@ public class CostumersFrame extends JFrame implements Refreshable, Function {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (selectedCostumer != null) {
-                    ShowCostumerFrame showCostumerFrame = new ShowCostumerFrame(data, selectedCostumer, self);
+                    ShowCostumerFrame showCostumerFrame = new ShowCostumerFrame(firebaseContext, selectedCostumer, self);
                 }
             }
         });
@@ -101,7 +103,7 @@ public class CostumersFrame extends JFrame implements Refreshable, Function {
 
     public void apply(Boolean success) {
         if (success) {
-            data.removeCostumer(selectedCostumer);
+            firebaseContext.removeDocument(selectedCostumer.getId(), Costumer.class);
             informationForm.refresh();
             System.out.println("'remove costumer'");
             informationForm.setHighlited(0);
@@ -114,16 +116,7 @@ public class CostumersFrame extends JFrame implements Refreshable, Function {
 
 
     //TEST
-    public static void main(String[] args){
-        User testuser = new User();
-        testuser.setUsername("testuser");
-        testuser.setPasswort("test");
-        try {
-            CostumersFrame costumersFrame = new CostumersFrame(testuser, ManagementController.getDataManagement("654c908654105e766fcd758e"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+
 
     public void setSelectedCostumer(Costumer newCostumer) {
         this.selectedCostumer = newCostumer;

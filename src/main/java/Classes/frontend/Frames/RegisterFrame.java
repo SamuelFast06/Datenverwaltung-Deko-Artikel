@@ -69,7 +69,7 @@ public class RegisterFrame extends JFrame {
 
                             lbMessage.setText("Register Success");
                             dispose();
-                            ChooseManagementFrame chooseManagement = new ChooseManagementFrame(user);
+                            ChooseManagementFrame chooseManagement = new ChooseManagementFrame(user, firebaseContext);
                         } else {
                             lbMessage.setText("[RepeatPasswort] is not the same as [Passwort]");
                         }

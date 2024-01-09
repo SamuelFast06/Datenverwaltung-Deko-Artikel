@@ -1,5 +1,7 @@
 package Classes.Costumers;
 
+import Classes.Firebase.FirebaseContext;
+import Classes.SubClasses.Gender;
 import Classes.frontend.Function;
 import Classes.frontend.Frames.RequestFrame;
 import Classes.frontend.RequestType;
@@ -57,15 +59,15 @@ public class ShowCostumerFrame extends JFrame implements Function {
 
 
 
-    private Data data;
+    private FirebaseContext firebaseContext;
     private CostumersFrame costumersFrame;
 
     private Costumer slcCostumer;
     private ShowCostumerFrame self = this;
 
 
-    public ShowCostumerFrame(Data data, Costumer slcCostumer, CostumersFrame costumersFrame){
-        this.data = data;
+    public ShowCostumerFrame(FirebaseContext firebaseContext, Costumer slcCostumer, CostumersFrame costumersFrame){
+        this.firebaseContext = firebaseContext;
         this.costumersFrame = costumersFrame;
         slcCostumer = slcCostumer;
         setContentPane(showCostumerPane);
@@ -183,12 +185,12 @@ public class ShowCostumerFrame extends JFrame implements Function {
     void editCostumer() {
         slcCostumer.setFirstName(tfFirstName.getText());
         slcCostumer.setLastName(tfLastName.getText());
-        slcCostumer.setGender(tfGender.getText());
+        slcCostumer.setGender(Gender.male);
         slcCostumer.setBirthdate(new Birthdate(Integer.valueOf(tfDay.getText()),Integer.valueOf(tfMobilenumber.getText()),Integer.valueOf(tfYear.getText())));
         slcCostumer.setMobilenumber(tfMobilenumber.getText());
         slcCostumer.setAddress(new Address(tfCountry.getText(),tfCity.getText(),tfStreet.getText(),tfZip.getText(),tfHouseNumber.getText()));
 
-        data.uploadDataToServer();
+        firebaseContext.editDocument(slcCostumer);
 
         System.out.println("contactPerson changed");
         dispose();
