@@ -3,8 +3,8 @@ package Classes.frontend.Frames;
 import Classes.Articles.ArticlesFrame;
 import Classes.ContactPersons.ContactPersonsFrame;
 import Classes.Costumers.CostumersFrame;
-import Classes.ManagementController;
-import Classes.User;
+import Classes.Firebase.FirebaseContext;
+import Classes.User.User;
 import Classes.frontend.InformationType;
 
 import javax.swing.*;
@@ -41,20 +41,20 @@ public class ManagementFrame extends JFrame{
     //Other
 
     InformationType tappedType = InformationType.noType;
-    private Data data;
-    private User user;
+    private FirebaseContext firebaseContext;
 
     //Constructor
-    public ManagementFrame(User iuser, Data data){
-        this.data = data;
-        this.user = iuser;
+    public ManagementFrame(FirebaseContext firebaseContext){
+        this.firebaseContext = firebaseContext;
+
+        User user = firebaseContext.currentUser;
 
         uiDesignSetup();
 
 
         setContentPane(managementPanel);
-        lbCurrentUser.setText("Current User: "+user.username);
-        lbManagementName.setText(data.getName());
+        //lbCurrentUser.setText("Current User: "+user.getUsername);
+        lbManagementName.setText(firebaseContext.getManagement.name);
         setLocation(800,300);
         setSize(1080,720);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -71,7 +71,7 @@ public class ManagementFrame extends JFrame{
         btnArticles.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ArticlesFrame articlesManagement = new ArticlesFrame(user, data);
+                ArticlesFrame articlesManagement = new ArticlesFrame(firebaseContext);
             }
         });
 
@@ -79,7 +79,7 @@ public class ManagementFrame extends JFrame{
         btnCustomers.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CostumersFrame costumersManagement = new CostumersFrame(user, data);
+                CostumersFrame costumersManagement = new CostumersFrame(firebaseContext);
             }
         });
 
@@ -87,7 +87,7 @@ public class ManagementFrame extends JFrame{
         btnContactPersons.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ContactPersonsFrame contactPersonsManagement = new ContactPersonsFrame(user, data);
+                ContactPersonsFrame contactPersonsManagement = new ContactPersonsFrame(firebaseContext);
             }
         });
 
@@ -95,7 +95,7 @@ public class ManagementFrame extends JFrame{
         btnSettings.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SettingsFrame settingsFrame = new SettingsFrame(user, data);
+                SettingsFrame settingsFrame = new SettingsFrame(firebaseContext);
             }
         });
 

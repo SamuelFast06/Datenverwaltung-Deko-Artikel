@@ -45,7 +45,7 @@ public class FirebaseContext {
         }
     }
 
-    User currentUser;
+    public User currentUser;
 
     public void addUser(User user, Management management) {
         try {
