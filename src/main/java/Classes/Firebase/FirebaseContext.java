@@ -11,10 +11,7 @@ import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.*;
 import com.google.common.base.Equivalence;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -27,24 +24,33 @@ import java.util.concurrent.ExecutionException;
 public class FirebaseContext {
     static final String API_KEY = "AIzaSyB_EYCwXOEjIjVjfNDEDvVW_SGpfaJzb-4";
     FileInputStream serviceAccount;
+
+    {
+        try {
+            serviceAccount = new FileInputStream("src/main/java/Classes/Firebase/dekodatamanagement-firebase-adminsdk-j68m3-f3792ab492.json");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     FirestoreOptions firestoreOptions;
+
+    {
+        try {
+            firestoreOptions = FirestoreOptions.newBuilder()
+                    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                    //.setDatabaseId()
+                    .build();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
     Firestore db = firestoreOptions.getService();
 
     public FirebaseContext() {
         currentUser = null;
-
-        try {
-            this.serviceAccount = new FileInputStream("src/main/java/Classes/Firebase/dekodatamanagement-firebase-adminsdk-j68m3-f3792ab492.json");
-            this.firestoreOptions =
-                    FirestoreOptions.newBuilder()
-                            .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                            //.setDatabaseId()
-                            .build();
-        } catch (Exception e) {
-            System.out.println();
-        }
     }
 
     public User currentUser;

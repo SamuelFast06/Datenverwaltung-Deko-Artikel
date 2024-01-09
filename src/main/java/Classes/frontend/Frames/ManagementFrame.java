@@ -161,16 +161,5 @@ public class ManagementFrame extends JFrame{
 
 
     //TEST
-    public static void main(String[] args){
-
-        try {
-            User testuser = new User();
-            Data data = ManagementController.createManagement("test",testuser);
-            ManagementFrame management = new ManagementFrame(testuser, data);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
 
 }
