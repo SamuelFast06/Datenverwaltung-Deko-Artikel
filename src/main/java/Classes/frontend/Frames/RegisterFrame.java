@@ -41,7 +41,9 @@ public class RegisterFrame extends JFrame {
     private FirebaseContext firebaseContext;
     // private ArrayList<User> users = data.getUsers();
 
-    public RegisterFrame() {
+    public RegisterFrame(FirebaseContext firebaseContext) {
+        this.firebaseContext = firebaseContext;
+
         setContentPane(registerPanel);
         setLocation(800,300);
         setSize(400,280);
