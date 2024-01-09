@@ -162,7 +162,7 @@ public class FirebaseContext {
 
     }
 
-    public <T> void removeDocument(String docId,Class<T> classType){
+    public <T> void removeDocument(String docId, Class<T> classType){
         try{
         String key = "";
         if (classType == Article.class) {
@@ -177,6 +177,7 @@ public class FirebaseContext {
 
         CollectionReference collRef = db.collection("managements").document(currentUser.getManagementID()).collection(key);
         ApiFuture<WriteResult> result = db.collection("managements").document(currentUser.getManagementID()).collection(key).document(docId).delete();
+
         System.out.println("removed Document: " + collRef.document(docId));
         System.out.println(result.get().getUpdateTime());
 
@@ -216,7 +217,7 @@ public class FirebaseContext {
             System.out.println(result.get().getUpdateTime());
 
         } catch (Exception e) {
-            System.out.println("Failed to remove Document: " + e.getLocalizedMessage());
+            System.out.println("Failed to edit Document: " + e.getLocalizedMessage());
         }
     }
 }

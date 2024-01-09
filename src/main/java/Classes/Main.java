@@ -30,8 +30,8 @@ public class Main {
 
         System.out.println(list);
 
-        //firebaseContext.removeDocument("0b174d5b-db0f-46ec-ac35-01d019b12e56" ,Article.class);
+        //firebaseContext.removeDocument("0b174d5b-db0f-46ec-ac35-01d019b12e56", Article.class);
 
-        firebaseContext.editDocument(article,"0b174d5b-db0f-46ec-ac35-01d019b12e56");
+        firebaseContext.editDocument(article);
     }
 }
