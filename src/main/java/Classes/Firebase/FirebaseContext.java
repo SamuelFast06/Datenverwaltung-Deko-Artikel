@@ -24,18 +24,25 @@ import java.util.concurrent.ExecutionException;
 
 public class FirebaseContext {
     static final String API_KEY = "AIzaSyB_EYCwXOEjIjVjfNDEDvVW_SGpfaJzb-4";
-    FileInputStream serviceAccount = new FileInputStream("src/main/java/Classes/Firebase/dekodatamanagement-firebase-adminsdk-j68m3-f3792ab492.json");
-    FirestoreOptions firestoreOptions =
-            FirestoreOptions.newBuilder()
-                    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                    //.setDatabaseId()
-                    .build();
+    FileInputStream serviceAccount;
+    FirestoreOptions firestoreOptions;
 
 
     Firestore db = firestoreOptions.getService();
 
-    public FirebaseContext() throws IOException {
+    public FirebaseContext() {
         currentUser = null;
+
+        try {
+            this.serviceAccount = new FileInputStream("src/main/java/Classes/Firebase/dekodatamanagement-firebase-adminsdk-j68m3-f3792ab492.json");
+            this.firestoreOptions =
+                    FirestoreOptions.newBuilder()
+                            .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                            //.setDatabaseId()
+                            .build();
+        } catch (Exception e) {
+            System.out.println();
+        }
     }
 
     User currentUser;
@@ -103,6 +110,18 @@ public class FirebaseContext {
         JsonNode firebaseResult = mapper.readTree(connection.getInputStream());
         String uid = firebaseResult.get("localId").asText();
         currentUser = db.collection("users").document(uid).get().get().toObject(User.class);
+    }
+
+    public Management getManagement() {
+        ApiFuture<DocumentSnapshot> query = db.collection("managements").document(currentUser.getManagementID()).get();
+
+        try {
+            return (Management) query.get().toObject(Management.class);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public <T> ArrayList<T> getDocuments(Class<T> classType) throws Exception {

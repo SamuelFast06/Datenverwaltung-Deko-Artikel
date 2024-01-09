@@ -1,8 +1,7 @@
 package Classes.frontend.Frames;
 
 import Classes.Firebase.FirebaseContext;
-import Classes.ManagementController;
-import Classes.User;
+
 
 import Classes.User.User;
 
@@ -43,15 +42,18 @@ public class LoginFrame extends JFrame{
 
     private int userindex = 0;
     private int wrongPWcount = 0;
+    private FirebaseContext firebaseContext;
 
     //Constructor
     public LoginFrame() {
-       setContentPane(loginPanel);
-       setLocation(800,300);
-       setSize(400,280);
-       setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-       setVisible(true);
-       setResizable(false);
+        this.firebaseContext = new FirebaseContext();
+
+        setContentPane(loginPanel);
+        setLocation(800,300);
+        setSize(400,280);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setVisible(true);
+        setResizable(false);
 
         btnManager();
 
@@ -67,26 +69,22 @@ public class LoginFrame extends JFrame{
 
                 if(wrongPWcount < 3) {
                     try {
-                        FirebaseContext firebaseContext = new FirebaseContext();
+                        firebaseContext.signIn(email, passwort);
 
-                        if (management != null) {
-                            lbMessage.setText("login success");
+                        // When the login succeeds, the user is good to go
+                        lbMessage.setText("login success");
 
-                            tfUsername.disable();
-                            btnOK.disable();
-                            btnCancel.disable();
-                            tfUsername.setText(null);
-                            tfPasswort.setText(null);
+                        tfUsername.disable();
+                        btnOK.disable();
+                        btnCancel.disable();
+                        tfUsername.setText(null);
+                        tfPasswort.setText(null);
 
-                            startManagment(new User(UUID.randomUUID().toString(), email, passwort,), management);
-                            dispose();
-
-                        } else {
-                            wrongPWcount++;
-                            lbMessage.setText("Passwort or username is wrong! " + (4 - wrongPWcount) + " attempts left");
-                        }
+                        startManagment(firebaseContext);
+                        dispose();
                     } catch (Exception ex) {
-                        System.out.println(ex);
+                        wrongPWcount++;
+                        lbMessage.setText("Passwort or username is wrong! " + (4 - wrongPWcount) + " attempts left");
                     }
                 }else if(wrongPWcount >= 3){
                     tfUsername.setText(null);
@@ -183,8 +181,8 @@ public class LoginFrame extends JFrame{
     }
 
 
-    private void startManagment(User user, Data data){
-        ManagementFrame management = new ManagementFrame(user, data);
+    private void startManagment(FirebaseContext firebaseContext){
+        ManagementFrame management = new ManagementFrame(firebaseContext);
     }
 
     public static void main(String[] args){
