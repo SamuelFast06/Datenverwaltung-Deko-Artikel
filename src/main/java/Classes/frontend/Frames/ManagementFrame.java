@@ -54,7 +54,7 @@ public class ManagementFrame extends JFrame{
 
         setContentPane(managementPanel);
         //lbCurrentUser.setText("Current User: "+user.getUsername);
-        lbManagementName.setText(firebaseContext.getManagement.name);
+        lbManagementName.setText(firebaseContext.getManagement().getName());
         setLocation(800,300);
         setSize(1080,720);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

@@ -67,7 +67,7 @@ public class SettingsFrame extends JFrame{
     private FirebaseContext firebaseContext;
 
         public SettingsFrame(FirebaseContext firebaseContext){
-            this.firebaseContext = firebaseContext
+            this.firebaseContext = firebaseContext;
 
             User user = firebaseContext.currentUser;;
 

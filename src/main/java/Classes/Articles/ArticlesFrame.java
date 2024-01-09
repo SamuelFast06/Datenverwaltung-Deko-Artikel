@@ -1,6 +1,10 @@
 package Classes.Articles;
 
 import Classes.*;
+import Classes.Firebase.FirebaseContext;
+import Classes.User.User;
+import Classes.frontend.*;
+import Classes.frontend.Frames.RequestFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -27,18 +31,21 @@ public class ArticlesFrame extends JFrame implements Refreshable, Function {
     private JScrollPane scrollPane;
     private JPanel scrollPanel;
 
-    private Data data;
+    private FirebaseContext firebaseContext;
     private Article selectedArticle;
     private InformationForm informationForm;
     private ArticlesFrame self = this;
 
-    public ArticlesFrame(User iuser, Data data){
-        this.data = data;
+    public ArticlesFrame(FirebaseContext firebaseContext){
+        this.firebaseContext = firebaseContext;
+
+        User user = firebaseContext.currentUser;
+
         self = this;
-        this.informationForm = new InformationForm(data, InformationType.articles, this);
+        this.informationForm = new InformationForm(firebaseContext, InformationType.articles, this);
         this.scrollPanel.add(this.informationForm);
-        this.lbManagementName.setText(data.getName());
-        this.lbCurrentUser.setText(iuser.getUsername());
+        this.lbManagementName.setText(firebaseContext.getManagement().getName());
+        //this.lbCurrentUser.setText(user.getUsername());
         this.btnShowArticle.disable();
         setContentPane(articlesPanel);
         setLocation(800,300);
@@ -88,7 +95,7 @@ public class ArticlesFrame extends JFrame implements Refreshable, Function {
         btnAddArticle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AddArticleFrame addArticleFrame = new AddArticleFrame(data, self);
+                AddArticleFrame addArticleFrame = new AddArticleFrame(firebaseContext, self);
             }
         });
 
@@ -103,7 +110,7 @@ public class ArticlesFrame extends JFrame implements Refreshable, Function {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (selectedArticle != null) {
-                    ShowArticleFrame showArticleFrame = new ShowArticleFrame(data, selectedArticle, self);
+                    ShowArticleFrame showArticleFrame = new ShowArticleFrame(firebaseContext, selectedArticle, self);
                 }
             }
         });
@@ -111,7 +118,7 @@ public class ArticlesFrame extends JFrame implements Refreshable, Function {
         btnSetQuantity.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SetQuantityFrame setQuantityFrame = new SetQuantityFrame(selectedArticle, data, self);
+                SetQuantityFrame setQuantityFrame = new SetQuantityFrame(selectedArticle, firebaseContext, self);
                 informationForm.refresh();
             }
         });
@@ -121,7 +128,7 @@ public class ArticlesFrame extends JFrame implements Refreshable, Function {
             public void actionPerformed(ActionEvent e) {
                 if (selectedArticle != null) {
                     selectedArticle.setArticleQuantity(selectedArticle.getArticleQuantity() + 1);
-                    data.uploadDataToServer();
+                    firebaseContext.editDocument(selectedArticle);
                     informationForm.refresh();
                     System.out.println("Plus quantity");
                 } else {
@@ -136,7 +143,7 @@ public class ArticlesFrame extends JFrame implements Refreshable, Function {
                 if (selectedArticle != null) {
                     if (selectedArticle.getArticleQuantity() > 0) {
                         selectedArticle.setArticleQuantity(selectedArticle.getArticleQuantity() - 1);
-                        data.uploadDataToServer();
+                        firebaseContext.editDocument(selectedArticle);
                         informationForm.refresh();
                         System.out.println("Minus quantity");
                     } else {
@@ -151,7 +158,7 @@ public class ArticlesFrame extends JFrame implements Refreshable, Function {
 
     public void apply(Boolean success) {
         if (success) {
-            data.removeArticle(selectedArticle);
+            firebaseContext.removeDocument(selectedArticle.getId(), Article.class);
             informationForm.refresh();
             System.out.println("'remove article'");
             informationForm.setHighlited(0);
@@ -161,16 +168,5 @@ public class ArticlesFrame extends JFrame implements Refreshable, Function {
     }
 
     public void refreshInformationPanel() { informationForm.refresh(); }
-
-    public static void main(String[] args){
-        User testuser = new User();
-        testuser.setUsername("testuser");
-        testuser.setPasswort("test");
-        try {
-            ArticlesFrame articlesManage = new ArticlesFrame(testuser, ManagementController.getDataManagement("654c908654105e766fcd758e"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }
 

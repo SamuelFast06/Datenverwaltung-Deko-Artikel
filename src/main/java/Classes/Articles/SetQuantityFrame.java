@@ -1,5 +1,6 @@
 package Classes.Articles;
 
+import Classes.Firebase.FirebaseContext;
 import Classes.frontend.Refreshable;
 
 import javax.swing.*;
@@ -22,9 +23,9 @@ public class SetQuantityFrame extends JFrame {
     //Other
 
     private Article selectedArticle;
-    private Data data;
+    private FirebaseContext firebaseContext;
 
-    public SetQuantityFrame(Article selectedArticle, Data data, Refreshable refreshForm) {
+    public SetQuantityFrame(Article selectedArticle, FirebaseContext firebaseContext, Refreshable refreshForm) {
         this.selectedArticle = selectedArticle;
         setContentPane(quantityPanel);
         setLocation(800,300);
@@ -40,7 +41,7 @@ public class SetQuantityFrame extends JFrame {
                 int newValue = Integer.parseInt(tfQuantity.getText());
                 if (checkChanges(newValue)) {
                     selectedArticle.setArticleQuantity(newValue);
-                    data.uploadDataToServer();
+                    firebaseContext.editDocument(selectedArticle);
                     refreshForm.refreshInformationPanel();
                     lbMessage.setText("Quantity updates.");
                 }

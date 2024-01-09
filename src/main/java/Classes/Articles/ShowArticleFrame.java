@@ -1,5 +1,6 @@
 package Classes.Articles;
 
+import Classes.Firebase.FirebaseContext;
 import Classes.frontend.Function;
 import Classes.frontend.Frames.RequestFrame;
 import Classes.frontend.RequestType;
@@ -48,15 +49,15 @@ public class ShowArticleFrame extends JFrame implements Function {
     private JTextPane tfDescription;
 
 
-    private Data data;
+    private FirebaseContext firebaseContext;
     private ArticlesFrame articlesFrame;
 
     private Article slcArticle;
     private ShowArticleFrame self = this;
 
 
-    public ShowArticleFrame(Data data, Article article, ArticlesFrame articlesFrame){
-        this.data = data;
+    public ShowArticleFrame(FirebaseContext firebaseContext, Article article, ArticlesFrame articlesFrame){
+        this.firebaseContext = firebaseContext;
         this.articlesFrame = articlesFrame;
         slcArticle = article;
         setContentPane(showArticlePane);
@@ -98,7 +99,7 @@ public class ShowArticleFrame extends JFrame implements Function {
         tfWeight.setText(slcArticle.getArticleName());
         tfDescription.setText(slcArticle.getArticleDescription());
         tfLength.setText(Double.toString(slcArticle.getArticleMeasures().getLength().getValue()));
-        tfWide.setText(Double.toString(slcArticle.getArticleMeasures().getWide().getValue()));
+        tfWide.setText(Double.toString(slcArticle.getArticleMeasures().getWidth().getValue()));
         tfHeight.setText(Double.toString(slcArticle.getArticleMeasures().getHeight().getValue()));
 
         btnSave.setEnabled(false);
@@ -163,7 +164,7 @@ public class ShowArticleFrame extends JFrame implements Function {
         slcArticle.setArticleDescription(tfDescription.getText());
         //slcArticle.setArticleMeasures(new Measures(Double.valueOf(tfLength.getText()),Double.valueOf(tfWide.getText()),Double.valueOf(tfHeight.getText())));
 
-        data.uploadDataToServer();
+        firebaseContext.editDocument(slcArticle);
 
         System.out.println("article changed");
         dispose();
