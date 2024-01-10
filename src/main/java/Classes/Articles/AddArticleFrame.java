@@ -70,7 +70,7 @@ public class AddArticleFrame extends JFrame{
         this.parent = parent;
         setContentPane(addCustomerPane);
         setLocation(800,300);
-        setSize(400,400);
+        setSize(400,450);
         setVisible(true);
         setResizable(true);
 

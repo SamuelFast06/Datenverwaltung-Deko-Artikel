@@ -71,7 +71,7 @@ public class ShowCostumerFrame extends JFrame implements Function {
         this.slcCostumer = slcCostumer;
         setContentPane(showCostumerPane);
         setLocation(800,300);
-        setSize(400,380);
+        setSize(700,500);
         setVisible(true);
         setResizable(true);
 
@@ -92,7 +92,7 @@ public class ShowCostumerFrame extends JFrame implements Function {
         tfHouseNumber.setEnabled(false);
 
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("monkey.gif"));
-        lbImage.setIcon(icon);
+        //lbImage.setIcon(icon);
 
     }
 
@@ -136,6 +136,7 @@ public class ShowCostumerFrame extends JFrame implements Function {
         tfZip.setEnabled(false);
         tfStreet.setEnabled(false);
         tfHouseNumber.setEnabled(false);
+        tfEmail.setEnabled(false);
 
         cbEdit.addItemListener(new ItemListener() {
             @Override
@@ -156,6 +157,7 @@ public class ShowCostumerFrame extends JFrame implements Function {
                     tfZip.setEnabled(true);
                     tfStreet.setEnabled(true);
                     tfHouseNumber.setEnabled(true);
+                    tfEmail.setEnabled(true);
 
                 }
 
@@ -175,6 +177,7 @@ public class ShowCostumerFrame extends JFrame implements Function {
                     tfZip.setEnabled(false);
                     tfStreet.setEnabled(false);
                     tfHouseNumber.setEnabled(false);
+                    tfEmail.setEnabled(false);
 
                 }
             }
