@@ -30,7 +30,6 @@ public class AddContactPersonFrame extends JFrame{
     private JTextField tfCompany;
     private JTextField tfBranchtype;
     private JTextField tfMobilenumber;
-    private JTextField tfAddress;
 
     //Buttons
     private JButton btnSave;
@@ -38,6 +37,16 @@ public class AddContactPersonFrame extends JFrame{
 
     //Other
     private JScrollBar scrollBar1;
+    private JTextField tfCountry;
+    private JTextField tfCity;
+    private JTextField tfZip;
+    private JTextField tfStreet;
+    private JTextField tfHouseNumber;
+    private JLabel lbCountry;
+    private JLabel lbCity;
+    private JLabel lbZip;
+    private JLabel lbStreet;
+    private JLabel lbHouseNumber;
 
     private FirebaseContext firebaseContext;
     private ContactPersonsFrame parent;
@@ -65,8 +74,16 @@ public class AddContactPersonFrame extends JFrame{
                 String cpCompany = tfCompany.getText();
                 String cpBranchtype = tfBranchtype.getText();
 
-                ContactPerson newContactPerson = new ContactPerson(UUID.randomUUID().toString(),cpFirstName,cpLastName,cpCompany,new Address("a", "a", "a", "a", "a"),cpBranchtype,cpMobilenumber);
-                //data.addContactPerson(newContactPerson);
+                String cpCountry = tfCountry.getText();
+                String cpCity = tfCity.getText();
+                String cpZip = tfZip.getText();
+                String cpStreet = tfStreet.getText();
+                String cpHouseNumber = tfHouseNumber.getText();
+
+                ContactPerson newContactPerson = new ContactPerson(UUID.randomUUID().toString(),cpFirstName,cpLastName,cpCompany,new Address(cpCountry, cpCity, cpStreet, cpZip, cpHouseNumber),cpBranchtype,cpMobilenumber);
+
+                firebaseContext.addDocument(newContactPerson);
+
                 parent.refreshInformationPanel();
 
                 dispose();

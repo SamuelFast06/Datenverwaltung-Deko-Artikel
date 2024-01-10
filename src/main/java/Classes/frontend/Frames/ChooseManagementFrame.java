@@ -47,7 +47,7 @@ public class ChooseManagementFrame extends JFrame{
         setLocation(800,300);
         setSize(400,180);
         setVisible(true);
-        setResizable(false);
+        setResizable(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         btnManager();
