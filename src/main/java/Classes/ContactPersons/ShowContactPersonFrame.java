@@ -67,7 +67,7 @@ public class ShowContactPersonFrame extends JFrame implements Function {
         slcContactPerson = contactPerson;
         setContentPane(showContactPersonPane);
         setLocation(800,300);
-        setSize(400,380);
+        setSize(400,450);
         setVisible(true);
         setResizable(true);
 
@@ -86,7 +86,7 @@ public class ShowContactPersonFrame extends JFrame implements Function {
         tfHouseNumber.setEnabled(false);
 
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("monkey.gif"));
-        lbImage.setIcon(icon);
+        //lbImage.setIcon(icon);
 
     }
 

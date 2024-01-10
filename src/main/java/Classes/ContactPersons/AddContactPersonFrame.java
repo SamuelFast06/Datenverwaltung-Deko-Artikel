@@ -56,7 +56,7 @@ public class AddContactPersonFrame extends JFrame{
         this.parent = parent;
         setContentPane(addCustomerPane);
         setLocation(800,300);
-        setSize(400,380);
+        setSize(400,450);
         setVisible(true);
         setResizable(true);
 
