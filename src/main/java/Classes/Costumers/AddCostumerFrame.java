@@ -61,7 +61,7 @@ public class AddCostumerFrame extends JFrame{
         this.parent = parent;
         setContentPane(addCustomerPane);
         setLocation(800,300);
-        setSize(400,380);
+        setSize(700,500);
         setVisible(true);
         setResizable(true);
 
