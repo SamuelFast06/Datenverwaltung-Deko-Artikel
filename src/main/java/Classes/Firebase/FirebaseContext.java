@@ -74,6 +74,11 @@ public class FirebaseContext {
 
         System.out.println(connection.getResponseMessage());
 
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode firebaseResult = mapper.readTree(connection.getInputStream());
+        String uid = firebaseResult.get("localId").asText();
+        user.setId(uid);
+
         // add the user to a management or create a new one
         DocumentReference docRef = db.collection("managements").document(management.getId()).collection("users").document();
         Map<String, Object> data = new HashMap<>();
@@ -89,13 +94,20 @@ public class FirebaseContext {
         docRef = db.collection("users").document(user.getId());
         result = docRef.set(data);
         result.get();
+
+        // Put the management in the Firestore
+        Map<String, Object> managementMap = mapper.convertValue(management, Map.class);
+        db.collection("managements").document(management.getId()).set(managementMap);
+
+        user.setManagementID(management.getId());
+        currentUser = user;
     }
 
     public void joinManagementWithUser(User user, String managementID) throws IOException, ExecutionException, InterruptedException {
         // First check is the Management exists
 
         ApiFuture<DocumentSnapshot> management = db.collection("managements").document(managementID).get();
-        if (!management.get().exists()) { return; }
+        if (!management.get().exists()) { throw new IOException(); }
 
         URL url = new URL("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" + API_KEY);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -115,10 +127,15 @@ public class FirebaseContext {
 
         System.out.println(connection.getResponseMessage());
 
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode firebaseResult = mapper.readTree(connection.getInputStream());
+        String uid = firebaseResult.get("localId").asText();
+        user.setId(uid);
+
         connection.disconnect();
 
         // add the user to a management or create a new one
-        DocumentReference docRef = db.collection("managements").document(managementID).collection("users").document();
+        DocumentReference docRef = db.collection("managements").document(managementID).collection("users").document(user.getId());
         Map<String, Object> data = new HashMap<>();
         data.put("emailAddress", user.getEmailAddress());
         data.put("id", user.getId());
@@ -132,6 +149,9 @@ public class FirebaseContext {
         docRef = db.collection("users").document(user.getId());
         result = docRef.set(data);
         result.get();
+
+        user.setManagementID(managementID);
+        currentUser = user;
     }
 
 
@@ -163,6 +183,7 @@ public class FirebaseContext {
         ApiFuture<DocumentSnapshot> query = db.collection("managements").document(currentUser.getManagementID()).get();
 
         try {
+            DocumentSnapshot snapshot = query.get();
             return (Management) query.get().toObject(Management.class);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -224,7 +245,7 @@ public class FirebaseContext {
 
 
         CollectionReference collRef = db.collection("managements").document(currentUser.getManagementID()).collection(key);
-        ApiFuture<WriteResult> result = db.collection("managements").document(currentUser.getManagementID()).collection(key).document(docId).set(data);
+        ApiFuture<WriteResult> result = db.collection("managements").document(currentUser.getManagementID()).collection(key).document(docId.toUpperCase()).set(data);
         System.out.println("added Document: " + item);
         System.out.println(result.get().getUpdateTime());
 
@@ -249,7 +270,7 @@ public class FirebaseContext {
         }
 
         CollectionReference collRef = db.collection("managements").document(currentUser.getManagementID()).collection(key);
-        ApiFuture<WriteResult> result = db.collection("managements").document(currentUser.getManagementID()).collection(key).document(docId).delete();
+        ApiFuture<WriteResult> result = db.collection("managements").document(currentUser.getManagementID()).collection(key).document(docId.toUpperCase()).delete();
 
         System.out.println("removed Document: " + collRef.document(docId));
         System.out.println(result.get().getUpdateTime());

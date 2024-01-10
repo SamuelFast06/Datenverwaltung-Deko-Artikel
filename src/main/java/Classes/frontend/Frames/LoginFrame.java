@@ -101,7 +101,7 @@ public class LoginFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                RegisterFrame registry = new RegisterFrame();
+                RegisterFrame registry = new RegisterFrame(firebaseContext);
             }
         });
 

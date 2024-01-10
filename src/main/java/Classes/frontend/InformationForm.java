@@ -4,6 +4,7 @@ import Classes.Articles.Article;
 import Classes.Articles.ArticleButton;
 import Classes.Articles.ArticlesFrame;
 import Classes.ContactPersons.ContactPerson;
+import Classes.ContactPersons.ContactPersonsFrame;
 import Classes.Costumers.Costumer;
 import Classes.Costumers.CostumersFrame;
 import Classes.Firebase.FirebaseContext;
@@ -108,12 +109,34 @@ public class InformationForm<T> extends JPanel {
                     }
                     break;
                 case contactPeople:
-
+                    ContactPersonsFrame contactPersonsFrame = (ContactPersonsFrame) parent;
                     ArrayList contactPersons = firebaseContext.getDocuments(ContactPerson.class);
                     for (int i = 0; i < contactPersons.size(); i++) {
-                        JLabel label = new JLabel();
-                        label.setText(((ContactPerson) contactPersons.get(i)).getFirstname());
-                        this.add(label);
+                        ContactPerson contactPerson = (ContactPerson) contactPersons.get(i);
+                        int currentValue = i + 1;
+                        DataButton dataButton = new DataButton(contactPerson);
+                        JButton button = new JButton();
+                        button.setBorder(BorderFactory.createLineBorder(currentValue == highlited ? new Color(35, 198, 211) : new Color(24, 129, 165), 5, true));
+
+                        JPanel buttonPanel = new JPanel();
+                        button.add(dataButton);
+                        buttonPanel.add(button);
+                        buttonPanel.setBorder(paddingBorder);
+                        button.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                if (highlited != currentValue) {
+                                    highlited = currentValue;
+                                    contactPersonsFrame.setSelectContactPerson(contactPerson);
+                                    refresh();
+                                } else {
+                                    highlited = 0;
+                                    contactPersonsFrame.setSelectContactPerson(null);
+                                    refresh();
+                                }
+                            }
+                        });
+                        this.add(buttonPanel);
                     }
                     break;
 

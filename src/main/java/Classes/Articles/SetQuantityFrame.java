@@ -44,6 +44,8 @@ public class SetQuantityFrame extends JFrame {
                     firebaseContext.editDocument(selectedArticle);
                     refreshForm.refreshInformationPanel();
                     lbMessage.setText("Quantity updates.");
+
+                    dispose();
                 }
             }
         });

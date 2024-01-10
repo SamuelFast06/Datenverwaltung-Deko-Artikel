@@ -65,7 +65,7 @@ public class RegisterFrame extends JFrame {
 
                 try {
                         if(passwort.equals(repeatPasswort)) {
-                            User user = new User(UUID.randomUUID().toString(), email, passwort,null);
+                            User user = new User(email, passwort, UUID.randomUUID().toString(), null);
 
                             lbMessage.setText("Register Success");
                             dispose();

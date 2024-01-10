@@ -90,7 +90,7 @@ public class AddCostumerFrame extends JFrame{
                 String cpHouseNumber = tfHouseNumber.getText();
 
 
-                Costumer newCostumer = new Costumer(UUID.randomUUID().toString(),cpFirstName,cpLastName,new Birthdate(Integer.valueOf(cpDay),Integer.valueOf(cpMonth),Integer.valueOf(cpYear)),new Address(cpCountry,cpCity,cpStreet,cpZip,cpHouseNumber),cpMobilenumber,cpEmail, Gender.male);
+                Costumer newCostumer = new Costumer(UUID.randomUUID().toString(),cpFirstName,cpLastName,new Birthdate(Integer.valueOf(cpDay),Integer.valueOf(cpMonth),Integer.valueOf(cpYear)),new Address(cpCountry,cpCity,cpStreet,cpZip,cpHouseNumber),cpMobilenumber,cpEmail, Gender.Male);
                 firebaseContext.addDocument(newCostumer);
                 parent.refreshInformationPanel();
 

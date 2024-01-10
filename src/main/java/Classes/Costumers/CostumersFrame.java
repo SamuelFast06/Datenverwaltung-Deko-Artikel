@@ -78,7 +78,7 @@ public class CostumersFrame extends JFrame implements Refreshable, Function {
         btnAddCostumer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //AddCostumerFrame addCostumerFrame = new AddCostumerFrame(data, self);
+                AddCostumerFrame addCostumerFrame = new AddCostumerFrame(firebaseContext, self);
             }
         });
 
@@ -119,6 +119,12 @@ public class CostumersFrame extends JFrame implements Refreshable, Function {
 
     public void setSelectedCostumer(Costumer newCostumer) {
         this.selectedCostumer = newCostumer;
+
+        if (selectedCostumer != null) {
+            enableButtons();
+        } else {
+            disableButtons();
+        }
     }
 }
 

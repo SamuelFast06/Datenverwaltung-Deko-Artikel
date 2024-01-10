@@ -6,6 +6,7 @@ import Classes.ContactPersons.*;
 import Classes.Articles.*;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class DataButton<T> extends JPanel{
 
@@ -28,6 +29,11 @@ public class DataButton<T> extends JPanel{
             User user = (User) dataElement;
             //lbName.setText(user.getUsername());
         }
+        lbName.setFont(new Font(null, Font.BOLD, 20));
+
+        this.add(lbName);
+
+        setVisible(true);
     }
 
 }

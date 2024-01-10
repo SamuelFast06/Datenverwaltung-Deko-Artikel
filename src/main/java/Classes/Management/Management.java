@@ -3,10 +3,24 @@ package Classes.Management;
 public class Management {
     String name;
     String id;
+    Settings settings;
 
-    public Management(String name, String id) {
+    public Management() {
+        super();
+    }
+
+    public Management(String name, String id, Settings settings) {
         this.name = name;
         this.id = id;
+        this.settings = settings;
+    }
+
+    public Settings getSettings() {
+        return settings;
+    }
+
+    public void setSettings(Settings settings) {
+        this.settings = settings;
     }
 
     public String getName() {

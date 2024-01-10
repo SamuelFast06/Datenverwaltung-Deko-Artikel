@@ -58,7 +58,6 @@ public class ShowCostumerFrame extends JFrame implements Function {
     private JScrollBar scrollBar1;
 
 
-
     private FirebaseContext firebaseContext;
     private CostumersFrame costumersFrame;
 
@@ -69,7 +68,7 @@ public class ShowCostumerFrame extends JFrame implements Function {
     public ShowCostumerFrame(FirebaseContext firebaseContext, Costumer slcCostumer, CostumersFrame costumersFrame){
         this.firebaseContext = firebaseContext;
         this.costumersFrame = costumersFrame;
-        slcCostumer = slcCostumer;
+        this.slcCostumer = slcCostumer;
         setContentPane(showCostumerPane);
         setLocation(800,300);
         setSize(400,380);
@@ -84,6 +83,7 @@ public class ShowCostumerFrame extends JFrame implements Function {
         tfMonth.setEnabled(false);
         tfYear.setEnabled(false);
         tfGender.setEnabled(false);
+        tfEmail.setEnabled(false);
         tfMobilenumber.setEnabled(false);
         tfCountry.setEnabled(false);
         tfCity.setEnabled(false);
@@ -112,17 +112,30 @@ public class ShowCostumerFrame extends JFrame implements Function {
         tfMonth.setText(Integer.toString(slcCostumer.getBirthdate().getMonth()));
         tfYear.setText(Integer.toString(slcCostumer.getBirthdate().getYear()));
         tfGender.setText(""+slcCostumer.getGender()+"");
-        tfEmail.setText(""+slcCostumer.getEmailAddress()+"");
-        tfMobilenumber.setText(""+slcCostumer.getMobilenumber());
+        tfEmail.setText(slcCostumer.getEmailAddress());
+        tfMobilenumber.setText(slcCostumer.getMobilenumber());
 
-        tfCountry.setText(""+slcCostumer.getAddress().getCountry());
-        tfCity.setText(""+slcCostumer.getAddress().getCity());
-        tfZip.setText(""+slcCostumer.getAddress().getZip());
-        tfStreet.setText(""+slcCostumer.getAddress().getStreet());
-        tfHouseNumber.setText(""+slcCostumer.getAddress().getHouseNumber());
+        tfCountry.setText(slcCostumer.getAddress().getCountry());
+        tfCity.setText(slcCostumer.getAddress().getCity());
+        tfZip.setText(slcCostumer.getAddress().getZip());
+        tfStreet.setText(slcCostumer.getAddress().getStreet());
+        tfHouseNumber.setText(slcCostumer.getAddress().getHouseNumber());
 
 
         btnSave.setEnabled(false);
+
+        tfFirstName.setEnabled(false);
+        tfLastName.setEnabled(false);
+        tfDay.setEnabled(false);
+        tfMonth.setEnabled(false);
+        tfYear.setEnabled(false);
+        tfGender.setEnabled(false);
+        tfMobilenumber.setEnabled(false);
+        tfCountry.setEnabled(false);
+        tfCity.setEnabled(false);
+        tfZip.setEnabled(false);
+        tfStreet.setEnabled(false);
+        tfHouseNumber.setEnabled(false);
 
         cbEdit.addItemListener(new ItemListener() {
             @Override
@@ -185,7 +198,7 @@ public class ShowCostumerFrame extends JFrame implements Function {
     void editCostumer() {
         slcCostumer.setFirstName(tfFirstName.getText());
         slcCostumer.setLastName(tfLastName.getText());
-        slcCostumer.setGender(Gender.male);
+        slcCostumer.setGender(Gender.Male);
         slcCostumer.setBirthdate(new Birthdate(Integer.valueOf(tfDay.getText()),Integer.valueOf(tfMobilenumber.getText()),Integer.valueOf(tfYear.getText())));
         slcCostumer.setMobilenumber(tfMobilenumber.getText());
         slcCostumer.setAddress(new Address(tfCountry.getText(),tfCity.getText(),tfStreet.getText(),tfZip.getText(),tfHouseNumber.getText()));

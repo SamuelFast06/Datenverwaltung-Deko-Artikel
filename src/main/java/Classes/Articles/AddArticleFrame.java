@@ -57,10 +57,10 @@ public class AddArticleFrame extends JFrame{
     private JComboBox comboBoxWide;
     private JComboBox comboBoxHeight;
 
-    private WeightUnit weightUnit;
-    private MeasuresUnit lengthUnit;
-    private MeasuresUnit wideUnit;
-    private MeasuresUnit heightUnit;
+    private WeightUnit weightUnit = WeightUnit.kg;
+    private MeasuresUnit lengthUnit = MeasuresUnit.mm;
+    private MeasuresUnit widthUnit = MeasuresUnit.mm;
+    private MeasuresUnit heightUnit = MeasuresUnit.mm;
 
     private FirebaseContext firebaseContext;
     private ArticlesFrame parent;
@@ -92,7 +92,7 @@ public class AddArticleFrame extends JFrame{
                 String atHeight = tfHeight.getText();
                 String atDescription = tfDescription.getText();
 
-                Article newArticle = new Article(UUID.randomUUID().toString(),Integer.valueOf(atNo),atName,new WeightValue(Double.valueOf(tfWeight.getText()),weightUnit),atDescription, "00ff00",Double.valueOf(atPrice),Integer.valueOf(atQuantity), new Measures(new MeasuresValue(Double.valueOf(tfLength.getText()), lengthUnit),new MeasuresValue(Double.valueOf(tfWide.getText()),wideUnit),new MeasuresValue(Double.valueOf(tfHeight.getText()),heightUnit)));
+                Article newArticle = new Article(UUID.randomUUID().toString(),Integer.valueOf(atNo),atName,new WeightValue(Double.valueOf(tfWeight.getText()),weightUnit),atDescription, "00ff00",Double.valueOf(atPrice),Integer.valueOf(atQuantity), new Measures(new MeasuresValue(Double.valueOf(tfLength.getText()), lengthUnit),new MeasuresValue(Double.valueOf(tfWide.getText()),widthUnit),new MeasuresValue(Double.valueOf(tfHeight.getText()),heightUnit)));
                 firebaseContext.addDocument(newArticle);
                 parent.refreshInformationPanel();
 
@@ -107,7 +107,7 @@ public class AddArticleFrame extends JFrame{
         comboBoxWeight.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                WeightUnit weightUnit = (WeightUnit) e.getItem();
+                weightUnit = (WeightUnit) e.getItem();
             }
         });
 
@@ -119,7 +119,7 @@ public class AddArticleFrame extends JFrame{
         comboBoxLenght.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                MeasuresUnit lengthUnit = (MeasuresUnit) e.getItem();
+                lengthUnit = (MeasuresUnit) e.getItem();
             }
         });
 
@@ -131,7 +131,7 @@ public class AddArticleFrame extends JFrame{
         comboBoxWide.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                MeasuresUnit wideUnit = (MeasuresUnit) e.getItem();
+                widthUnit = (MeasuresUnit) e.getItem();
             }
         });
 
@@ -143,7 +143,7 @@ public class AddArticleFrame extends JFrame{
         comboBoxHeight.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-               MeasuresUnit heightUnit = (MeasuresUnit) e.getItem();
+               heightUnit = (MeasuresUnit) e.getItem();
             }
         });
 

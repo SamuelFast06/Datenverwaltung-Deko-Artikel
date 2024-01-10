@@ -1,6 +1,7 @@
 package Classes.ContactPersons;
 
 import Classes.Firebase.FirebaseContext;
+import Classes.SubClasses.Address;
 import Classes.frontend.Function;
 import Classes.frontend.Frames.RequestFrame;
 import Classes.frontend.RequestType;
@@ -32,7 +33,6 @@ public class ShowContactPersonFrame extends JFrame implements Function {
     private JTextField tfCompany;
     private JTextField tfBranchtype;
     private JTextField tfMobilenumber;
-    private JTextField tfAddress;
 
     //Buttons
     private JButton btnSave;
@@ -41,6 +41,17 @@ public class ShowContactPersonFrame extends JFrame implements Function {
     //Other
     private JCheckBox cbEdit;
     private JScrollBar scrollBar1;
+    private JTextField tfCountry;
+    private JTextField tfCity;
+    private JTextField tfZip;
+    private JTextField tfStreet;
+    private JTextField tfHouseNumber;
+    private JLabel lbOtherInformation;
+    private JLabel lbCountry;
+    private JLabel lbCity;
+    private JLabel lbZip;
+    private JLabel lbStreet;
+    private JLabel lbHouseNumber;
 
 
     private FirebaseContext firebaseContext;
@@ -64,10 +75,15 @@ public class ShowContactPersonFrame extends JFrame implements Function {
 
         tfFirstName.disable();
         tfLastName.disable();
-        tfAddress.disable();
         tfBranchtype.disable();
         tfMobilenumber.disable();
         tfCompany.disable();
+
+        tfCountry.setEnabled(false);
+        tfCity.setEnabled(false);
+        tfZip.setEnabled(false);
+        tfStreet.setEnabled(false);
+        tfHouseNumber.setEnabled(false);
 
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("monkey.gif"));
         lbImage.setIcon(icon);
@@ -85,11 +101,17 @@ public class ShowContactPersonFrame extends JFrame implements Function {
     public void setup(){
 
         //lbAddress.setText(slcContactPerson.getAddress());
-        lbBranchtype.setText(""+slcContactPerson.getBranchtype()+"");
-        lbCompany.setText(""+slcContactPerson.getCompany()+"");
-        lbFirstName.setText(slcContactPerson.getFirstname());
-        lbLastName.setText(slcContactPerson.getLastname());
-        lbMobilenumber.setText(""+slcContactPerson.getMobilenumber());
+        tfBranchtype.setText(slcContactPerson.getBranchtype());
+        tfCompany.setText(slcContactPerson.getCompany());
+        tfFirstName.setText(slcContactPerson.getFirstname());
+        tfLastName.setText(slcContactPerson.getLastname());
+        tfMobilenumber.setText(slcContactPerson.getMobilenumber());
+
+        tfCountry.setText(slcContactPerson.getAddress().getCountry());
+        tfCity.setText(slcContactPerson.getAddress().getCity());
+        tfZip.setText(slcContactPerson.getAddress().getZip());
+        tfStreet.setText(slcContactPerson.getAddress().getStreet());
+        tfHouseNumber.setText(slcContactPerson.getAddress().getHouseNumber());
 
         btnSave.setEnabled(false);
 
@@ -100,12 +122,17 @@ public class ShowContactPersonFrame extends JFrame implements Function {
 
                     btnSave.setEnabled(true);
 
-                    tfAddress.setEnabled(true);
                     tfBranchtype.setEnabled(true);
                     tfCompany.setEnabled(true);
                     tfMobilenumber.setEnabled(true);
                     tfFirstName.setEnabled(true);
                     tfLastName.setEnabled(true);
+
+                    tfCountry.setEnabled(true);
+                    tfCity.setEnabled(true);
+                    tfZip.setEnabled(true);
+                    tfStreet.setEnabled(true);
+                    tfHouseNumber.setEnabled(true);
 
                 }
 
@@ -113,12 +140,17 @@ public class ShowContactPersonFrame extends JFrame implements Function {
 
                     btnSave.setEnabled(false);
 
-                    tfAddress.setEnabled(false);
                     tfBranchtype.setEnabled(false);
                     tfCompany.setEnabled(false);
                     tfMobilenumber.setEnabled(false);
                     tfFirstName.setEnabled(false);
                     tfLastName.setEnabled(false);
+
+                    tfCountry.setEnabled(false);
+                    tfCity.setEnabled(false);
+                    tfZip.setEnabled(false);
+                    tfStreet.setEnabled(false);
+                    tfHouseNumber.setEnabled(false);
                 }
             }
         });
@@ -145,6 +177,8 @@ public class ShowContactPersonFrame extends JFrame implements Function {
         slcContactPerson.setFirstname(tfFirstName.getText());
         slcContactPerson.setLastname(tfLastName.getText());
         slcContactPerson.setMobilenumber(tfMobilenumber.getText());
+
+        slcContactPerson.setAddress(new Address(tfCountry.getText(), tfCity.getText(), tfZip.getText(), tfStreet.getText(), tfHouseNumber.getText()));
 
         firebaseContext.editDocument(slcContactPerson);
 

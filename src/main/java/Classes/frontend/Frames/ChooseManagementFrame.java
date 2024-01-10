@@ -3,6 +3,7 @@ package Classes.frontend.Frames;
 import Classes.Firebase.FirebaseContext;
 import Classes.Management.Management;
 
+import Classes.Management.Settings;
 import Classes.User.User;
 
 import javax.swing.*;
@@ -63,7 +64,7 @@ public class ChooseManagementFrame extends JFrame{
 
                     String name = tfCreateName.getText().replaceAll("[\n \t]", "");
                     if (name.toCharArray().length > 0) {
-                        firebaseContext.createManagementWithUser(user, new Management(name, UUID.randomUUID().toString()));
+                        firebaseContext.createManagementWithUser(user, new Management(name, UUID.randomUUID().toString(), new Settings("")));
 
                         lbMessage.setText("Created " + newManagementName);
 
@@ -73,7 +74,7 @@ public class ChooseManagementFrame extends JFrame{
                         lbMessageCreate.setText("Invalid ManagementName");
                     }
                 } catch (Exception ex) {
-                    System.out.println("Failed to create a new Management: " + ex.toString());
+                    lbMessage.setText("Failed to create a new Management (Maybe your e-mail is invalid): " + ex.toString());
                 }
 
             }
@@ -85,7 +86,7 @@ public class ChooseManagementFrame extends JFrame{
                 String joinID = tfJoinID.getText();
                 try {
                     String t = tfCreateName.getText().replaceAll("[\n \t]","");
-                    if(t.toCharArray().length > 0) {
+                    if(joinID.toCharArray().length > 0) {
 
                         firebaseContext.joinManagementWithUser(user, joinID);
                         lbMessage.setText("Joined " + firebaseContext.getManagement().getName());
@@ -96,7 +97,7 @@ public class ChooseManagementFrame extends JFrame{
                         lbMessage.setText("Join-ID does not exist");
                     }
                 } catch (Exception ex) {
-                    throw new RuntimeException(ex);
+                    lbMessage.setText("Join-ID does not exist");
                 }
             }
         });
